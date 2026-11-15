@@ -47,12 +47,19 @@ jobs:
       - name: MCP server (as the plugin starts it)
         run: node scripts/mcp-smoke.mjs
 
-      - name: Every example compiles
+      # ...and uses today's device names (an old name still plays, with a
+      # device/legacy-name warning; public examples must not carry one).
+      - name: Every example compiles, with current device names
         run: |
           shopt -s nullglob
           for f in scripts/smoke.tc examples/*/*.tc; do
             echo "== $f"
-            npx -y "tutticode@${{ steps.pin.outputs.version }}" check "$f"
+            out="$(npx -y "tutticode@${{ steps.pin.outputs.version }}" check "$f" 2>&1)" || { echo "$out"; exit 1; }
+            echo "$out"
+            if grep -q 'device/legacy-name' <<<"$out"; then
+              echo "::error file=$f::uses an old device name"
+              exit 1
+            fi
           done
 
       - name: Render

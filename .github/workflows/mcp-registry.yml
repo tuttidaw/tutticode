@@ -1,0 +1,41 @@
+# Lists the MCP server in the official MCP Registry
+# (registry.modelcontextprotocol.io) as io.github.tuttidaw/tutticode.
+# GitHub OIDC from this repo proves the io.github.tuttidaw namespace; no
+# token is stored. Runs when server.json's version changes (each publish of
+# a new tutticode), or by hand.
+name: mcp-registry
+
+on:
+  push:
+    branches: [main]
+    paths: [server.json]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: mcp-registry
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: Already listed?
+        id: listed
+        run: |
+          version="$(node -p "require('./server.json').version")"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          found="$(curl -fsS 'https://registry.modelcontextprotocol.io/v0/servers?search=io.github.tuttidaw/tutticode&limit=100' \
+            | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const j=JSON.parse(s);console.log((j.servers||[]).some(x=>(x.server||x).name==='io.github.tuttidaw/tutticode'&&(x.server||x).version===process.argv[1]))})" "$version" || echo false)"
+          echo "found=$found" >> "$GITHUB_OUTPUT"
+          echo "registry has $version: $found"
+      - name: Publish
+        if: steps.listed.outputs.found != 'true'
+        run: |
+          curl -fsSL https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz | tar xz mcp-publisher
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish

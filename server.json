@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.tuttidaw/tutticode",
+  "title": "TuttiCode",
+  "description": "Write music as Strudel-compatible code; render WAV/FLAC/MP3 with stems and LUFS in your browser.",
+  "websiteUrl": "https://tuttidaw.com/code",
+  "repository": {
+    "url": "https://github.com/tuttidaw/tutticode",
+    "source": "github"
+  },
+  "version": "0.3.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "tutticode",
+      "version": "0.3.2",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "mcp"
+        }
+      ]
+    }
+  ]
+}

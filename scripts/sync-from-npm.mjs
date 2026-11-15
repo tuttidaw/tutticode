@@ -77,6 +77,13 @@ try {
     json.version = version;
     writeFileSync(path, `${JSON.stringify(json, null, 2)}\n`);
   }
+  // the MCP Registry entry (server.json): its version and the npm package's
+  const serverPath = join(root, 'server.json');
+  const server = JSON.parse(readFileSync(serverPath, 'utf8'));
+  server.version = version;
+  for (const p of server.packages ?? [])
+    if (p.identifier === 'tutticode') p.version = version;
+  writeFileSync(serverPath, `${JSON.stringify(server, null, 2)}\n`);
   const mcpPath = join(root, '.mcp.json');
   const mcp = readFileSync(mcpPath, 'utf8').replace(
     /tutticode@[0-9A-Za-z.+-]+/g,

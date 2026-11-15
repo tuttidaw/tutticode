@@ -26,6 +26,17 @@ if (claude.version !== codex.version) {
 if (!mcp.includes(`tutticode@${claude.version}`)) {
   errors.push(`.mcp.json does not pin tutticode@${claude.version}`);
 }
+const server = json('server.json');
+if (
+  server.version !== claude.version ||
+  server.packages?.[0]?.version !== claude.version ||
+  server.packages?.[0]?.identifier !== 'tutticode'
+) {
+  errors.push(`server.json does not list tutticode ${claude.version}`);
+}
+if (server.description.length > 100) {
+  errors.push('server.json: the MCP Registry allows a description of 100 characters');
+}
 if (market.plugins?.[0]?.name !== claude.name) {
   errors.push('marketplace.json does not list the plugin');
 }

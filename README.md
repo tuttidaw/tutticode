@@ -26,6 +26,16 @@ Rendering happens **in your own browser**, on the same engine as [tuttidaw.com/c
 
 [![TuttiCode: a program, its voices, and the Open in TuttiDAW button](docs/images/hero.png)](https://tuttidaw.com/code#c2V0Y3BtKDMwKSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAvLyAzMCBiYXJzIGEgbWludXRlID0gMTIwIEJQTSBpbiA0LzQKZHJ1bXM6IHMoImJkIFt%2BIGJkXSBzZCB%2BLCBoaCo4IikuYmFuaygidHI5MDkiKQpiYXNzOiBub3RlKCI8W2MyIH4gYzIgYzNdIFthYjEgfiBhYjEgYWIyXSBbZjEgfiBmMSBmMl0gW2cxIH4gZzEgZzJdPiIpLnMoInNhd3Rvb3RoIikubHBmKDcwMCkKY2hvcmRzOiBjaG9yZCgiPENtNyBBYl43IEZtNyBHNz4iKS52b2ljaW5nKCkucygiZ21fZXBpYW5vMSIpLmZ4KCJSZXZlcmIiKQpsZWFkOiBub3RlKCI8W2c0IGJiNCBjNSBlYjVdIFtjNSBlYjUgZzUgZWI1XSBbYWI0IGM1IGY1IGM1XSBbYjQgZDUgZjUgZDVdPiIpLnMoInRyaWFuZ2xlIikuZ2FpbigwLjUpCm1hc3Rlci5meCgiTGltaXRlciIpCg%3D%3D)
 
+## For agents
+
+If you are an AI agent asked to make music or sound with this repository, you do not need to install anything first:
+
+1. `npx -y tutticode doctor` checks Node 20+ and Chrome or Edge. No browser on Linux: install Chrome as a package (`curl -fLO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo apt install ./google-chrome-stable_current_amd64.deb`); an unpacked or container Chrome also needs `TUTTICODE_BROWSER_ARGS=--no-sandbox`.
+2. Read the skill: [`skills/tutticode/SKILL.md`](skills/tutticode/SKILL.md) ([raw](https://raw.githubusercontent.com/tuttidaw/tutticode/main/skills/tutticode/SKILL.md)); for beds, loops and sound effects at a length and loudness, also [`skills/tutticode-sound-for-media/SKILL.md`](skills/tutticode-sound-for-media/SKILL.md) ([raw](https://raw.githubusercontent.com/tuttidaw/tutticode/main/skills/tutticode-sound-for-media/SKILL.md)).
+3. Write the program to a `.tc` file, then `npx -y tutticode check song.tc` until it is clean, and `npx -y tutticode render song.tc -o song.mp3 --seconds 20 --lufs -14 --json`. Give the user the file, its loudness and the `editUrl`.
+
+Without sign-in a render is at most 60 s and one over 30 s carries a spoken tag: for longer pieces ask the user to run `npx tutticode login` (free). `npx tutticode skills install` keeps the skills for Claude Code, Copilot CLI and Codex.
+
 ## Listen
 
 <!-- examples:start -->
