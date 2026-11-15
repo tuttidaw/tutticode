@@ -19,7 +19,11 @@ differences are marked *local* or *web*.
 
 - `diagnostics[]`: `severity`, `code`, `line`/`col` (1-based), `snippet`, a
   `fix` hint. `error` blocks rendering; `warning` means something was
-  ignored or approximated; `info` is context.
+  ignored or approximated; `info` is context. `device/legacy-name`: an old
+  device name that still plays; write the current one the message gives.
+- A second text part after the JSON report: your skills are older than
+  tuttidaw.com. `code_reference` then searches the current reference; use it
+  for anything you have not seen in the skill, and tell the user to update.
 - `tempo.bpm` (`setcpm(n)` = n x 4 BPM in 4/4); `loop.bars` / `loop.seconds`:
   the program loop, what one loop of a render plays.
 - `voices[]`: per labelled voice: notes per bar, polyphony, pitch range

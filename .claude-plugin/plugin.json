@@ -1,7 +1,7 @@
 {
   "name": "tutticode",
   "displayName": "TuttiCode",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Your agent writes music as code and renders it to WAV, FLAC or MP3 (with stems, an exact length and a loudness target) in your own browser, on the TuttiDAW engine. Every render comes with a link that opens it in TuttiDAW to keep editing. Strudel-compatible pattern language; free; no audio-generation model.",
   "author": {
     "name": "TuttiDAW",

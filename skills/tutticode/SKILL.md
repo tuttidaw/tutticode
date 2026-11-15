@@ -145,5 +145,5 @@ Read only what the task needs:
 - `references/functions.md`: every function, method and signal, with signature, description and example; `references/language-reference.md`: the full EBNF grammar, typed signatures, control aliases (both generated from the engine).
 - `references/devices.md`: every instrument and effect for `.inst/.fx/.midifx`, with `references/devices/<id>.md` per device: param keys, ranges, units, presets (generated from the device catalogue).
 
-Language: PATTERN LANGUAGE 1.10.0, engine 24.
+Language: PATTERN LANGUAGE 1.10.0, engine 24. When a tool result says tuttidaw.com runs a newer one, look up what you have not seen here with `code_reference` (it then searches the current reference, also at https://tuttidaw.com/skills/tutticode/SKILL.md) and tell the user once to update.
 Human guide: https://tuttidaw.com/code/learn; agents: https://tuttidaw.com/code/learn/for-agents
