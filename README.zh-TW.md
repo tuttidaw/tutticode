@@ -42,7 +42,7 @@ _隨第一個版本推出。_
    | --- | --- |
    | Claude Code | `/plugin marketplace add tuttidaw/tutticode`，接著 `/plugin install tutticode@tutticode` |
    | Codex、Cursor 等 | `npx skills add tuttidaw/tutticode` |
-   | Copilot CLI | `copilot plugin install tuttidaw/tutticode` |
+   | Copilot CLI | `copilot plugin marketplace add tuttidaw/tutticode`，接著 `copilot plugin install tutticode@tutticode` |
    | 任何 MCP 用戶端 | `npx -y tutticode mcp` 作為 stdio 伺服器，再執行 `npx tutticode skills install` |
 
    需要 Node 20+ 以及 Google Chrome 或 Microsoft Edge。外掛會從 npm 啟動 MCP 伺服器（[`tutticode`](https://www.npmjs.com/package/tutticode)），不需要其他設定。

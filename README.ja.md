@@ -42,7 +42,7 @@ _最初のリリースで公開予定です。_
    | --- | --- |
    | Claude Code | `/plugin marketplace add tuttidaw/tutticode` の後に `/plugin install tutticode@tutticode` |
    | Codex、Cursor など | `npx skills add tuttidaw/tutticode` |
-   | Copilot CLI | `copilot plugin install tuttidaw/tutticode` |
+   | Copilot CLI | `copilot plugin marketplace add tuttidaw/tutticode` の後に `copilot plugin install tutticode@tutticode` |
    | 任意の MCP クライアント | `npx -y tutticode mcp` を stdio サーバーとして登録し、`npx tutticode skills install` も実行 |
 
    Node 20 以上と、Google Chrome または Microsoft Edge が必要です。プラグインは npm から MCP サーバー（[`tutticode`](https://www.npmjs.com/package/tutticode)）を起動するので、ほかに設定するものはありません。

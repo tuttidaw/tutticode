@@ -42,7 +42,7 @@ _첫 릴리스와 함께 공개됩니다._
    | --- | --- |
    | Claude Code | `/plugin marketplace add tuttidaw/tutticode` 후 `/plugin install tutticode@tutticode` |
    | Codex, Cursor 등 | `npx skills add tuttidaw/tutticode` |
-   | Copilot CLI | `copilot plugin install tuttidaw/tutticode` |
+   | Copilot CLI | `copilot plugin marketplace add tuttidaw/tutticode` 후 `copilot plugin install tutticode@tutticode` |
    | 모든 MCP 클라이언트 | `npx -y tutticode mcp`를 stdio 서버로 등록하고 `npx tutticode skills install` 실행 |
 
    Node 20 이상과 Google Chrome 또는 Microsoft Edge가 필요합니다. 플러그인이 npm에서 MCP 서버([`tutticode`](https://www.npmjs.com/package/tutticode))를 실행하므로 따로 설정할 것은 없습니다.

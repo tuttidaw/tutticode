@@ -42,7 +42,7 @@ _Coming with the first release._
    | --- | --- |
    | Claude Code | `/plugin marketplace add tuttidaw/tutticode` then `/plugin install tutticode@tutticode` |
    | Codex, Cursor and others | `npx skills add tuttidaw/tutticode` |
-   | Copilot CLI | `copilot plugin install tuttidaw/tutticode` |
+   | Copilot CLI | `copilot plugin marketplace add tuttidaw/tutticode` then `copilot plugin install tutticode@tutticode` |
    | Any MCP client | `npx -y tutticode mcp` as a stdio server, plus `npx tutticode skills install` |
 
    You need Node 20+ and Google Chrome or Microsoft Edge. The plugin starts the MCP server from npm ([`tutticode`](https://www.npmjs.com/package/tutticode)); there is nothing else to set up.
