@@ -1,16 +1,16 @@
-# Corpus
+# Resonant Body
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Corpus:Bright Snare")
+note("c3 e3 g3 b3").fx("Resonant Body:Bright Snare")
 ```
 
-Accepted names: `corpus`.
+Accepted names: `resonantbody`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `resonanceType` | Type | `Beam` `Marimba` `String` `Membrane` `Plate` `Pipe` `Tube` |
 | `quality` | Quality | `Eco` `Low` `Medium` `High` |

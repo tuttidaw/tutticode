@@ -1,16 +1,16 @@
-# Resonators
+# Resonator
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Resonators:Hollow Pipe")
+note("c3 e3 g3 b3").fx("Resonator:Hollow Pipe")
 ```
 
-Accepted names: `resonators`, `resonator`.
+Accepted names: `resonator`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `decay` | Decay | 0 .. 100 % |
 | `colorAmt` | Color | 0 .. 100 % |

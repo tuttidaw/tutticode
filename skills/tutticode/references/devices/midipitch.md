@@ -10,7 +10,7 @@ Accepted names: `pitch`, `midipitch`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `pitch` | Pitch | -128 .. 128 |
 | `pitchScaleDegrees` | Pitch Degrees | -30 .. 30 |

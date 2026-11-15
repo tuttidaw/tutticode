@@ -1,16 +1,16 @@
-# Vinyl Distortion
+# Vinyl Wear
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Vinyl Distortion:Clean Press")
+note("c3 e3 g3 b3").fx("Vinyl Wear:Clean Press")
 ```
 
-Accepted names: `vinyldistortion`, `vinyl`.
+Accepted names: `vinylwear`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `tracingDrive` | Tracing Drive | 0 .. 1 |
 | `tracingFreq` | Tracing Freq | 50 .. 18000 Hz (log) |

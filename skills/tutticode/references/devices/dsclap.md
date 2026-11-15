@@ -1,16 +1,16 @@
-# DS Clap
+# Clap Synth
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("DS Clap")
+note("c3 e3 g3 b3").inst("Clap Synth")
 ```
 
-Accepted names: `dsclap`.
+Accepted names: `clapsynth`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `decay` | Decay | 0 .. 100 |
 | `sloppy` | Sloppy | 0 .. 100 |

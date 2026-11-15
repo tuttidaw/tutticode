@@ -1,16 +1,16 @@
-# Meld
+# Twine
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("Meld:Acid Kick")
+note("c3 e3 g3 b3").inst("Twine:Acid Kick")
 ```
 
-Accepted names: `meld`.
+Accepted names: `twine`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `aMacro1` | A Macro 1 | 0 .. 1 % |
 | `aMacro2` | A Macro 2 | 0 .. 1 % |

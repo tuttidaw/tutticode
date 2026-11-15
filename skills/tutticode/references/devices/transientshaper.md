@@ -10,13 +10,13 @@ Accepted names: `transientshaper`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `attack` | Attack | -24 .. 24 dB |
 | `sustain` | Sustain | -24 .. 24 dB |
 | `dryWet` | Dry/Wet | 0 .. 1 % |
 | `clip` | Clip | `true` / `false` |
-| `emphasis` | Emphasis | `Full` `Low` `Mid` `High` |
+| `emphasis` | Emphasis | `Off` `Low` `Mid` `High` |
 | `scOn` | SC On | `true` / `false` |
 | `scMix` | SC Mix | 0 .. 1 % |
 | `scGain` | SC Gain | -24 .. 24 dB |

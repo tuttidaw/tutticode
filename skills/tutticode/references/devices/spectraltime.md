@@ -1,16 +1,16 @@
-# Spectral Time
+# Spectral Delay
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Spectral Time:Frozen Pad")
+note("c3 e3 g3 b3").fx("Spectral Delay:Frozen Pad")
 ```
 
-Accepted names: `spectraltime`.
+Accepted names: `spectraldelay`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `freezerOn` | Freezer | `true` / `false` |
 | `freeze` | Freeze | `true` / `false` |

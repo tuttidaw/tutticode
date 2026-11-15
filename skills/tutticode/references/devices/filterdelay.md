@@ -10,7 +10,7 @@ Accepted names: `filterdelay`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `time1` | 1 Time | 1 .. 5000 ms (log) |
 | `feedback1` | 1 Fbk | 0 .. 0.95 % |

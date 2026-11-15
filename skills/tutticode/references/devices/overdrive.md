@@ -10,7 +10,7 @@ Accepted names: `overdrive`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `midFreq` | Freq | 80 .. 20000 Hz (log) |
 | `bandWidth` | Width | 0.5 .. 9 |

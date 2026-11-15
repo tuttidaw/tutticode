@@ -10,7 +10,7 @@ Accepted names: `compressor`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `threshold` | Thresh | -70 .. 6 dB |
 | `ratio` | Ratio | 1 .. ∞ |

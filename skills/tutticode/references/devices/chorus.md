@@ -6,11 +6,11 @@ An audio effect (`.fx`), tested end to end.
 note("c3 e3 g3 b3").fx("Chorus:Ensemble")
 ```
 
-Accepted names: `chorus`, `chorusensemble`.
+Accepted names: `chorus`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `mode` | Mode | `Classic` `Ensemble` `Vibrato` |
 | `hpfOn` | HPF On | `true` / `false` |

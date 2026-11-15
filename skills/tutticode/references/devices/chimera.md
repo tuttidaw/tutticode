@@ -10,7 +10,7 @@ Accepted names: `chimeravoice`, `chimera`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `mode` | Mode | `Sing` `Beatbox` |
 | `female` | Body | 0 .. 1 |

@@ -10,7 +10,7 @@ Accepted names: `sixop`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `op1Rate1` | Op1 R1 | 0 .. 99 |
 | `op1Rate2` | Op1 R2 | 0 .. 99 |

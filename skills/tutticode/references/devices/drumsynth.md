@@ -24,7 +24,7 @@ The constants `soundType` (a name below) and `model` (its index; default 0) pick
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `tune` | Tune | -24 .. 24 st |
 | `transpose` | Transpose | -48 .. 48 st |

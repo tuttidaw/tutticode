@@ -1,16 +1,16 @@
-# Operator
+# Carrier
 
 An instrument (`.inst`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").inst("Operator:12 String Guitar")
+note("c3 e3 g3 b3").inst("Carrier:12 String Guitar")
 ```
 
-Accepted names: `operator`.
+Accepted names: `carrier`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `feedback` | Feedback | 0 .. 1 % |
 | `aCoarse` | A Coarse | 0 .. 48 |

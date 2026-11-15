@@ -10,7 +10,7 @@ Accepted names: `velocity`, `midivelocity`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `drive` | Drive | -1 .. 1 |
 | `compand` | Comp. | -1 .. 1 |

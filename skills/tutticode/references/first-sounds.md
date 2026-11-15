@@ -57,8 +57,8 @@ note("48 51 55 58")
 ```
 
 Both lines play the same four notes. In code, `c4` is MIDI 60 (middle C).
-TuttiDAW's piano roll, like Ableton Live, labels MIDI 60 as **C3**, so a
-note written `c4` in code shows as C3 in the clip.
+TuttiDAW's piano roll follows the common DAW convention that labels MIDI 60
+as **C3**, so a note written `c4` in code shows as C3 in the clip.
 
 ## Giving notes a sound
 

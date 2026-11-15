@@ -1,16 +1,16 @@
-# Spectral Resonator
+# Partials
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Spectral Resonator:Init")
+note("c3 e3 g3 b3").fx("Partials:Init")
 ```
 
-Accepted names: `spectralresonator`.
+Accepted names: `partials`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `freqMode` | Note Mode | `true` / `false` |
 | `freq` | Freq | 8.2 .. 2000 Hz (log) |

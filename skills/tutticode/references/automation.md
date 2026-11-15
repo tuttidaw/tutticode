@@ -61,7 +61,7 @@ its first point it holds the first value.
 
 ## The exact form
 
-The studio can also store a curve drawn as a Bezier (Live's curve handles).
+The studio can also store a curve drawn as a Bezier (the envelope's curve handles).
 Code writes it as a list of points, each `[position, value]` with an
 optional segment: `{curve: k}`, `{curve: [x1, y1, x2, y2]}` or `"hold"`:
 
@@ -106,7 +106,7 @@ strings with a unit convert (`"<-6dB 0dB>"`, `"<1s 4s>"`). Instrument
 parameters automate too:
 
 ```js
-lead: note("c4 eb4 g4 bb4").inst("Drift", {cutoff: "<400 1200 2400 800>"})
+lead: note("c4 eb4 g4 bb4").inst("Ember", {cutoff: "<400 1200 2400 800>"})
   .fx("Utility", {gainDb: "<-6dB 0dB>"})
 ```
 
@@ -130,7 +130,7 @@ and signals too.
 ```js
 bus("verb").fx("Reverb", {dryWetBalance: 1, decayTime: "<2s 6s>"})
   .mix({vol: sine.range(-18, -6).slow(4)})
-group("drums").fx("Drum Buss", {drive: "<0 20>"}).send("verb", "<-30 -12>")
+group("drums").fx("Drum Shaper", {drive: "<0 20>"}).send("verb", "<-30 -12>")
 master.mix({vol: "<0 -3>"})
 
 kick: s("bd*4").group("drums")

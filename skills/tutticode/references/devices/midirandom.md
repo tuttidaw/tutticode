@@ -10,7 +10,7 @@ Accepted names: `random`, `midirandom`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `chance` | Chance | 0 .. 1 % |
 | `choices` | Choices | 1 .. 24 |

@@ -1,18 +1,20 @@
-# Looplet
+# Micro Looper
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Looplet:Grain Cloud")
+note("c3 e3 g3 b3").fx("Micro Looper:Grain Cloud")
 ```
 
-Accepted names: `looplet`.
+Accepted names: `microlooper`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
-| `tapeTime` | Tape Time | 0 .. 4 s |
+| `tapeTime` | Tape Start | 0 .. 4 s |
+| `tapeStop` | Tape Stop | 0 .. 4 s |
+| `transpose` | Transpose | -24 .. 24 |
 | `wow` | Wow | 0 .. 1 |
 | `dryWet` | Dry/Wet | 0 .. 1 |
 | `volume` | Volume | -70 .. 6 dB |

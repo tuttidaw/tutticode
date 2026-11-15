@@ -1,6 +1,6 @@
 ---
 name: tutticode
-description: Write, fix, check and render TuttiCode (TuttiDAW Code): Strudel-compatible live-coding pattern programs (mini-notation, note/s/n, scales, chords, effects, samples) that play on TuttiDAW instruments and effects, plus TuttiCode-only .inst/.fx/.midifx devices. Covers the code_check / code_render / code_compare tools of the local tutticode CLI/MCP and the TuttiDAW web MCP. Use when asked for Strudel, TuttiCode or TuttiDAW code, a beat/melody/loop as code, a tuttidaw.com/code link, a Pattern Clip, rendering code to audio, or when a pattern program errors.
+description: "Write, fix, check and render TuttiCode (TuttiDAW Code): Strudel-compatible live-coding pattern programs (mini-notation, note/s/n, scales, chords, effects, samples) that play on TuttiDAW instruments and effects, plus TuttiCode-only .inst/.fx/.midifx devices. Covers the code_check / code_render / code_compare tools of the local tutticode CLI/MCP and the TuttiDAW web MCP. Use when asked for Strudel, TuttiCode or TuttiDAW code, a beat/melody/loop as code, a tuttidaw.com/code link, a Pattern Clip, rendering code to audio, or when a pattern program errors."
 ---
 
 # TuttiCode
@@ -16,7 +16,7 @@ mini-notation. It loops: one cycle = one bar.
 setcpm(30)                                   // cycles (bars) per minute: 30 = 120 BPM in 4/4
 drums: s("bd [~ bd] sd ~, hh*8").bank("tr909") // a labelled voice = one track
 bass: note("c2 [~ c2] eb2 g1").s("sawtooth").lpf(800)
-chords: chord("<Cm7 Ab^7 Fm7 G7>").voicing().inst("Electric").fx("Reverb:Large Hall")
+chords: chord("<Cm7 Ab^7 Fm7 G7>").voicing().inst("Tine").fx("Reverb:Large Hall")
 _lead: n("0 2 4 7").scale("C:minor")         // a leading _ mutes a voice
 ```
 
@@ -47,8 +47,8 @@ _lead: n("0 2 4 7").scale("C:minor")         // a leading _ mutes a voice
 ## Top mistakes
 
 1. **Octaves**: code `c4` is MIDI 60, but TuttiDAW's piano roll (like
-   Ableton Live) labels MIDI 60 as C3. Write code names; a request for "C3"
-   from a Live user may mean MIDI 60.
+   many DAWs) labels MIDI 60 as C3. Write code names; a request for "C3"
+   from someone reading the piano roll may mean MIDI 60.
 2. **Arithmetic on controls**: `note("c e").add(12)` does nothing (warning);
    write `note("c e").add(note(12))` or `n("0 2".add(7))`.
 3. **Multi-word scales** need colons inside quotes: `"C:harmonic:minor"`,

@@ -6,11 +6,11 @@ An audio effect (`.fx`), available.
 note("c3 e3 g3 b3").fx("Pitch Shifter:Barber Rise")
 ```
 
-Accepted names: `pitchshifter`, `shifter`.
+Accepted names: `pitchshifter`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `freqRingMode` | Freq/Ring Mode | `Freq` `Ring` |
 | `pitch` | Pitch | -24 .. 24 st |

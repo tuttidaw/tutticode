@@ -10,7 +10,7 @@ Accepted names: `synth`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `oscMix` | Osc Mix | 0 .. 1 % |
 | `osc2Detune` | Detune | -1200 .. 1200 ct |

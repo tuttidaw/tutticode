@@ -1,16 +1,16 @@
-# Analog
+# Patina
 
 An instrument (`.inst`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").inst("Analog:80s VCO Brass")
+note("c3 e3 g3 b3").inst("Patina:80s VCO Brass")
 ```
 
-Accepted names: `analog`.
+Accepted names: `patina`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `osc1Octave` | Oct 1 | -3 .. 3 |
 | `osc1Semi` | Semi 1 | -12 .. 12 st |

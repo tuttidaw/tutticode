@@ -6,11 +6,11 @@ An instrument (`.inst`), tested end to end.
 note("c3 e3 g3 b3").inst("Sampler:808 BNYX Stopper")
 ```
 
-Accepted names: `sampler`, `drumsampler`.
+Accepted names: `sampler`, `oneshotsampler`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `volume` | Volume | 0 .. 1 % |
 | `attack` | Attack | 0.1 .. 20000 ms (log) |

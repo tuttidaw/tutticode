@@ -10,7 +10,7 @@ Accepted names: `pedal`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `gainAmt` | Gain | 0 .. 1 |
 | `bass` | Bass | -1 .. 1 |

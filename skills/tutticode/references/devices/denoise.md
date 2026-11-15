@@ -10,7 +10,7 @@ Accepted names: `denoise`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `reduction` | Reduction | 0 .. 100 dB |
 

@@ -1,16 +1,16 @@
-# DS Cymbal
+# Cymbal Synth
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("DS Cymbal")
+note("c3 e3 g3 b3").inst("Cymbal Synth")
 ```
 
-Accepted names: `dscymbal`.
+Accepted names: `cymbalsynth`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `decay` | Decay | 0 .. 100 |
 | `pitch` | Pitch | 0 .. 100 |

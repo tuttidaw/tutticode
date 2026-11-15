@@ -1,16 +1,16 @@
-# Impulse
+# Kit Sampler
 
 An instrument (`.inst`), available.
 
 ```js
-note("c4 d4 e4 f4").inst("Impulse:Backbeat Room")
+note("c4 d4 e4 f4").inst("Kit Sampler:Backbeat Room")
 ```
 
-Accepted names: `impulse`.
+Accepted names: `kitsampler`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `s0Start` | Start 1 | 0 .. 100 ms |
 | `s0Tune` | Transp 1 | -48 .. 48 st |

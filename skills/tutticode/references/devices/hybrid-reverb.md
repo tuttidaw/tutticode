@@ -1,16 +1,16 @@
-# Hybrid Reverb
+# Convolution Reverb
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Hybrid Reverb:Cathedral")
+note("c3 e3 g3 b3").fx("Convolution Reverb:Cathedral")
 ```
 
-Accepted names: `hybridreverb`.
+Accepted names: `convolutionreverb`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `preDelay` | Predelay | 0 .. 250 ms |
 | `dryWetBalance` | Dry/Wet | 0 .. 1 |

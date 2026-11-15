@@ -10,7 +10,7 @@ Accepted names: `saturator`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `drive` | Drive | -36 .. 36 dB |
 | `threshold` | Threshold | -50 .. 0 dB |

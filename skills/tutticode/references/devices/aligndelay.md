@@ -1,16 +1,16 @@
-# Align Delay
+# Time Align
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Align Delay:A/V Sync 40ms")
+note("c3 e3 g3 b3").fx("Time Align:A/V Sync 40ms")
 ```
 
-Accepted names: `aligndelay`.
+Accepted names: `timealign`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `delayMsL` | Left ms | 0 .. 100 ms |
 | `delayMsR` | Right ms | 0 .. 100 ms |

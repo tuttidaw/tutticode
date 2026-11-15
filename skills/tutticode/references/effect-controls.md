@@ -120,7 +120,7 @@ These play on the TuttiDAW synth that stands in for the waveform:
 - `.lpenv(depth)` with `.lpattack` / `.lpdecay` / `.lpsustain` / `.lprelease`:
   an envelope on the filter cutoff;
 - `.fm(index)` with `.fmh(ratio)` and `.fmdecay(...)`: FM brightness (the
-  voice moves onto Operator);
+  voice moves onto Carrier);
 - `.penv(semitones)` with `.pdecay(...)`: a pitch sweep, good for kicks and
   zaps;
 - `.vib(rate)` with `.vibmod(semitones)`: vibrato;

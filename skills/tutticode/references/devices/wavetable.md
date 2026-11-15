@@ -1,16 +1,16 @@
-# Wavetable
+# Weave
 
 An instrument (`.inst`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").inst("Wavetable:12 CC's and Counting")
+note("c3 e3 g3 b3").inst("Weave:12 CC's and Counting")
 ```
 
-Accepted names: `wavetable`.
+Accepted names: `weave`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `osc1Pos` | Pos 1 | 0 .. 1 % |
 | `osc1Transpose` | Transp 1 | -24 .. 24 st |

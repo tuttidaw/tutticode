@@ -10,7 +10,7 @@ Accepted names: `fmarp`, `midifmarp`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `mode` | Mode | `Repeat` `Up+8` `Walk` |
 | `hold` | Hold | `true` / `false` |

@@ -10,7 +10,7 @@ Accepted names: `noteecho`, `midinoteecho`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `sync` | Sync | `true` / `false` |
 | `division` | Delay Time | `1` `2` `3` `4` `5` `6` `8` `16` |

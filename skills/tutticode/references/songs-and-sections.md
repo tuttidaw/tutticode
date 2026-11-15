@@ -46,8 +46,8 @@ The sections then hold only the notes, so changing the bass sound edits one
 line, not every section.
 
 ```js
-track("bass").inst("Drift").mix({vol: -3})
-track("keys").inst("Electric").fx("Reverb", {dryWetBalance: 0.3})
+track("bass").inst("Ember").mix({vol: -3})
+track("keys").inst("Tine").fx("Reverb", {dryWetBalance: 0.3})
 
 section("verse", 4, {
   bass: note("<c2 eb2 g1 bb1>*4"),

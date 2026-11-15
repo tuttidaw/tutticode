@@ -10,7 +10,7 @@ Accepted names: `chord`, `midichord`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `shift1` | Shift 1 | -36 .. 36 |
 | `shift2` | Shift 2 | -36 .. 36 |

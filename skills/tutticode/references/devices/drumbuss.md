@@ -1,16 +1,16 @@
-# Drum Buss
+# Drum Shaper
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Drum Buss:808 Boom")
+note("c3 e3 g3 b3").fx("Drum Shaper:808 Boom")
 ```
 
-Accepted names: `drumbuss`.
+Accepted names: `drumshaper`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `drive` | Drive | 0 .. 100 % |
 | `crunch` | Crunch | 0 .. 100 % |

@@ -1,16 +1,16 @@
-# Auto Shift
+# Auto Pitch
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Auto Shift:Hard Tune")
+note("c3 e3 g3 b3").fx("Auto Pitch:Hard Tune")
 ```
 
-Accepted names: `autoshift`.
+Accepted names: `autopitch`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `correctStrength` | Correct | 0 .. 1 |
 | `correctSmooth` | Smooth | 0 .. 1 |

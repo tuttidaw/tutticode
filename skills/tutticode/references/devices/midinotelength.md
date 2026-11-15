@@ -10,7 +10,7 @@ Accepted names: `notelength`, `midinotelength`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `triggerOff` | Note Off | `true` / `false` |
 | `latch` | Latch | `true` / `false` |

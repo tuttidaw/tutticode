@@ -4,7 +4,7 @@ Play part of a sample, change its speed, cut it into slices, fit it to the tempo
 
 Drum sounds and your own samples are recordings, so you can play a window of
 them, faster or slower, forwards or backwards. In TuttiDAW every variation
-becomes its own pad in a Drum Rack, so the result opens in the studio exactly
+becomes its own pad in Drum Grid, so the result opens in the studio exactly
 as it sounds.
 
 ## Window: begin and end

@@ -29,7 +29,7 @@ A sound's engine decides what its engine controls `e0`..`e7` are called; these l
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `level` | LVL | 0 .. 127 |
 | `atk` | ATK | 0 .. 127 |

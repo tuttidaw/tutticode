@@ -10,7 +10,7 @@ Accepted names: `reverb`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `preDelay` | Predelay | 0.5 .. 250 ms (log) |
 | `bandFreq` | In Freq | 50 .. 18000 Hz (log) |

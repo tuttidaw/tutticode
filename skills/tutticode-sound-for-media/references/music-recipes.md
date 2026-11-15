@@ -14,7 +14,7 @@ Study, cooking, vlog and tutorial backgrounds: 80 BPM, swung drums, electric pia
 ```js
 setcpm(20) // 80 BPM
 drums: s("bd ~ [~ bd] ~, ~ sd, hh*8").bank("tr808").swingBy(1/6, 4).gain(0.45)
-keys: chord("<Fm9 Bbm9>").voicing().inst("Electric").gain(0.7)
+keys: chord("<Fm9 Bbm9>").voicing().inst("Tine").gain(0.7)
 bass: n("<0 -4>").scale("F2:minor").s("sawtooth").lpf(400).gain(0.8)
 master.fx("Limiter", {gainDb: 3, ceiling: -3}) // fewer peaks at the loudness target
 ```

@@ -9,7 +9,7 @@ with `.inst(...)` (next chapters).
 ## Drum kits
 
 Drum names (`bd sd rim cp hh oh cr rd ht mt lt sh cb`) play the pads of a
-Drum Rack. Without a bank the voice uses the 808 Core Kit; `.bank(...)`
+Drum Grid device. Without a bank the voice uses the 808 Core Kit; `.bank(...)`
 chooses another factory kit by its machine (`tr909`, `tr707`, `tr606`,
 `tr505`, `linn`, `dmx`, `cr78`).
 
@@ -39,7 +39,7 @@ note("<[c3,eb3,g3] [ab2,c3,eb3]>").s("supersaw").gain(0.6)
 `white`, `pink` and `brown` are noise, from bright to soft (pink falls
 3 dB per octave, brown 6 dB). They take the envelope and filters like the
 waveforms: short noise bursts make hats. `crackle` is approximated with
-Vinyl Distortion's crackle.
+Vinyl Wear's crackle.
 
 ```js
 s("<white pink brown>*8").decay(0.04).sustain(0)

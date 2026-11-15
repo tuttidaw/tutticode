@@ -1,16 +1,16 @@
-# Collision
+# Mallet
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("Collision:Acoustic String")
+note("c3 e3 g3 b3").inst("Mallet:Acoustic String")
 ```
 
-Accepted names: `collision`.
+Accepted names: `mallet`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `tune` | Tune | -48 .. 48 st |
 | `decay` | Decay | 0.05 .. 20 s (log) |

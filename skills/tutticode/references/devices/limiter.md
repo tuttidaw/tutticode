@@ -10,7 +10,7 @@ Accepted names: `limiter`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `gainDb` | Gain | -24 .. 24 dB |
 | `ceiling` | Ceiling | -24 .. 0 dB |

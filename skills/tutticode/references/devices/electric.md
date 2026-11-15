@@ -1,16 +1,16 @@
-# Electric
+# Tine
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("Electric:E-Piano MKI Dirty")
+note("c3 e3 g3 b3").inst("Tine:E-Piano MKI Dirty")
 ```
 
-Accepted names: `electric`.
+Accepted names: `tine`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `malletStiffness` | Stiffness | 0 .. 1 % |
 | `malletNoise` | Noise | 0 .. 1 % |

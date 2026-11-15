@@ -1,16 +1,16 @@
-# Dynamic Tube
+# Tube Drive
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Dynamic Tube:Hot Tube")
+note("c3 e3 g3 b3").fx("Tube Drive:Hot Tube")
 ```
 
-Accepted names: `dynamictube`.
+Accepted names: `tubedrive`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `drive` | Drive | -15 .. 15 dB |
 | `tone` | Tone | -1 .. 1 |

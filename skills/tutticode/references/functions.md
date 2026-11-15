@@ -96,7 +96,7 @@ form("[verse chorus]!2 verse@4")
 TuttiDAW extension, not in Strudel: declares a group, a group track inside the program; give it .fx(...), .mix(...) and .send(bus, dB). On a voice, .group(name) puts its track in that group (a name the program does not declare is a warning).
 
 ```js
-group("drums").fx("Drum Buss").mix({vol: -3})
+group("drums").fx("Drum Shaper").mix({vol: -3})
 kick: s("bd*4").group("drums")
 snare: s("~ sd").group("drums")
 ```
@@ -313,7 +313,7 @@ note("60 64").mask(toggle(1))
 TuttiDAW extension, not in Strudel: declares a track of a song with sections and its sound, once - give it .inst(...), .fx(...), .midifx(...), .mix(...), .send(bus, dB) and .group(name). What it plays goes in the section(...) blocks; a track no section lists plays nothing.
 
 ```js
-track("bass").inst("Drift:Deep Bass").mix({vol: -3})
+track("bass").inst("Ember:Deep Bass").mix({vol: -3})
 section("verse", 8, {bass: note("<c2 eb2>*4")})
 ```
 
@@ -972,7 +972,7 @@ note("c d e f").inside(2, rev)
 TuttiDAW extension, not in Strudel: plays the voice on a TuttiDAW instrument ("Device" or "Device:Preset"), params in the device units; patterns automate params.
 
 ```js
-note("c2 eb2").inst("Drift:Deep Bass", {cutoff: 600})
+note("c2 eb2").inst("Ember:Deep Bass", {cutoff: 600})
 ```
 
 ### `.iresponse(name?)`

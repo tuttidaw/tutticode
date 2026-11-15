@@ -10,7 +10,7 @@ Accepted names: `phaserflanger`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `rate` | Rate | 0.01 .. 40 Hz (log) |
 | `amount` | Amount | 0 .. 1 |

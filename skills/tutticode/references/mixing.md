@@ -28,7 +28,7 @@ keep their dry sound and send some of it to the bus.
 bus("verb").fx("Reverb:Large Hall", {dryWetBalance: 1})
 
 drums: s("bd*2 [~ bd] sd ~, hh*8").bank("tr909")
-keys: chord("<Cm7 Fm7>").voicing().inst("Electric").send("verb", -10)
+keys: chord("<Cm7 Fm7>").voicing().inst("Tine").send("verb", -10)
 lead: n("0 2 4 7").scale("C4:minor").s("triangle").send("verb", -18)
 ```
 
@@ -39,7 +39,7 @@ from as many voices as you like, and from one voice to several buses:
 bus("verb").fx("Reverb", {dryWetBalance: 1, decayTime: "3s"})
 bus("echo").fx("Delay", {feedback: 0.4}).mix({vol: -6})
 
-keys: note("<c3 e3 g3>").inst("Drift").send("verb", -10).send("echo", -20)
+keys: note("<c3 e3 g3>").inst("Ember").send("verb", -10).send("echo", -20)
 ```
 
 A pattern moves the level - here the reverb opens up every other bar:
@@ -78,7 +78,7 @@ Give it effects and a fader like any bus - a gentle compressor to glue the
 mix and a limiter at the end are a common start:
 
 ```js
-master.fx("Glue Compressor", {threshold: -12}).fx("Limiter")
+master.fx("Bus Compressor", {threshold: -12}).fx("Limiter")
 master.mix({vol: -1})
 
 drums: s("bd*4, ~ cp, hh*8").bank("tr909")
@@ -125,7 +125,7 @@ bass: note("<a1 f1 c2 g1>").ply(8).s("sawtooth").lpf(500)
   .fx("Compressor", {threshold: -30, ratio: 6, sidechain: "group:drums", sidechainFilter: "150Hz"})
 ```
 
-Devices with a sidechain input take it: Compressor, Glue Compressor, Gate,
+Devices with a sidechain input take it: Compressor, Bus Compressor, Gate,
 Auto Filter and Multiband Dynamics. A source the program does not have is a
 warning, and the sidechain stays off; a voice cannot key itself.
 

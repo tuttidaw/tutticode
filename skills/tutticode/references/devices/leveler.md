@@ -10,7 +10,7 @@ Accepted names: `voiceleveler`, `leveler`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `target` | Target | -36 .. -6 LUFS |
 | `maxGain` | Max Gain | 0 .. 30 dB |

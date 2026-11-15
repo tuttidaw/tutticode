@@ -1,16 +1,16 @@
-# Beat Repeat
+# Stutter
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Beat Repeat:Airpusher")
+note("c3 e3 g3 b3").fx("Stutter:Airpusher")
 ```
 
-Accepted names: `beatrepeat`.
+Accepted names: `stutter`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `chance` | Chance | 0 .. 1 % |
 | `offsetSixteenth` | Offset | 0 .. 15 16th |

@@ -10,7 +10,7 @@ Accepted names: `arpeggiator`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `style` | Style | `Up` `Down` `UpDown` `DownUp` `Up & Down` `Down & Up` `Converge` `Diverge` `Con & Diverge` `Pinky Up` `Pinky UpDown` `Thumb Up` `Thumb UpDown` `Play Order` `Chord Trigger` `Random` `Random Other` `Random Once` |
 | `hold` | Hold | `true` / `false` |

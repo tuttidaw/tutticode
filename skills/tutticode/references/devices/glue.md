@@ -1,16 +1,16 @@
-# Glue Compressor
+# Bus Compressor
 
 An audio effect (`.fx`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").fx("Glue Compressor:Drum Buss Glue")
+note("c3 e3 g3 b3").fx("Bus Compressor:Drum Buss Glue")
 ```
 
-Accepted names: `gluecompressor`, `glue`.
+Accepted names: `buscompressor`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `threshold` | Thresh | -40 .. 0 dB |
 | `rangeDb` | Range | 0 .. 70 dB |

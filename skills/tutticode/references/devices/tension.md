@@ -1,16 +1,16 @@
-# Tension
+# Filament
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("Tension:12 String Chorus Guitar")
+note("c3 e3 g3 b3").inst("Filament:12 String Chorus Guitar")
 ```
 
-Accepted names: `tension`.
+Accepted names: `filament`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `excColor` | Exc Color | 0 .. 1 % |
 | `decay` | Decay | 0.05 .. 35 s (log) |

@@ -1,16 +1,16 @@
-# DS HH
+# Hat Synth
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("DS HH")
+note("c3 e3 g3 b3").inst("Hat Synth")
 ```
 
-Accepted names: `dshh`.
+Accepted names: `hatsynth`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `attack` | Attack | 0 .. 100 |
 | `decay` | Decay | 0 .. 100 |

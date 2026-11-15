@@ -1,16 +1,16 @@
-# Erosion
+# Grit
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Erosion:Gritty Mids")
+note("c3 e3 g3 b3").fx("Grit:Gritty Mids")
 ```
 
-Accepted names: `erosion`.
+Accepted names: `grit`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `mode` | Mode | `Noise` `Wide Noise` `Sine` |
 | `frequency` | Freq | 300 .. 18000 Hz (log) |

@@ -10,7 +10,7 @@ Accepted names: `channeleq`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `lowGainDb` | Low | -15 .. 15 dB |
 | `midGainDb` | Mid | -12 .. 12 dB |

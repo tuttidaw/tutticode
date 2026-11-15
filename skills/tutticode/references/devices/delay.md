@@ -10,7 +10,7 @@ Accepted names: `delay`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `timeL` | L (ms) | 1 .. 999 ms |
 | `timeR` | R (ms) | 1 .. 999 ms |

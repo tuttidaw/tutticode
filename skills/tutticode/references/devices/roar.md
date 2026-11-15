@@ -1,16 +1,16 @@
-# Roar
+# Scorch
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Roar:Feedback Growl")
+note("c3 e3 g3 b3").fx("Scorch:Feedback Growl")
 ```
 
-Accepted names: `roar`.
+Accepted names: `scorch`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `inputGain` | Drive | 0.05 .. 16 (log) |
 | `toneAmount` | Tone | -1 .. 1 |

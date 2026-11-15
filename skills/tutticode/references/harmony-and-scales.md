@@ -15,7 +15,7 @@ A name without an octave is in octave 3: `note("c e g")` is the same as
 note("c e g b")
 ```
 
-TuttiDAW's piano roll uses Live's names, where MIDI 60 is **C3**. Code and the
+TuttiDAW's piano roll uses the common DAW names, where MIDI 60 is **C3**. Code and the
 clip disagree by one octave in the label only: the pitch is the same.
 
 ## Scale degrees: n and scale

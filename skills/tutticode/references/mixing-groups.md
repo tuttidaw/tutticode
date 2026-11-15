@@ -23,7 +23,7 @@ Declare the group on its own line, give it effects with `.fx` and a fader
 with `.mix`, and put voices in it with `.group(name)`:
 
 ```js
-group("drums").fx("Drum Buss").mix({vol: -3})
+group("drums").fx("Drum Shaper").mix({vol: -3})
 
 kick: s("bd*4").bank("tr909").group("drums")
 snare: s("~ sd").bank("tr909").group("drums")
@@ -31,7 +31,7 @@ hats: s("hh*8").bank("tr909").group("drums").mix({vol: -8})
 bass: note("<c2 g1 a1 f1>").ply(4).s("sawtooth").lpf(600)
 ```
 
-The kick, snare and hats play through the Drum Buss, then through the
+The kick, snare and hats play through the Drum Shaper, then through the
 group's fader: `-3` lowers all three by 3 dB. Each voice keeps its own
 `.mix` too - the hats are 8 dB down inside the group.
 

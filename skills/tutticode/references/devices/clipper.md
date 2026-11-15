@@ -10,7 +10,7 @@ Accepted names: `clipper`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `inputDb` | Input | -24 .. 24 dB |
 | `ceilingDb` | Ceiling | -18 .. 0 dB |

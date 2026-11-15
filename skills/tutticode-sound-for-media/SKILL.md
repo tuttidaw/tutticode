@@ -1,6 +1,6 @@
 ---
 name: tutticode-sound-for-media
-description: Make music beds, loops, stems and sound effects (riser, impact, whoosh, UI click/confirm/error, notification, transition, ambience) for videos, apps and games with TuttiCode, rendered to files at an exact length and a platform loudness (-14 LUFS web/social, -16 podcasts, -23 broadcast) with the tutticode tools. Use when a video, app, game, podcast or presentation needs music or sound effects, or when asked to render audio of a given length or loudness.
+description: "Make music beds, loops, stems and sound effects (riser, impact, whoosh, UI click/confirm/error, notification, transition, ambience) for videos, apps and games with TuttiCode, rendered to files at an exact length and a platform loudness (-14 LUFS web/social, -16 podcasts, -23 broadcast) with the tutticode tools. Use when a video, app, game, podcast or presentation needs music or sound effects, or when asked to render audio of a given length or loudness."
 ---
 
 # Sound for videos, apps and games with TuttiCode

@@ -10,7 +10,7 @@ Accepted names: `utility`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `gainDb` | Gain | -70 .. 35 dB |
 | `balance` | Balance | -1 .. 1 |

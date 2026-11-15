@@ -10,7 +10,7 @@ Accepted names: `autopantremolo`, `autopan`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `mode` | Mode | `Panning` `Tremolo` |
 | `amount` | Amount | 0 .. 1 % |

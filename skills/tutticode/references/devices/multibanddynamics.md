@@ -10,7 +10,7 @@ Accepted names: `multibanddynamics`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `lowMidHz` | Low-Mid | 30 .. 3000 Hz (log) |
 | `midHighHz` | Mid-High | 300 .. 15000 Hz (log) |

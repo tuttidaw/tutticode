@@ -1,16 +1,16 @@
-# DS FM
+# FM Drum
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("DS FM")
+note("c3 e3 g3 b3").inst("FM Drum")
 ```
 
-Accepted names: `dsfm`.
+Accepted names: `fmdrum`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `amount` | Amount | 0 .. 100 |
 | `decay` | Decay | 0 .. 100 |

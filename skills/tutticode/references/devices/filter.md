@@ -10,7 +10,7 @@ Accepted names: `autofilter`, `filter`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `frequency` | Filter | 20 .. 20000 Hz (log) |
 | `Q` | Q | 0.1 .. 18 |

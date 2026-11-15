@@ -1,16 +1,16 @@
-# Drift
+# Ember
 
 An instrument (`.inst`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").inst("Drift:80s Tape")
+note("c3 e3 g3 b3").inst("Ember:80s Tape")
 ```
 
-Accepted names: `drift`.
+Accepted names: `ember`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `osc1Shape` | Shape | 0 .. 1 % |
 | `osc2Octave` | Oct 2 | -2 .. 2 |

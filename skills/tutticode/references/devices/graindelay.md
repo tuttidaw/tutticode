@@ -1,16 +1,16 @@
-# Grain Delay
+# Granular Delay
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Grain Delay:Falling Cloud")
+note("c3 e3 g3 b3").fx("Granular Delay:Falling Cloud")
 ```
 
-Accepted names: `graindelay`.
+Accepted names: `granulardelay`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `time` | Time | 1 .. 128 ms |
 | `syncOffset` | Offset | -0.333 .. 0.333 % |

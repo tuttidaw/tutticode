@@ -10,7 +10,7 @@ Accepted names: `gate`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `threshold` | Threshold | -40 .. 3 dB |
 | `hysteresis` | Return | 0 .. 24 dB |

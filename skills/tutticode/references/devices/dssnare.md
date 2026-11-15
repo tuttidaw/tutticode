@@ -1,16 +1,16 @@
-# DS Snare
+# Snare Synth
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("DS Snare")
+note("c3 e3 g3 b3").inst("Snare Synth")
 ```
 
-Accepted names: `dssnare`.
+Accepted names: `snaresynth`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `colorAmount` | Color | 0 .. 100 |
 | `decay` | Decay | 0 .. 100 |

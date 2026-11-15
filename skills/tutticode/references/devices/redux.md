@@ -1,16 +1,16 @@
-# Redux
+# Bitcrusher
 
 An audio effect (`.fx`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").fx("Redux:Chiptune")
+note("c3 e3 g3 b3").fx("Bitcrusher:Chiptune")
 ```
 
-Accepted names: `redux`.
+Accepted names: `bitcrusher`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `sampleRate` | Rate | 200 .. 48000 Hz (log) |
 | `bitDepth` | Bits | 1 .. 16 |

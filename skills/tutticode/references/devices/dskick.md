@@ -1,16 +1,16 @@
-# DS Kick
+# Kick Synth
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("DS Kick")
+note("c3 e3 g3 b3").inst("Kick Synth")
 ```
 
-Accepted names: `dskick`.
+Accepted names: `kicksynth`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `attack` | Attack | 0 .. 100 |
 | `decay` | Decay | 0 .. 100 |

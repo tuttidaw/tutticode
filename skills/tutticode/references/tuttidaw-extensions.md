@@ -29,8 +29,8 @@ colon. Case and punctuation do not matter.
 
 ```js
 setcpm(30)
-bass: note("c2 [~ c2] eb2 [~ g1]").inst("Drift:Deep Bass")
-keys: chord("<Cm7 Ab^7 Fm7 G7>").voicing().inst("Electric")
+bass: note("c2 [~ c2] eb2 [~ g1]").inst("Ember:Deep Bass")
+keys: chord("<Cm7 Ab^7 Fm7 G7>").voicing().inst("Tine")
 ```
 
 `.inst` decides the instrument, even when the voice also has an `s(...)`.
@@ -38,7 +38,7 @@ On a drum voice `s(...)` still picks the pads, so you can play the names on
 any kit:
 
 ```js
-s("bd*2 [~ bd] sd ~, hh*8").inst("Drum Rack:909 Core Kit")
+s("bd*2 [~ bd] sd ~, hh*8").inst("Drum Grid:909 Core Kit")
 ```
 
 ## Audio effects: .fx
@@ -48,7 +48,7 @@ several `.fx` calls to build a chain.
 
 ```js
 note("<[c3,eb3,g3] [bb2,d3,f3]>")
-  .inst("Wavetable")
+  .inst("Weave")
   .fx("Chorus:Wide Classic")
   .fx("Reverb:Large Hall", { decayTime: "4s", dryWetBalance: 0.35 })
 ```
@@ -62,11 +62,11 @@ wrote; the effect plays them live, as in the studio.
 ```js
 note("<[c3,eb3,g3] [ab2,c3,eb3]>")
   .midifx("Arpeggiator", { style: "UpDown", rate: "1/16" })
-  .inst("Operator")
+  .inst("Carrier")
 ```
 
 ```js
-note("c3 ~ f3 ~").midifx("Chord:Minor 7 Chord").inst("Electric")
+note("c3 ~ f3 ~").midifx("Chord:Minor 7 Chord").inst("Tine")
 ```
 
 ## Parameters
@@ -74,7 +74,7 @@ note("c3 ~ f3 ~").midifx("Chord:Minor 7 Chord").inst("Electric")
 The second argument is an object of parameter values:
 
 - **Keys** are the device's parameter keys (`decayTime`, `cutoff`,
-  `dryWetBalance`); a parameter's unique Live label works too. The
+  `dryWetBalance`); a parameter's unique panel label works too. The
   [device catalogue](devices.md) lists every key with its range and unit.
 - **Numbers** are in the parameter's own unit (Hz, ms, dB, semitones). A
   string with a unit is converted: `"250ms"`, `"2s"`, `"-6dB"`,

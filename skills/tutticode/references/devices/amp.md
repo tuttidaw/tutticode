@@ -10,7 +10,7 @@ Accepted names: `amp`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `drive` | Gain | 0 .. 10 |
 | `bass` | Bass | 0 .. 10 |

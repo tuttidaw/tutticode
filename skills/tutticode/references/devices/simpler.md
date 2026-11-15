@@ -1,16 +1,16 @@
-# Simpler
+# Mini Sampler
 
 An instrument (`.inst`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").inst("Simpler:Ambient Swells")
+note("c3 e3 g3 b3").inst("Mini Sampler:Ambient Swells")
 ```
 
-Accepted names: `simpler`.
+Accepted names: `minisampler`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `volume` | Volume | 0 .. 1 % |
 | `attack` | Attack | 0.1 .. 20000 ms (log) |

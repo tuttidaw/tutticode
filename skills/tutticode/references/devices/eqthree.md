@@ -1,16 +1,16 @@
-# EQ Three
+# 3-Band EQ
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("EQ Three:Boost HiHats")
+note("c3 e3 g3 b3").fx("3-Band EQ:Boost HiHats")
 ```
 
-Accepted names: `eqthree`.
+Accepted names: `3bandeq`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `gainLo` | GainLow | 0 .. 2 |
 | `gainMid` | GainMid | 0 .. 2 |

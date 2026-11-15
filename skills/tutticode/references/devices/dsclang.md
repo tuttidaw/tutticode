@@ -1,16 +1,16 @@
-# DS Clang
+# Clang Synth
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("DS Clang")
+note("c3 e3 g3 b3").inst("Clang Synth")
 ```
 
-Accepted names: `dsclang`.
+Accepted names: `clangsynth`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `tone1` | 1st Tone | 0 .. 100 |
 | `tone2` | 2nd Tone | 0 .. 100 |

@@ -1,16 +1,16 @@
-# DS Tom
+# Tom Synth
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("DS Tom")
+note("c3 e3 g3 b3").inst("Tom Synth")
 ```
 
-Accepted names: `dstom`.
+Accepted names: `tomsynth`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `colorAmount` | Color | 0 .. 100 |
 | `decay` | Decay | 0 .. 100 |

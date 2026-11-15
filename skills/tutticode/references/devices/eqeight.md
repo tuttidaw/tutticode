@@ -1,16 +1,16 @@
-# EQ Eight
+# Parametric EQ
 
 An audio effect (`.fx`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").fx("EQ Eight:Air Lift")
+note("c3 e3 g3 b3").fx("Parametric EQ:Air Lift")
 ```
 
-Accepted names: `eqeight`.
+Accepted names: `parametriceq`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `globalGain` | Output | -12 .. 12 dB |
 | `scale` | Scale | -2 .. 2 % |

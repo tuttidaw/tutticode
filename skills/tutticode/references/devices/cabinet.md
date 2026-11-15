@@ -10,7 +10,7 @@ Accepted names: `cabinet`.
 
 ## Parameters
 
-| Key | Live label | Values |
+| Key | Panel label | Values |
 |---|---|---|
 | `dryWetBalance` | Dry/Wet | 0 .. 1 % |
 
