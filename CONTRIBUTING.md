@@ -9,7 +9,9 @@ Thanks for helping. The most useful things you can send:
 
 ## How this repository is built
 
-The CLI and MCP server are the [`tutticode`](https://www.npmjs.com/package/tutticode) npm package; their source lives in TuttiDAW's main repository. The `skills/` folder here is copied from the published package by [`scripts/sync-from-npm.mjs`](scripts/sync-from-npm.mjs), and a workflow keeps it in sync. A pull request that changes `skills/` is welcome: we carry the change into the package, and the next release brings it back here.
+This repository is published from TuttiDAW's main repository, where the CLI, the MCP server and the skills are developed and tested together; the published files are overwritten on each publish. The CLI and MCP server are the [`tutticode`](https://www.npmjs.com/package/tutticode) npm package, and the `skills/` folder here is the one shipped with the pinned npm version (copied by [`scripts/sync-from-npm.mjs`](scripts/sync-from-npm.mjs)).
+
+Pull requests are welcome all the same: we carry the change into the main repository, credit you, and the next publish brings it back here.
 
 Examples (`examples/`) are kept as the models made them; we do not edit their code.
 

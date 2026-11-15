@@ -48,6 +48,30 @@ for (const name of readdirSync(join(root, 'skills'))) {
   }
 }
 
+// Every README's code sample has a play link (and the hero image links to
+// it) whose program is the sample itself, comments aside.
+const program = (code) =>
+  code
+    .split('\n')
+    .map((line) => line.replace(/\s*\/\/.*$/, '').trimEnd())
+    .filter(Boolean)
+    .join('\n');
+for (const file of readdirSync(root).filter((f) => /^README(\..+)?\.md$/.test(f))) {
+  const text = read(file);
+  const sample = /```js\n(setcpm[\s\S]*?)```\n\n\[▶[^\]]*\]\((https:\/\/tuttidaw\.com\/code#[^)]+)\)/.exec(text);
+  if (!sample) {
+    errors.push(`${file}: the code sample needs a "▶" play link right after it`);
+    continue;
+  }
+  const linked = Buffer.from(decodeURIComponent(sample[2].split('#')[1]), 'base64').toString('utf8');
+  if (program(linked) !== program(sample[1])) {
+    errors.push(`${file}: the play link does not play the code sample above it`);
+  }
+  if (!text.includes(`](docs/images/hero.png)](${sample[2]})`)) {
+    errors.push(`${file}: the hero image should link to the same program`);
+  }
+}
+
 const examples = join(root, 'examples');
 for (const name of existsSync(examples) ? readdirSync(examples) : []) {
   if (!statSync(join(examples, name)).isDirectory()) continue;

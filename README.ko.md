@@ -24,7 +24,7 @@ TuttiCode는 음악을 위한 패턴 언어로, [Strudel](https://strudel.cc)의
 
 렌더링은 [tuttidaw.com/code](https://tuttidaw.com/code)와 같은 엔진으로 **여러분의 브라우저 안에서** 이루어집니다. 서버에서는 아무것도 렌더링하지 않으며, 무료입니다. 오디오 생성 모델은 전혀 사용하지 않습니다.
 
-![TuttiCode: 프로그램, 그 성부들, 그리고 Open in TuttiDAW 버튼](docs/images/hero.png)
+[![TuttiCode: 프로그램, 그 성부들, 그리고 Open in TuttiDAW 버튼](docs/images/hero.png)](https://tuttidaw.com/code#c2V0Y3BtKDMwKSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAvLyAzMCBiYXJzIGEgbWludXRlID0gMTIwIEJQTSBpbiA0LzQKZHJ1bXM6IHMoImJkIFt%2BIGJkXSBzZCB%2BLCBoaCo4IikuYmFuaygidHI5MDkiKQpiYXNzOiBub3RlKCI8W2MyIH4gYzIgYzNdIFthYjEgfiBhYjEgYWIyXSBbZjEgfiBmMSBmMl0gW2cxIH4gZzEgZzJdPiIpLnMoInNhd3Rvb3RoIikubHBmKDcwMCkKY2hvcmRzOiBjaG9yZCgiPENtNyBBYl43IEZtNyBHNz4iKS52b2ljaW5nKCkucygiZ21fZXBpYW5vMSIpLmZ4KCJSZXZlcmIiKQpsZWFkOiBub3RlKCI8W2c0IGJiNCBjNSBlYjVdIFtjNSBlYjUgZzUgZWI1XSBbYWI0IGM1IGY1IGM1XSBbYjQgZDUgZjUgZDVdPiIpLnMoInRyaWFuZ2xlIikuZ2FpbigwLjUpCm1hc3Rlci5meCgiTGltaXRlciIpCg%3D%3D)
 
 ## 들어 보기
 
@@ -86,6 +86,8 @@ chords: chord("<Cm7 Ab^7 Fm7 G7>").voicing().s("gm_epiano1").fx("Reverb")
 lead: note("<[g4 bb4 c5 eb5] [c5 eb5 g5 eb5] [ab4 c5 f5 c5] [b4 d5 f5 d5]>").s("triangle").gain(0.5)
 master.fx("Limiter")
 ```
+
+[▶ 이 프로그램을 TuttiCode에서 재생](https://tuttidaw.com/code#c2V0Y3BtKDMwKSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAvLyAzMCBiYXJzIGEgbWludXRlID0gMTIwIEJQTSBpbiA0LzQKZHJ1bXM6IHMoImJkIFt%2BIGJkXSBzZCB%2BLCBoaCo4IikuYmFuaygidHI5MDkiKQpiYXNzOiBub3RlKCI8W2MyIH4gYzIgYzNdIFthYjEgfiBhYjEgYWIyXSBbZjEgfiBmMSBmMl0gW2cxIH4gZzEgZzJdPiIpLnMoInNhd3Rvb3RoIikubHBmKDcwMCkKY2hvcmRzOiBjaG9yZCgiPENtNyBBYl43IEZtNyBHNz4iKS52b2ljaW5nKCkucygiZ21fZXBpYW5vMSIpLmZ4KCJSZXZlcmIiKQpsZWFkOiBub3RlKCI8W2c0IGJiNCBjNSBlYjVdIFtjNSBlYjUgZzUgZWI1XSBbYWI0IGM1IGY1IGM1XSBbYjQgZDUgZjUgZDVdPiIpLnMoInRyaWFuZ2xlIikuZ2FpbigwLjUpCm1hc3Rlci5meCgiTGltaXRlciIpCg%3D%3D)
 
 Strudel 코드는 그대로 실행됩니다. TuttiCode는 여기에 TuttiDAW 악기와 이펙트(`.inst`, `.fx`, `.midifx`), 버스와 그룹, 오토메이션, 사이드체인, 섹션으로 구성된 곡 전체, 도레미로 쓰는 멜로디를 더합니다. [스킬](skills/tutticode/SKILL.md)이 이 모든 것을 에이전트에게 가르치고, 사람은 [tuttidaw.com/code/learn](https://tuttidaw.com/code/learn)에서 배울 수 있습니다.
 
