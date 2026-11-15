@@ -1,0 +1,32 @@
+{
+  "name": "tutticode",
+  "displayName": "TuttiCode",
+  "version": "0.3.1",
+  "description": "Your agent writes music as code and renders it to WAV, FLAC or MP3 (with stems, an exact length and a loudness target) in your own browser, on the TuttiDAW engine. Every render comes with a link that opens it in TuttiDAW to keep editing. Strudel-compatible pattern language; free; no audio-generation model.",
+  "author": {
+    "name": "TuttiDAW",
+    "url": "https://tuttidaw.com"
+  },
+  "homepage": "https://github.com/tuttidaw/tutticode",
+  "repository": "https://github.com/tuttidaw/tutticode",
+  "privacyPolicyUrl": "https://github.com/tuttidaw/tutticode/blob/main/PRIVACY.md",
+  "license": "MIT",
+  "icon": "./assets/brand/icon-512.png",
+  "keywords": [
+    "music",
+    "audio",
+    "live-coding",
+    "strudel",
+    "sound-design",
+    "game-audio",
+    "sfx",
+    "stems",
+    "mcp",
+    "daw"
+  ],
+  "skills": [
+    "./skills/tutticode",
+    "./skills/tutticode-sound-for-media"
+  ],
+  "mcpServers": "./.mcp.json"
+}

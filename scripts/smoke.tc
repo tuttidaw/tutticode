@@ -1,0 +1,3 @@
+setcpm(30)
+drums: s("bd sd, hh*8")
+bass: note("c2 eb2").s("sawtooth")

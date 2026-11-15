@@ -1,0 +1,79 @@
+# The experience a new user gets from this repository, end to end: the pinned
+# tutticode package from npm, the plugin manifests, the MCP server over stdio,
+# every example program, and a real render in a headless Chrome.
+name: e2e
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # GitHub's Ubuntu runners may not give Chrome its sandbox.
+  TUTTICODE_BROWSER_ARGS: --no-sandbox
+  TUTTICODE_BROWSER: /usr/bin/google-chrome
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Repository checks
+        run: node scripts/validate.mjs
+
+      - name: Pinned version
+        id: pin
+        run: echo "version=$(node -p "require('./.claude-plugin/plugin.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Skills match the npm package
+        run: |
+          node scripts/sync-from-npm.mjs "${{ steps.pin.outputs.version }}"
+          git diff --stat --exit-code -- skills .mcp.json .claude-plugin .codex-plugin
+
+      - name: Doctor
+        run: npx -y "tutticode@${{ steps.pin.outputs.version }}" doctor
+
+      - name: MCP server (as the plugin starts it)
+        run: node scripts/mcp-smoke.mjs
+
+      - name: Every example compiles
+        run: |
+          shopt -s nullglob
+          for f in scripts/smoke.tc examples/*/*.tc; do
+            echo "== $f"
+            npx -y "tutticode@${{ steps.pin.outputs.version }}" check "$f"
+          done
+
+      - name: Render
+        run: |
+          npx -y "tutticode@${{ steps.pin.outputs.version }}" render scripts/smoke.tc \
+            -o out/smoke.mp3 --seconds 8 --fade-out 1 --lufs -16 --limit --json > out-report.json
+          node -e "
+            const r = require('./out-report.json');
+            const size = require('fs').statSync('out/smoke.mp3').size;
+            console.log('seconds', r.seconds, 'lufs', r.lufs, 'truePeak', r.truePeak, 'bytes', size);
+            console.log('editUrl', r.editUrl.slice(0, 80) + '...');
+            const ok = r.seconds === 8 && Math.abs(r.lufs + 16) < 1 && r.truePeak <= -0.9
+              && r.editUrl.startsWith('https://tuttidaw.com/') && size > 20000;
+            if (!ok) process.exit(1);
+          "
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: smoke-render
+          path: |
+            out/
+            out-report.json
+          if-no-files-found: ignore

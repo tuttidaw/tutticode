@@ -1,0 +1,29 @@
+name: Bug
+description: Something fails or behaves wrongly (install, plugin, MCP server, CLI, render)
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you asked the agent or ran, and what you got. Paste the error.
+    validations:
+      required: true
+  - type: textarea
+    id: program
+    attributes:
+      label: Program
+      description: The TuttiCode program, or the editUrl of the render.
+      render: js
+  - type: input
+    id: agent
+    attributes:
+      label: Agent
+      placeholder: Claude Code 2.x / Codex / Copilot CLI / Cursor / ...
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of `npx tutticode doctor`
+      render: text
+    validations:
+      required: true

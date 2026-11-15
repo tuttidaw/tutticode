@@ -1,0 +1,24 @@
+{
+  "name": "tutticode",
+  "owner": {
+    "name": "TuttiDAW",
+    "url": "https://tuttidaw.com"
+  },
+  "description": "Music as code for agents: write TuttiCode, render it to audio in your own browser, open it in TuttiDAW.",
+  "plugins": [
+    {
+      "name": "tutticode",
+      "source": "./",
+      "description": "Your agent writes music as code (a Strudel-compatible pattern language) and renders it to WAV, FLAC or MP3 with stems, an exact length and a loudness target, in your own browser on the TuttiDAW engine. Every render links to TuttiDAW to keep editing. Music beds, loops, stems and sound effects for videos, apps and games.",
+      "category": "creative",
+      "keywords": [
+        "music",
+        "audio",
+        "live-coding",
+        "strudel",
+        "sfx",
+        "game-audio"
+      ]
+    }
+  ]
+}

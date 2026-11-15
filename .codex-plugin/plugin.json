@@ -1,0 +1,49 @@
+{
+  "name": "tutticode",
+  "version": "0.3.1",
+  "description": "Your agent writes music as code and renders it to WAV, FLAC or MP3 (with stems, an exact length and a loudness target) in your own browser, on the TuttiDAW engine. Every render comes with a link that opens it in TuttiDAW to keep editing.",
+  "author": {
+    "name": "TuttiDAW",
+    "url": "https://tuttidaw.com"
+  },
+  "homepage": "https://github.com/tuttidaw/tutticode",
+  "repository": "https://github.com/tuttidaw/tutticode",
+  "license": "MIT",
+  "keywords": [
+    "music",
+    "audio",
+    "live-coding",
+    "strudel",
+    "sound-design",
+    "game-audio",
+    "sfx",
+    "stems",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "TuttiCode",
+    "shortDescription": "Write music as code, render it to audio",
+    "longDescription": "TuttiCode is a pattern language for music, a superset of Strudel that plays on TuttiDAW's instruments and effects. With this plugin your agent writes a program, checks it, and renders it to WAV, FLAC or MP3: an exact length in seconds, bars or loops, stems per voice, fades, a loudness target with a true-peak ceiling, and a report with the bar grid, loudness and per-voice levels. It can compare a render with goals and revise.\n\nRendering happens in your own browser (Chrome or Edge) on the same engine as tuttidaw.com/code: nothing is rendered on a server and it is free. Every render returns an editUrl that opens the program in TuttiDAW, so a person can keep editing it.\n\nRuns through the tutticode npm package (Node 20+). Without an account renders are limited to 60 s and those over 30 s carry a spoken tag; a free account (tutticode login) lifts both.",
+    "developerName": "TuttiDAW",
+    "category": "Creativity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/tuttidaw/tutticode",
+    "supportURL": "https://github.com/tuttidaw/tutticode/issues",
+    "privacyPolicyURL": "https://github.com/tuttidaw/tutticode/blob/main/PRIVACY.md",
+    "defaultPrompt": [
+      "Make a 12-second lo-fi intro bed for my video at -16 LUFS, with a 1.5 s fade-out.",
+      "Write a looping 8-bar battle theme for my game and give me the stems.",
+      "Make UI sounds for my app: a click, a confirm and an error, as short WAV files."
+    ],
+    "brandColor": "#111111",
+    "logo": "./assets/brand/icon-512.png",
+    "screenshots": [
+      "./docs/images/hero.png"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Show what you made
+    url: https://github.com/tuttidaw/tutticode/discussions
+    about: Share a piece, a sound or an editUrl in Discussions.
+  - name: Learn TuttiCode
+    url: https://tuttidaw.com/code/learn
+    about: Step-by-step lessons and the full reference.

@@ -1,0 +1,18 @@
+name: Sounds wrong
+description: A program renders, but an instrument, effect or mix does not sound as expected
+labels: [sound]
+body:
+  - type: textarea
+    id: program
+    attributes:
+      label: Program or editUrl
+      description: The shortest program that shows it.
+      render: js
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected to hear, and what you heard
+    validations:
+      required: true

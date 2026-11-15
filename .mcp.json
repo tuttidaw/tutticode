@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tutticode": {
+      "command": "npx",
+      "args": ["-y", "tutticode@0.3.1", "mcp"]
+    }
+  }
+}

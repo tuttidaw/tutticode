@@ -1,0 +1,44 @@
+# Follows the tutticode npm package: when a new version is published, copy its
+# skills here, pin it in .mcp.json and the plugin manifests, and push to main.
+name: sync
+
+on:
+  schedule:
+    - cron: '41 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'tutticode version (default: latest)'
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Sync
+        run: node scripts/sync-from-npm.mjs ${{ inputs.version }}
+      - name: Validate
+        run: node scripts/validate.mjs
+      - name: Commit
+        run: |
+          if git diff --quiet; then
+            echo "Up to date."
+            exit 0
+          fi
+          version="$(node -p "require('./.claude-plugin/plugin.json').version")"
+          git config user.name "tutticode-sync[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Sync tutticode ${version} from npm"
+          git push
