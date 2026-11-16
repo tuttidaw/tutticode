@@ -41,7 +41,7 @@ track("keys").inst("Multi-Engine Synth:FM6 TINE EP", {level: 106, chor: 50, dly:
 track("lead").inst("Multi-Engine Synth:Sample FLUTE", {level: 100, chor: 0, dly: 25, rev: 18, voice: 1}).mix({vol: -4.5, pan: 0.05})
 track("sine").inst("Multi-Engine Synth:Duo SINE KEY", {level: 100, rel: 30, chor: 0, dly: 10, rev: 35, voice: 1}).mix({vol: 0, pan: 0.45})
 track("pad").inst("Multi-Engine Synth:Grain CLOUD PAD", {level: 92, chor: 60, dly: 0, rev: 70}).fx("Chorus:Ensemble").mix({vol: -10})
-track("vinyl").fx("Vinyl Wear", {tracingOn: false, pinchOn: false, globalDrive: 0, crackleDensity: 0.4, crackleVolume: 0.75})
+track("vinyl").fx("Vinyl Wear", {tracingOn: false, pinchOn: false, globalDrive: 0, crackleDensity: 0.12, crackleVolume: 0.06})  // 11-16 by ear: background crackle (was density 0.4, volume 0.75: -12 dB vs the mix, now -30 dB)
   .fx("Limiter", {gainDb: 12, ceiling: -22}).mix({vol: 0})   // clicks capped so the bed can be heard without driving the master limiter
 const vinyl = g => s("crackle").gain(g)
 

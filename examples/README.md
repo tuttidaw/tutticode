@@ -16,7 +16,11 @@ The craft came from the open [music-composition skills](https://github.com/jtydh
 
 ## What people changed
 
-- After listening, two sounds were corrected by hand: the flute and erhu vibrato in *Moon over the River* and the lead's vibrato and slides in *Neon Highway* were far too wide (an LFO pitch depth of 4 is a 140-cent wander, not a vibrato). The `NOTES.md` files predate these fixes.
+- After listening, three sounds were corrected by hand:
+  - the flute and erhu vibrato in *Moon over the River* and the lead's vibrato and slides in *Neon Highway* were far too wide (an LFO pitch depth of 4 is a 140-cent wander, not a vibrato);
+  - the vinyl crackle in *Late Reading* was far too loud (12 dB under the mix, about as loud as the hats); it is now a background bed, 30 dB under.
+
+  The `NOTES.md` files predate these fixes.
 - Device names were updated to TuttiDAW's current names (a rename, no musical change).
 
 Nothing else was edited. Each folder: `song.tc` (the program), `NOTES.md` (the agent's notes), `render.json` (how to render it), `README.md` (listen and open).
