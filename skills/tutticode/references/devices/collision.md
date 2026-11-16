@@ -1,12 +1,12 @@
-# Mallet
+# Mallet Synth
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("Mallet:Acoustic String")
+note("c3 e3 g3 b3").inst("Mallet Synth:Acoustic String")
 ```
 
-Accepted names: `mallet`.
+Accepted names: `malletsynth`.
 
 ## Parameters
 

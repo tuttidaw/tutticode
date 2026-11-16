@@ -1,12 +1,12 @@
-# Ensemble
+# Multi-Engine Synth
 
 An instrument (`.inst`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").inst("Ensemble:Chip ARP 8BIT")
+note("c3 e3 g3 b3").inst("Multi-Engine Synth:Chip ARP 8BIT")
 ```
 
-Accepted names: `ensemble`.
+Accepted names: `multienginesynth`.
 
 ## Engines
 

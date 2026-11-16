@@ -66,11 +66,11 @@ chord("<Bbm9 Fm9>/4").dict("ireal").voicing()
 
 ### `ensembleSet(sections)` *(TuttiDAW only)*
 
-TuttiDAW extension, not in Strudel: sets the shared effects of the program's Ensemble Sets (the Sets its .inst("Ensemble:...") voices play in): the Chorus, Delay and Reverb buses and the Set's master, in the devices' own values; once per program, constants only.
+TuttiDAW extension, not in Strudel: sets the shared effects of the program's Ensemble Sets (the Sets its .inst("Multi-Engine Synth:...") voices play in): the Chorus, Delay and Reverb buses and the Set's master, in the devices' own values; once per program, constants only.
 
 ```js
 ensembleSet({reverb: {revType: "HALL", revSize: 100}, delay: {dlyTime: "1/8D", dlyFdbk: 40}})
-flute: note("g4 a4 c5 d5").inst("Ensemble:Sample FLUTE", {rev: 60})
+flute: note("g4 a4 c5 d5").inst("Multi-Engine Synth:Sample FLUTE", {rev: 60})
 ```
 
 ### `env(points, bars?)` *(TuttiDAW only)*
@@ -313,7 +313,7 @@ note("60 64").mask(toggle(1))
 TuttiDAW extension, not in Strudel: declares a track of a song with sections and its sound, once - give it .inst(...), .fx(...), .midifx(...), .mix(...), .send(bus, dB) and .group(name). What it plays goes in the section(...) blocks; a track no section lists plays nothing.
 
 ```js
-track("bass").inst("Ember:Deep Bass").mix({vol: -3})
+track("bass").inst("Subtractive Synth:Deep Bass").mix({vol: -3})
 section("verse", 8, {bass: note("<c2 eb2>*4")})
 ```
 
@@ -972,7 +972,7 @@ note("c d e f").inside(2, rev)
 TuttiDAW extension, not in Strudel: plays the voice on a TuttiDAW instrument ("Device" or "Device:Preset"), params in the device units; patterns automate params.
 
 ```js
-note("c2 eb2").inst("Ember:Deep Bass", {cutoff: 600})
+note("c2 eb2").inst("Subtractive Synth:Deep Bass", {cutoff: 600})
 ```
 
 ### `.iresponse(name?)`

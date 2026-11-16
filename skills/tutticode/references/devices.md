@@ -10,33 +10,33 @@ ranges and units.
 
 | Device | Status | Presets | Parameters |
 |---|---|---|---|
-| [Carrier](devices/operator.md) | tested end to end | 331 | 145 |
-| [Chimera Voice](devices/chimera.md) | available | 0 | 14 |
+| [6-Operator FM](devices/sixop.md) | available | 0 | 172 |
+| [Basic Synth](devices/synth.md) | available | 12 | 10 |
 | [Clang Synth](devices/dsclang.md) | available | 0 | 8 |
 | CLAP Instrument | not available in code: a CLAP plug-in runs plug-in code and exists only in the desktop app | 0 | 0 |
 | [Clap Synth](devices/dsclap.md) | available | 0 | 7 |
 | [Cymbal Synth](devices/dscymbal.md) | available | 0 | 4 |
 | [Drum Grid](devices/drumrack.md) | tested end to end | 82 | 207 |
 | [Drum Synth](devices/drumsynth.md) | available | 32 | 14 |
-| [Ember](devices/drift.md) | tested end to end | 89 | 64 |
-| [Ensemble](devices/ensemble.md) | tested end to end | 367 | 92 |
+| [Electric Piano](devices/electric.md) | available | 17 | 32 |
 | External Instrument | not available in code: it routes MIDI to hardware | 0 | 1 |
-| [Filament](devices/tension.md) | available | 107 | 99 |
 | [FM Drum](devices/dsfm.md) | available | 0 | 7 |
+| [FM Synth](devices/operator.md) | tested end to end | 331 | 145 |
 | [Hat Synth](devices/dshh.md) | available | 0 | 5 |
 | [Kick Synth](devices/dskick.md) | available | 0 | 7 |
 | [Kit Sampler](devices/impulse.md) | available | 13 | 139 |
-| [Mallet](devices/collision.md) | available | 33 | 111 |
+| [Layer Synth](devices/meld.md) | available | 84 | 221 |
+| [Mallet Synth](devices/collision.md) | available | 33 | 111 |
 | [Mini Sampler](devices/simpler.md) | tested end to end | 38 | 212 |
-| [Patina](devices/analog.md) | tested end to end | 58 | 162 |
+| [Multi-Engine Synth](devices/ensemble.md) | tested end to end | 367 | 92 |
 | [Sampler](devices/sampler.md) | tested end to end | 164 | 210 |
-| [SixOp](devices/sixop.md) | available | 0 | 172 |
 | [Snare Synth](devices/dssnare.md) | available | 0 | 5 |
-| [Synth](devices/synth.md) | available | 12 | 10 |
-| [Tine](devices/electric.md) | available | 17 | 32 |
+| [String Model](devices/tension.md) | available | 107 | 99 |
+| [Subtractive Synth](devices/drift.md) | tested end to end | 89 | 64 |
 | [Tom Synth](devices/dstom.md) | available | 0 | 6 |
-| [Twine](devices/meld.md) | available | 84 | 221 |
-| [Weave](devices/wavetable.md) | tested end to end | 270 | 110 |
+| [Virtual Analog](devices/analog.md) | tested end to end | 58 | 162 |
+| [Vocal Synth](devices/chimera.md) | available | 0 | 14 |
+| [Wavetable](devices/wavetable.md) | tested end to end | 270 | 110 |
 
 ## MIDI effects: .midifx(name, params)
 
@@ -46,7 +46,7 @@ ranges and units.
 | CC Control | not available in code yet: it sends controller data, which needs a target | 0 | 16 |
 | [Chord](devices/midichord.md) | tested end to end | 6 | 28 |
 | Expression Control | not available in code yet: modulators need mapping targets, which come in a later version | 0 | 95 |
-| [FM Arp](devices/midifmarp.md) | available | 4 | 8 |
+| [Extended Arpeggiator](devices/midifmarp.md) | available | 4 | 8 |
 | MIDI Envelope | not available in code yet: modulators need mapping targets, which come in a later version | 2 | 15 |
 | MIDI Monitor | not available in code: it only displays the notes | 0 | 1 |
 | MIDI Shaper | not available in code yet: modulators need mapping targets, which come in a later version | 1 | 11 |
@@ -78,35 +78,35 @@ ranges and units.
 | [Convolution Reverb](devices/hybrid-reverb.md) | available | 6 | 4 |
 | [Delay](devices/delay.md) | tested end to end | 6 | 19 |
 | [Denoise](devices/denoise.md) | available | 4 | 1 |
-| Device Group | not available in code yet: racks and their macros come in a later version | 3 | 1 |
 | [Drum Shaper](devices/drumbuss.md) | available | 3 | 11 |
 | [Echo](devices/echo.md) | tested end to end | 5 | 38 |
-| Ensemble Bus | not available in code: an Ensemble Set's buses are set with ensembleSet({...}) | 0 | 9 |
-| Ensemble Master | not available in code: an Ensemble Set's master is set with ensembleSet({...}) | 0 | 26 |
 | Envelope Follower | not available in code yet: modulators need mapping targets, which come in a later version | 5 | 8 |
 | External Audio Effect | not available in code: it routes audio to hardware | 0 | 3 |
 | [Filter Delay](devices/filterdelay.md) | available | 4 | 19 |
 | [Gate](devices/gate.md) | available | 3 | 18 |
 | [Granular Delay](devices/graindelay.md) | available | 4 | 8 |
-| [Grit](devices/erosion.md) | available | 3 | 4 |
 | LFO | not available in code yet: modulators need mapping targets, which come in a later version | 4 | 14 |
 | [Limiter](devices/limiter.md) | available | 3 | 8 |
 | Looper | not available in code: it records and loops live audio; a program written as code has no live input to loop | 6 | 2 |
 | [Micro Looper](devices/looplet.md) | available | 4 | 42 |
+| [Multi Distortion](devices/roar.md) | available | 4 | 52 |
+| Multi-Engine Bus | not available in code: an Ensemble Set's buses are set with ensembleSet({...}) | 0 | 9 |
+| Multi-Engine Master | not available in code: an Ensemble Set's master is set with ensembleSet({...}) | 0 | 26 |
 | [Multiband Dynamics](devices/multibanddynamics.md) | available | 3 | 44 |
+| [Noise Distortion](devices/erosion.md) | available | 3 | 4 |
 | [Overdrive](devices/overdrive.md) | available | 4 | 6 |
 | [Parametric EQ](devices/eqeight.md) | tested end to end | 3 | 51 |
-| [Partials](devices/spectralresonator.md) | available | 6 | 24 |
 | [Pedal](devices/pedal.md) | available | 3 | 8 |
 | [Phaser-Flanger](devices/phaserflanger.md) | available | 5 | 24 |
 | [Pitch Shifter](devices/pitchshifter.md) | available | 10 | 38 |
+| Rack | not available in code yet: racks and their macros come in a later version | 3 | 1 |
 | [Resonant Body](devices/corpus.md) | available | 4 | 31 |
 | [Resonator](devices/resonator.md) | available | 5 | 31 |
 | [Reverb](devices/reverb.md) | tested end to end | 79 | 25 |
 | [Saturator](devices/saturator.md) | tested end to end | 3 | 6 |
-| [Scorch](devices/roar.md) | available | 4 | 52 |
 | Shaper | not available in code yet: modulators need mapping targets, which come in a later version | 2 | 12 |
 | [Spectral Delay](devices/spectraltime.md) | available | 5 | 27 |
+| [Spectral Resonator](devices/spectralresonator.md) | available | 6 | 24 |
 | Spectrum | not available in code: it only displays the signal | 10 | 0 |
 | [Stutter](devices/beatrepeat.md) | available | 5 | 17 |
 | [Time Align](devices/aligndelay.md) | available | 4 | 10 |

@@ -39,9 +39,15 @@ Without sign-in a render is at most 60 s and one over 30 s carries a spoken tag:
 ## 聴いてみる
 
 <!-- examples:start -->
-6 曲それぞれを異なるモデルが、[同じ書き出し](examples/prompt.md) と 1〜2 文の短い指示から一発で作りました。タイトルと音色はエージェントが選び、コードはすべてエージェントが書き、レンダリングして数値を読み、修正しました。作業中に誰も返答せず、誰もコードを編集していません。各ページにはプログラム、エージェントのメモ、TuttiDAW で開くリンクがあります。
+エージェント（Claude Code + Claude Opus 5.5）が、1 曲あたり 1 段落の依頼から TuttiCode で書いた 5 曲です。曲を計画してメロディを 3 案書き、独立したレビュアーが 1 案を選び、セクション構成で 1 曲を仕上げ、2 人目のレビュアーの指摘を受けて修正しました。動画はどれも TuttiDAW がそのプログラムを実際に再生しているところです。[制作の流れ](examples/README.md)。
 
-_最初のリリースで公開予定です。_
+| | |
+|---|---|
+| [![Late Reading](docs/images/showcase/late-reading.jpg)](https://assets.tuttidaw.com/showcase/late-reading/late-reading-hq.mp4) | **Late Reading**<br>Lo-fi ヒップホップ · 88 BPM · 1:44<br>[動画](https://assets.tuttidaw.com/showcase/late-reading/late-reading-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/late-reading/late-reading.mp3) · [コードとメモ](examples/late-reading) |
+| [![江月 Moon over the River](docs/images/showcase/moon-over-the-river.jpg)](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river-hq.mp4) | **江月 Moon over the River**<br>国風バラード · 72 BPM · 1:57<br>[動画](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river.mp3) · [コードとメモ](examples/moon-over-the-river) |
+| [![Sunday Strut](docs/images/showcase/sunday-strut.jpg)](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut-hq.mp4) | **Sunday Strut**<br>ファンク / ディスコ · 112 BPM · 2:00<br>[動画](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut.mp3) · [コードとメモ](examples/sunday-strut) |
+| [![Neon Highway](docs/images/showcase/neon-highway.jpg)](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway-hq.mp4) | **Neon Highway**<br>シンセウェイヴ · 100 BPM · 2:05<br>[動画](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway.mp3) · [コードとメモ](examples/neon-highway) |
+| [![After Hours](docs/images/showcase/after-hours.jpg)](https://assets.tuttidaw.com/showcase/after-hours/after-hours-hq.mp4) | **After Hours**<br>ディープハウス · 123 BPM · 2:05<br>[動画](https://assets.tuttidaw.com/showcase/after-hours/after-hours-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/after-hours/after-hours.mp3) · [コードとメモ](examples/after-hours) |
 <!-- examples:end -->
 
 ## クイックスタート

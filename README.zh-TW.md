@@ -39,9 +39,15 @@ Without sign-in a render is at most 60 s and one over 30 s carries a spoken tag:
 ## 試聽
 
 <!-- examples:start -->
-六首作品，各由一個不同的模型完成，都基於 [同一段開場提示](examples/prompt.md) 加上一兩句簡短說明，一次做完。標題和音色由 Agent 自己挑選，每一行程式碼都由它撰寫；它算繪、讀數值、再修改。過程中沒有人回覆它，也沒有人改動它的程式碼。每個頁面都有程式、Agent 的筆記，以及在 TuttiDAW 中開啟它的連結。
+五首作品，由 Agent（Claude Code + Claude Opus 5.5）依據每首一段話的需求，用 TuttiCode 寫成：先做規劃、寫三段旋律，由一個獨立的評審 Agent 挑出一段，再用段落結構寫完整首，第二位評審給出意見後修改。每段影片都是 TuttiDAW 實際在播放這段程式。[製作過程](examples/README.md)。
 
-_隨第一個版本推出。_
+| | |
+|---|---|
+| [![Late Reading](docs/images/showcase/late-reading.jpg)](https://assets.tuttidaw.com/showcase/late-reading/late-reading-hq.mp4) | **Late Reading**<br>Lo-fi 嘻哈 · 88 BPM · 1:44<br>[影片](https://assets.tuttidaw.com/showcase/late-reading/late-reading-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/late-reading/late-reading.mp3) · [程式碼和筆記](examples/late-reading) |
+| [![江月 Moon over the River](docs/images/showcase/moon-over-the-river.jpg)](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river-hq.mp4) | **江月 Moon over the River**<br>國風抒情 · 72 BPM · 1:57<br>[影片](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river.mp3) · [程式碼和筆記](examples/moon-over-the-river) |
+| [![Sunday Strut](docs/images/showcase/sunday-strut.jpg)](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut-hq.mp4) | **Sunday Strut**<br>放克 / 迪斯可 · 112 BPM · 2:00<br>[影片](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut.mp3) · [程式碼和筆記](examples/sunday-strut) |
+| [![Neon Highway](docs/images/showcase/neon-highway.jpg)](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway-hq.mp4) | **Neon Highway**<br>合成器浪潮 · 100 BPM · 2:05<br>[影片](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway.mp3) · [程式碼和筆記](examples/neon-highway) |
+| [![After Hours](docs/images/showcase/after-hours.jpg)](https://assets.tuttidaw.com/showcase/after-hours/after-hours-hq.mp4) | **After Hours**<br>深浩室 · 123 BPM · 2:05<br>[影片](https://assets.tuttidaw.com/showcase/after-hours/after-hours-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/after-hours/after-hours.mp3) · [程式碼和筆記](examples/after-hours) |
 <!-- examples:end -->
 
 ## 快速開始

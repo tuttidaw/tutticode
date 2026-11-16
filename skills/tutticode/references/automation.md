@@ -106,7 +106,7 @@ strings with a unit convert (`"<-6dB 0dB>"`, `"<1s 4s>"`). Instrument
 parameters automate too:
 
 ```js
-lead: note("c4 eb4 g4 bb4").inst("Ember", {cutoff: "<400 1200 2400 800>"})
+lead: note("c4 eb4 g4 bb4").inst("Subtractive Synth", {cutoff: "<400 1200 2400 800>"})
   .fx("Utility", {gainDb: "<-6dB 0dB>"})
 ```
 

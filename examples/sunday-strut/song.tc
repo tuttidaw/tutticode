@@ -1,0 +1,206 @@
+// Sunday Strut - compiled from spec.yaml (A minor dorian, 112 BPM, 56 bars = 2:00)  [stage E]
+// form: I(4) A1(8) C1(8) A2(6) C2(8) D(8) C3(10) O(4)
+setcpm(28)
+ensembleSet({chorus: {choRate: 44}, reverb: {revType: "ROOM", revSize: 45, revDamp: 70}, master: {master: 112}})
+
+// ---- groove: bass 12 ms AHEAD of the kit, gtr 8 ms behind, clav 4 ms behind; light 8th swing on every part (lessons: swingBy 0.04)
+// compiled as bass on the grid and every other part 12 ms later (an .early() would wrap each section's first downbeat)
+const ms = x => x / 2142.857
+const PUSH = ms(12), DRAG = ms(8), CLAVL = ms(4), SWING = 0.04
+const OFFSET = {kick: PUSH, snare: PUSH, hats: PUSH, toms: PUSH, crash: PUSH, lead: PUSH, leadhi: PUSH, horns: PUSH,
+  stringsL: PUSH, stringsR: PUSH, gtr: PUSH + DRAG, clav: PUSH + CLAVL}
+const sec = (name, bars, parts) => {
+  const o = {}
+  for (const k in parts) {
+    const p = parts[k].swingBy(SWING, 8)
+    o[k] = OFFSET[k] ? p.late(OFFSET[k]) : p
+  }
+  return section(name, bars, o)
+}
+
+// ---- mix_intent: shared room + slap buses, glue + limiter on the master
+bus("room").fx("Reverb", {dryWetBalance: 1, decayTime: "1.3s"}).mix({vol: -3})
+bus("slap").fx("Delay", {dryWetBalance: 1, timeL: 402, timeR: 268, feedback: 0.2, filterOn: true, filterFreq: 2500}).mix({vol: -8})
+master.fx("Bus Compressor").fx("Limiter")
+
+// ---- roster (sounds and levels from REFERENCE/lessons, never their notes)
+// C3 (bars 43-52) +2 dB on the melodic layers: the final chorus is louder, not only denser (review-song: C3 >= +1 LU over C2)
+const C3UP = "<0!42 2!10 0!4>"
+group("drums").mix({vol: 1})
+track("kick").group("drums").mix({vol: 0})
+track("snare").group("drums").mix({vol: -2}).send("room", -14)
+track("hats").group("drums").mix({vol: -3, pan: 0.25})
+track("toms").group("drums").mix({vol: -5, pan: -0.2}).send("room", -16)
+track("crash").group("drums").mix({vol: -12, pan: -0.15})
+track("bass").inst("Multi-Engine Synth:Duo SQR BASS", {level: 110, dec: 76, sus: 38, rel: 51, dist: 0, dly: 0, rev: 0, e0: 6, e2: 64, e4: 66, e5: 15, e6: 25, voice: 1})
+  .fx("Compressor", {threshold: -26, ratio: 1.5, attack: 1, release: 60, sidechain: "kick"}).mix({vol: 0})
+track("gtr").inst("Multi-Engine Synth:Physical PLUCK", {level: 120, chor: 25, dly: 0, rev: 0, e1: 32, e2: 100, e3: 120, e4: 20, e5: 100, e7: 20})
+  .mix({vol: -20, pan: -0.6}).send("room", -22)
+track("clav").inst("Multi-Engine Synth:Digital FUNK KEY", {level: 110, dly: 0, rev: 0}).fx("Chorus").mix({vol: -5, pan: 0.6}).send("room", -20)
+track("horns").inst("Multi-Engine Synth:Duo BRASS", {level: 100, rel: 30, chor: 30, dly: 0, rev: 0}).mix({vol: C3UP, pan: 0.3}).send("room", -12).send("slap", -24)
+track("stringsL").inst("Multi-Engine Synth:Duo STRINGS", {level: 100, atk: 50, sus: 127, rel: 80, chor: 60, dly: 0, rev: 0, e1: 10, e4: 93}).fx("Chorus").mix({vol: C3UP, pan: -0.6}).send("room", -10)
+track("stringsR").inst("Multi-Engine Synth:Duo STRINGS", {level: 100, atk: 35, sus: 127, rel: 70, chor: 40, dly: 0, rev: 0, e1: 10, e4: 93}).fx("Chorus").mix({vol: C3UP, pan: 0.6}).send("room", -10)
+track("lead").inst("Multi-Engine Synth:Voice VOX LEAD", {level: 110, rel: 50, chor: 15, dly: 0, rev: 0}).mix({vol: C3UP}).send("room", -14).send("slap", -20)
+track("leadhi").inst("Multi-Engine Synth:Duo SAW LEAD", {level: 90, rel: 30, chor: 0, dly: 0, rev: 0, voice: 1}).mix({vol: -6, pan: -0.15}).send("room", -12)
+
+// ---- accents (mc-ai-tell-audit #8/#10: no flat velocity)
+const acc = (arr, g) => `[${arr.map(v => (v * g).toFixed(2)).join(" ")}]`
+const BACC = [0.95, 0.7, 0.55, 0.85, 0.6, 0.6, 0.9, 0.75, 0.8, 0.6, 0.6, 0.6, 0.7, 0.75, 0.85, 0.9]
+const DACC = [0.95, 0.95, 0.25, 0.85, 0.3, 0.25, 0.9, 0.75, 0.85, 0.85, 0.25, 0.3, 0.6, 0.75, 0.8, 0.9]  // dead notes at 0.25
+const LACC = [1, 0.8, 0.88, 0.8]
+
+// ---- material: the bass riff (spec material.motif), one bar, MIDI numbers
+const riff = (r, b7, c) => `[${r}@2 ~ ${r} ~ ~ ${r + 12} ${b7} ${r + 7}@2 ~ ~ ~ ${c[0]} ${c[1]} ${c[2]}]`
+const riffD = (r, b7, c) => `[${r}@2 ${r} ${r} ~ ${r} ${r + 12} ${b7} ${r + 7}@2 ${r} ~ ${r + 12} ${c[0]} ${c[1]} ${c[2]}]` // with dead notes
+const RA = riff(33, 43, [36, 38, 40])            // Am9: A A a' g e . . . c d e
+const RA2 = "[33@2 ~ 33 ~ ~ 45 43 40@2 ~ ~ 45 43 40 ~]" // changed pickup (falls)
+const RD = riff(38, 48, [42, 43, 45])            // D9 (dorian F#)
+const RD2 = "[38@2 ~ 38 ~ ~ 50 48 45@2 ~ ~ 50 48 45 ~]"
+const RF = riff(29, 40, [33, 35, 36])            // Fmaj7 -> lands a 4th on G
+const RG = riff(31, 40, [35, 36, 38])            // G6 -> D up a step to E
+const REA = "[28@2 ~ 28 ~ ~ 40 38 33@2 ~ ~ ~ 33 35 37]" // Em7 | A7 -> C# up a step to D
+const RDm = riff(38, 48, [41, 43, 45])           // Dm9
+const RE = riff(28, 38, [32, 33, 35])            // E7sus4|E7: climb G#-A-B
+const RFG = "[29@2 ~ 29 ~ ~ 41 40 31@2 ~ ~ ~ 35 36 38]" // tag F | G
+// C1 only: disco octave pump (the riff's return under C2/C3 is then earned)
+const cb = (a, b) => `[${a}@2 ${a + 12}@2 ~ ${a} ${a + 12}@2 ${b}@2 ${b + 12}@2 ~ ${b + 7} ${b + 12} ${b + 7}]`
+const CHB = [cb(29, 29), cb(31, 31), cb(28, 33), cb(38, 38), cb(29, 29), cb(31, 31), cb(28, 28), cb(33, 33)]
+const CHR = [RF, RG, REA, RDm, RF, RG, RE, RA]   // C2, C3: the riff on the chorus roots
+const bass = (bars, g, a) => note(`<${bars.join(" ")}>`).velocity(acc(a || BACC, g))
+
+// ---- harmony: rootless shells. Guitar F3-B4; clav an inversion up (interlocks in register too)
+const S = {Am: "[c4,e4,g4]", D9: "[c4,e4,f#4]", F: "[f3,a3,c4]", G6: "[d4,e4,b4]", Em: "[d4,g4,b4]", A7: "[c#4,e4,g4]",
+  Dm: "[f3,a3,c4]", Es: "[d4,e4,a4]", E7: "[d4,e4,g#4]"}
+const K = {Am: "[e4,g4,c5]", D9: "[e4,f#4,c5]", F: "[c4,f4,a4]", G6: "[e4,g4,b4]", Em: "[e4,g4,b4]", A7: "[e4,g4,c#5]",
+  Dm: "[d4,f4,a4]", Es: "[e4,a4,d5]", E7: "[e4,g#4,d5]"}
+const gv = (x, y) => `[~@7 ${S[x]} ~@2 ${S[y || x]} ~ ${S[y || x]} ${S[y || x]} ~ ${S[y || x]}]` // verse: answers on beats 3-4
+const gc = (x, y) => `[[~ ${S[x]} ~ ${S[x]}]!2 [~ ${S[y || x]} ~ ${S[y || x]}]!2]`           // chorus: 16th scratch
+const cl = (x, y) => `[~@2 ${K[x]} ~@3 ${K[x]} ~@3 ${K[y || x]} ~@3 ${K[y || x]} ~]`           // clav: the & of each beat
+const CH = [["F"], ["G6"], ["Em", "A7"], ["Dm"], ["F"], ["G6"], ["Es", "E7"], ["Am"]]
+const gtrV = bars => note(`<${bars.map(b => typeof b === "string" ? b : gv(...b)).join(" ")}>`).velocity("[0.6 0.5 0.55 0.75]*4")
+const gtrC = bars => note(`<${bars.map(b => gc(...b)).join(" ")}>`).velocity("[0.3 0.42 0.3 0.62]*4")
+const clav = bars => note(`<${bars.map(b => cl(...b)).join(" ")}>`).velocity("[0.55 0.5 0.7 0.5]*4")
+
+// ---- drums (kit = the reference grid for the push)
+const VK = "<[bd ~ ~ ~ ~ ~ bd ~ ~ ~ bd ~ ~ ~ ~ ~] [bd ~ ~ bd ~ ~ bd ~ ~ ~ bd ~ ~ ~ ~ ~]>" // funk pocket
+const VS = "[~ ~ ~ ~ sd ~ ~ sd ~ sd ~ ~ sd ~ ~ sd]", VSV = "[0 0 0 0 0.85 0 0 0.22 0 0.2 0 0 0.85 0 0 0.26]"
+const VSF = "[~ ~ ~ ~ sd ~ ~ sd ~ sd ~ ~ ~ ~ ~ ~]"
+const VSP = "[~ ~ ~ ~ sd ~ ~ sd ~ sd ~ ~ sd sd sd sd]", VSPV = "[0 0 0 0 0.85 0 0 0.22 0 0.2 0 0 0.3 0.5 0.7 0.95]" // funk card pickup "goxX"
+const TF = "[~@12 ht ht mt lt]", TFR = "[~@12 lt mt ht ht]"
+const VH = "<hh*16 [hh!14 oh hh]>", VHV = "[0.5 0.22 0.36 0.22]*4"
+const CS = "[~ ~ ~ ~ [sd,cp] ~ ~ sd ~ ~ ~ ~ [sd,cp] ~ ~ sd]", CSV = "[0 0 0 0 0.85 0 0 0.2 0 0 0 0 0.85 0 0 0.24]"
+const CSF = "[~ ~ ~ ~ [sd,cp] ~ ~ sd ~ ~ ~ ~ ~ ~ ~ ~]"
+const CH1 = "[hh!14 oh hh]", CH1V = "[0.45 0.22 0.32 0.22]*4" // C1/C2: closed 16ths, one open hat at the bar edge
+const CHH = "[hh hh oh hh]*4", CHV = "[0.42 0.22 0.58 0.22]*4" // C3: open on every &
+const rep = (x, n) => Array(n).fill(x).join(" ")
+
+// ---- the melody (C-fixed, then review-song fixes: chorus opens on the shout-back R; verse bars 3/7 start on the &1)
+const VERSE = ["[~ e4 g4 a4 b4@3 ~@9]", "[~ c5 b4 g4 a4@3 ~@9]", "[~@2 f#4 a4 b4 c5@3 ~@8]", "[~@8 d5 ~ d5 c5 a4@2 ~@2]",
+  "[~ e4 g4 a4 b4 ~ d5@3 ~@7]", "[~ e5 d5 b4 c5@2 b4 g4 a4@4 ~@4]", "[~@2 a4 c5 e5@4 ~@8]", "[~ d5 b4 a4@2 ~@3 g#4@4 ~@4]"]
+const H1 = "[e5@2 ~ e5 d5 c5@2 ~@2 c5 d5 e5 f5@3 ~]"      // R on the One, then the call
+const H2 = "[e5@2 ~ e5 d5 b4@2 ~@2 d5 f#5 g5@4 ~]"       // R, call scooped into a held G5
+const H3 = "[~ b4 d5 e5 d5@3 ~ e5 ~ e5 c#5 a4@2 ~@2]"
+const H4 = "[e5@2 ~@2 e5@2 d5@2 c5@4 ~@4]"               // R augmented
+const H6 = "[~ b4 d5 e5 g5@2 g#5 a5@5 ~@4]"               // peak A5 (scooped from G#), R withheld
+const H7 = "[~@2 e5 ~ e5 d5 b4@2 ~@2 g#4@4 ~@2]"         // R late
+const H8 = "[e5 ~ e5 d5 c5@2 b4@2 a4@6 ~@2]"             // R extended to the tonic
+const CHORUS = [H1, H2, H3, H4, H1, H6, H7, H8]
+const C3LEAD = [H1, H2, H3, "[e5@2 ~@2 e5@2 d5@2 c5@4 e5 g5 a5@2]", H1,         // bar 4: ad-lib pickup E-G-A
+  "[~ b4 d5 e5 g5@2 g#5 a5@5 g5 a5 b5@2]", H7, H8,                                // bar 6: a new answer climbs to B5
+  "[e5@2 ~ e5 d5 c5@2 ~@2 b4 d5 e5 g5@3 ~]", H7]                                   // tag F|G, E7sus4|E7
+const mel = (bars, g) => note(`<${bars.join(" ")}>`).velocity(`${acc(LACC, g)}*4`)
+// counter-line (mc-counterpoint), now ABOVE the lead (disco: strings above the guitar): left = the line two octaves up
+// (A5-D6), right = the line a diatonic third higher (C6-F6) - parallel thirds split wide
+const COUNTER = ["a3", "b3", "[b3 c#4]", "d4", "c4", "[b3 a3]", "[a3 g#3]", "a3"]
+const COUNTER3 = ["c4", "d4", "[d4 e4]", "f4", "e4", "[d4 c4]", "[e4 d4]", "c4"] // bar 7: E-D, not C over E7sus4
+const strHi = bars => note(`<${bars.join(" ")}>`).add(note(24))
+
+// ================= SECTIONS =================
+sec("I", 4, {   // bass riff alone; kit in at bar 3; bar 4: horns announce the shout-back R
+  bass: bass([RA, RA, RA, RA2], 0.9),
+  kick: s(`<~ ~ ${VK}>`).velocity(0.88),
+  hats: s(`<~ ~ hh*16 [hh!14 oh hh]>`).velocity(VHV),
+  snare: s(`<~ ~ ~ ${VSF}>`).velocity(VSV),
+  horns: note("<~ ~ ~ [~@8 [e4,e5] ~ [e4,e5] [d4,d5] [c4,c5]@2 ~@2]>").velocity("[0.8 0.7 0.75 0.7]*4"),
+})
+sec("A1", 8, { // lead calls on beats 1-2, guitar + bass climb answer on 3-4; snare pickup fill bar 12
+  bass: bass([RA, RA2, RD, RD2, RA, RA2, RF, RE], 0.88),
+  kick: s(VK).velocity(0.88),
+  snare: s(`<${rep(VS, 7)} ${VSP}>`).velocity(`<${rep(VSV, 7)} ${VSPV}>`),
+  hats: s(VH).velocity(VHV),
+  gtr: gtrV([["Am"], ["Am"], ["D9"], ["D9"], ["Am"], ["Am"], ["F"], ["Es", "E7"]]),
+  lead: mel(VERSE, 0.74),
+})
+sec("C1", 8, { // chorus 1: disco 4-floor, octave-pump bass, clav colour; tom fill bar 16
+  bass: bass(CHB, 0.92),
+  kick: s("bd*4").velocity(0.9),
+  snare: s(`<${rep(CS, 3)} ${CSF} ${rep(CS, 4)}>`).velocity(CSV),
+  toms: s(`<~!3 ${TF} ~!4>`).velocity(0.72),
+  hats: s(CH1).velocity(CH1V),
+  crash: s("<cr ~!7>").velocity(0.7),
+  gtr: gtrC(CH),
+  clav: clav(CH),
+  lead: mel(CHORUS, 0.86),
+})
+sec("A2", 6, { // verse 2 contracted; lead calls, HORNS answer; clav out; thin hats; bar 26: whole band drops out on beat 4
+  bass: bass([RD, RD2, RA, RA2, RF, "[28@2 ~ 28 ~ ~ 40 38 35@2 ~@6]"], 0.88),
+  kick: s(VK).velocity(0.86),
+  snare: s(`<${rep(VS, 5)} ${VSF}>`).velocity(VSV),
+  hats: s("<hh*8!5 [hh!6 ~ ~]>").velocity("[0.5 0.32]*4"),
+  gtr: gtrV([["D9"], ["D9"], ["Am"], ["Am"], ["F"], `[~@7 ${S.Es} ~@2 ${S.E7} ~@5]`]),
+  lead: mel(["[~@2 f#4 a4 b4 c5@3 ~@8]", "~", VERSE[4], VERSE[5], VERSE[6], "~"], 0.72),
+  horns: note(`<~ [~@8 [d4,d5] ~ [d4,d5] [c4,c5] [a3,a4]@2 ~@2] ~ ~ ~ [~ [d4,d5] [b3,b4] [a3,a4]@2 ~@3 [g#3,g#4]@4 ~@4]>`).velocity("[0.8 0.7 0.75 0.7]*4"),
+})
+sec("C2", 8, { // chorus 2: the RIFF returns under the hook; strings counter-line high & wide; horn stabs above the shells
+  bass: bass(CHR, 0.92),
+  kick: s("bd*4").velocity(0.9),
+  snare: s(CS).velocity(CSV),
+  hats: s(CH1).velocity(CH1V),
+  crash: s("<cr ~!3 cr ~!3>").velocity(0.66),
+  gtr: gtrC(CH),
+  stringsL: strHi(COUNTER).velocity(0.6),
+  stringsR: strHi(COUNTER3).velocity(0.55),
+  horns: note("<[[e4,a4,c5]@2 ~@14] [[d4,g4,b4]@2 ~@14] ~ ~ [[e4,a4,c5]@2 ~@14] ~ ~ [[e4,a4,c5]@2 ~@14]>").velocity(0.8),
+  lead: mel([H1, H2, H3, "[e5@2 ~@2 e5@2 d5@2 c5@8]", H1, H6, H7, H8], 0.88),
+})
+sec("D", 8, { // breakdown = bass feature: full riff with new pickups + dead notes, stop-time dialogue with the kit, build, hole
+  bass: bass([riffD(33, 43, [36, 38, 40]), "[33@2 33 33 ~ 33 45 43 40@2 45 ~ 43 45 47 45]", "[33@2 33 33 ~ 33 45 ~ 43@2 40 ~ 36 38 39 40]",
+    "[33@2 33 33 ~ 33 45 43 40@2 33 ~ 45 33 ~ 31]", "[29@2 ~ 29 ~ ~ 41 40 ~@8]", "[~@8 41 40 36 33 ~ 35 36 38]",
+    riffD(28, 38, [32, 33, 35]), "[28@2 ~@6 36 37 38 39 40 41 ~ ~]"], 1, DACC),
+  kick: s("<[bd ~ ~ ~ ~ ~ bd ~ ~ ~ ~ ~ ~ ~ ~ ~]!4 [bd ~@15] [~@8 bd ~@7] bd*4 [bd ~ ~ ~ bd ~ ~ ~ bd ~ ~ ~ bd ~ ~ ~]>").velocity(0.86),
+  snare: s("<[~ ~ ~ ~ rim ~ ~ rim ~ ~ ~ ~ rim ~ ~ ~]!4 [~@8 sd ~ sd sd ~ sd sd sd] [sd ~ sd ~ sd sd ~ ~ ~@8] sd*8 [sd!14 ~ ~]>")
+    .velocity("<[0 0 0 0 0.7 0 0 0.2 0 0 0 0 0.7 0 0 0]!4 [0 0 0 0 0 0 0 0 0.8 0 0.5 0.6 0 0.6 0.7 0.9] [0.8 0 0.5 0 0.6 0.9 0 0 0 0 0 0 0 0 0 0] [0.3 0.36 0.42 0.48 0.54 0.6 0.66 0.72] [0.3 0.34 0.38 0.42 0.46 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.86 0.94 0 0]>"),
+  toms: s(`<~!4 ${TF} ~ ~ ~>`).velocity(0.75),
+  hats: s("<[hh ~ ~ ~ oh ~ ~ ~ hh ~ ~ ~ oh ~ ~ ~]!4 ~ ~ hh*16 [hh!14 ~ ~]>").velocity("<[0.5 0 0 0 0.45 0 0 0 0.5 0 0 0 0.45 0 0 0]!4 0 0 [0.5 0.22 0.36 0.22]*4 [0.5 0.22 0.36 0.22]*4>"),
+})
+sec("C3", 10, { // final chorus: riff, horns in unison with the lead, strings high + octave-up R, saw octave double, new B5 answer, tag
+  bass: bass([...CHR, RFG, RE], 0.96),
+  kick: s("bd*4").velocity(0.92),
+  snare: s(`<${rep(CS, 9)} ${CSF}>`).velocity(CSV),
+  toms: s(`<~!9 ${TFR}>`).velocity(0.8),
+  hats: s(CHH).velocity(CHV),
+  crash: s("<cr ~!4 cr ~!4>").velocity(0.72),
+  gtr: gtrC([...CH, ["F", "G6"], ["Es", "E7"]]),
+  clav: clav([...CH, ["F", "G6"], ["Es", "E7"]]),
+  stringsL: strHi([...COUNTER, "[c4 b3]", "[a3 g#3]"]).velocity(0.62),
+  stringsR: stack(strHi([...COUNTER3, "[e4 d4]", "[e4 d4]"]).velocity(0.55),
+    note("<[e6@2 ~ e6 d6 c6@2 ~@9] ~ ~ ~ [e6@2 ~ e6 d6 c6@2 ~@9] [~@6 a6@6 ~@4] ~ ~ ~ ~>").velocity(0.42)),
+  horns: mel(C3LEAD, 0.66),
+  lead: mel(C3LEAD, 0.92),
+  leadhi: mel([...C3LEAD.slice(0, 8), "~", "~"], 0.5).add(note(12)),
+})
+const OUTH = "<[e5@2 ~ e5 d5 c5@2 ~@2 c5 d5 e5 a5@3 ~] [e5@2 ~ e5 d5 c5@2 ~@2 b4 d5 e5 g5@3 ~] [e4@2 ~ e4 ~ ~ e5 d5 b4@2 ~ ~ ~ g#4 a4 b4] [[a4,c5,e5,g5]@2 ~@14]>"
+sec("O", 4, { // full-band ending: last shout at chorus height (horns + lead), riff in unison, stop on the One of bar 56
+  bass: bass([RA, cb(29, 31), RE, "[33@2 ~@14]"], 0.97),
+  kick: s("<bd*4 bd*4 [bd ~ ~ bd ~ ~ bd ~ bd ~ ~ ~ ~ ~ ~ ~] [bd ~@15]>").velocity(0.92),
+  snare: s(`<${CS} ${CS} [~@13 sd sd sd] ~>`).velocity("<[0 0 0 0 0.85 0 0 0.2 0 0 0 0 0.85 0 0 0.24]!2 [0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0.8 0.9] 0>"),
+  hats: s(`<${CHH} ${CHH} ~ ~>`).velocity(CHV),
+  crash: s("<cr ~ ~ [cr ~@15]>").velocity(0.8),
+  gtr: note(`<${gc("Am")} ${gc("F", "G6")} [${S.E7}@2 ~ ${S.E7} ~ ~ ${S.E7} ${S.E7} ${S.E7}@2 ~ ~ ~ ${S.E7} ${S.E7} ${S.E7}] [${S.Am}@2 ~@14]>`).velocity(0.7),
+  clav: note(`<${cl("Am")} ${cl("F", "G6")} ~ [${K.Am}@2 ~@14]>`).velocity(0.66),
+  horns: note(OUTH).velocity(0.86),
+  lead: note("<[e5@2 ~ e5 d5 c5@2 ~@2 c5 d5 e5 a5@3 ~] [e5@2 ~ e5 d5 c5@2 ~@2 b4 d5 e5 g5@3 ~] ~ ~>").velocity(`${acc(LACC, 0.92)}*4`),
+  stringsL: note(OUTH).add(note(12)).velocity(0.5),
+  stringsR: note("<~ ~ [e5@2 ~ e5 ~ ~ e6 d6 b5@2 ~ ~ ~ g#5 a5 b5] [[a5,c6,e6]@2 ~@14]>").velocity(0.5),
+})
+form("I A1 C1 A2 C2 D C3 O")

@@ -1,12 +1,12 @@
-# Weave
+# Wavetable
 
 An instrument (`.inst`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").inst("Weave:12 CC's and Counting")
+note("c3 e3 g3 b3").inst("Wavetable:12 CC's and Counting")
 ```
 
-Accepted names: `weave`.
+Accepted names: `wavetable`.
 
 ## Parameters
 

@@ -23,7 +23,7 @@ A request like the first one might come back as:
 ```js
 setcpm(18)
 drums: s("bd ~ [~ bd] ~, ~ sd, hh*8").bank("linn").swingBy(1/6, 4).gain(0.8)
-keys: chord("<Fm9 Bbm9 Eb^9 Db^7>").voicing().inst("Tine").fx("Chorus")
+keys: chord("<Fm9 Bbm9 Eb^9 Db^7>").voicing().inst("Electric Piano").fx("Chorus")
 bass: n("<0 -2 -4 -5>").scale("F2:minor").s("gm_acoustic_bass")
 ```
 

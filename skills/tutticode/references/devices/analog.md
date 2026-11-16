@@ -1,12 +1,12 @@
-# Patina
+# Virtual Analog
 
 An instrument (`.inst`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").inst("Patina:80s VCO Brass")
+note("c3 e3 g3 b3").inst("Virtual Analog:80s VCO Brass")
 ```
 
-Accepted names: `patina`.
+Accepted names: `virtualanalog`.
 
 ## Parameters
 

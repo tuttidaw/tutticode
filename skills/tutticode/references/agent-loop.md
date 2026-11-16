@@ -141,7 +141,7 @@ without `limit: true`:
 bus("verb").fx("Reverb", {dryWetBalance: 1})
 master.fx("Limiter", {gainDb: 3, ceiling: -3})
 drums: s("bd*4, ~ cp, hh*8").bank("tr909").mix({vol: -3})
-keys: chord("<Cm7 Fm7>").voicing().inst("Tine").send("verb", -10)
+keys: chord("<Cm7 Fm7>").voicing().inst("Electric Piano").send("verb", -10)
 ```
 
 `group("drums")` + `.group("drums")` gives several voices one fader and

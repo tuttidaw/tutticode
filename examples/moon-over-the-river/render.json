@@ -1,0 +1,7 @@
+[
+  {
+    "program": "song.tc",
+    "title": "江月 Moon over the River",
+    "args": ["--lufs", "-14", "--limit", "--tail", "5"]
+  }
+]

@@ -1,6 +1,6 @@
 # Sounds
 
-Drum kits and banks, synth waveforms, General MIDI instrument names, Ensemble sounds and your own samples.
+Drum kits and banks, synth waveforms, General MIDI instrument names, Multi-Engine Synth sounds and your own samples.
 
 A voice's sound decides which TuttiDAW instrument plays it. You can name
 sounds the Strudel way with `s(...)`, or load any TuttiDAW instrument by name
@@ -62,22 +62,22 @@ bass: note("<d2 a1 bb1 c2>").s("gm_acoustic_bass")
 A name TuttiDAW does not know still plays: drum-like names fall back to a
 drum pad, everything else to a synth, with a warning in the diagnostics.
 
-## Ensemble sounds
+## Multi-Engine Synth sounds
 
-Ensemble is TuttiDAW's multi-engine sound module (Physical, Sample, Duo, FM6
-and more). Its factory sounds are named `<Engine> <SOUND>`, for example
+The Multi-Engine Synth is TuttiDAW's multi-engine instrument (Physical,
+Sample, Duo, FM6 and more). Its factory sounds are named `<Engine> <SOUND>`, for example
 `Physical PLUCK` or `Sample FLUTE`, and are loaded with `.inst`:
 
 ```js
 setcpm(24)
-pluck: n("0 2 4 6 4 2").scale("E:minor").inst("Ensemble:Physical PLUCK")
-flute: note("<b4 a4 g4 e4>").inst("Ensemble:Sample FLUTE")
+pluck: n("0 2 4 6 4 2").scale("E:minor").inst("Multi-Engine Synth:Physical PLUCK")
+flute: note("<b4 a4 g4 e4>").inst("Multi-Engine Synth:Sample FLUTE")
 ```
 
-Ensemble parts play inside an Ensemble Set with its own chorus, delay and
-reverb. On TuttiCode up to four Ensemble voices share one Set; **Open in
+Its parts play inside an Ensemble Set with its own chorus, delay and
+reverb. On TuttiCode up to four Multi-Engine Synth voices share one Set; **Open in
 TuttiDAW** builds the same Set in your project. The [device
-catalogue](devices.md) lists every Ensemble sound.
+catalogue](devices.md) lists every Multi-Engine Synth sound.
 
 ### The Set's chorus, delay and reverb
 
@@ -88,8 +88,8 @@ master, for every Ensemble Set the program plays in:
 ```js
 setcpm(24)
 ensembleSet({reverb: {revType: "HALL", revSize: 110}, delay: {dlyTime: "1/8D", dlyFdbk: 40}})
-pluck: n("0 2 4 6 4 2").scale("E:minor").inst("Ensemble:Physical PLUCK", {rev: 50, dly: 30})
-flute: note("<b4 a4 g4 e4>").inst("Ensemble:Sample FLUTE", {rev: 70})
+pluck: n("0 2 4 6 4 2").scale("E:minor").inst("Multi-Engine Synth:Physical PLUCK", {rev: 50, dly: 30})
+flute: note("<b4 a4 g4 e4>").inst("Multi-Engine Synth:Sample FLUTE", {rev: 70})
 ```
 
 | Section | Keys |

@@ -1,12 +1,12 @@
-# Synth
+# Basic Synth
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("Synth:Bass Sub Round")
+note("c3 e3 g3 b3").inst("Basic Synth:Bass Sub Round")
 ```
 
-Accepted names: `synth`.
+Accepted names: `basicsynth`.
 
 ## Parameters
 

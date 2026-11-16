@@ -1,0 +1,195 @@
+// "Late Reading" - lo-fi hip-hop, F major, 88 BPM, 4/4, 38 bars (~1:44 + ring-out).
+// Compiled from spec.yaml. Form: I(4) A1(8) C1(8) D(6) C2(8) O(4).
+// Palette from REFERENCE/lessons (drunk-beat, city-pop-flip, sleep, chillhop, rainy-piano, main):
+//   lead Sample FLUTE, keys FM6 TINE EP, bass Duo SUB BASS, bell Duo SINE KEY, pad Grain CLOUD PAD,
+//   default 808 Core kit (bd/sd/rim/hh/oh), vinyl = crackle (Vinyl Wear crackle).
+// Stage E (review-song.md): fixed answer cell = the hook, beat inside the first 10 s, staggered entries,
+// 8th-note swing on the parts that play 8ths, flute down / beat + Rhodes up, audible crackle, moving Rhodes top voice.
+setcpm(22)
+
+// ---- timing (spec groove; 1 bar = 2727 ms at 88 BPM, 1 quarter = 682 ms) ----
+const MS = 1 / 2727.27
+const kickT  = p => p.swingBy(0.1, 4).swingBy(0.1, 8).late(10 * MS)     // 8ths and 16ths swung 60 %, +10 ms
+const snareT = p => p.bank("linn").swingBy(0.1, 4).swingBy(0.1, 8).late(25 * MS)  // Linn snare/rim for crack; swung, laid back +25 ms
+const hatT   = p => p.swingBy(0.08, 8)                                    // 16ths 58 %, 8ths straight: still straighter than kick/snare
+const bassT  = p => p.swingBy(0.08, 4).late(8 * MS)                       // bass is written in 8ths: 58 % 8th swing
+const keysT  = p => p.swingBy(0.06, 4).late(20 * MS)
+const leadT  = p => p.swingBy(0.06, 4).late(15 * MS)
+
+// ---- shared spaces (Ensemble Set buses as in the lessons) + a dark room for the drums ----
+ensembleSet({
+  chorus: {choRate: 25, choDepth: 50},
+  delay: {dlyTime: "1/8D", dlyFdbk: 35, dlyColor: 40},
+  reverb: {revType: "ROOM", revSize: 75, revDamp: 85},
+  master: {master: 106},
+})
+bus("room").fx("Reverb:Dark Small Room", {dryWetBalance: 1}).mix({vol: -4})
+
+// ---- tracks: the sound of each part, written once ----
+// levels (review-song issue 3): the anchor is kick + bass + snare + Rhodes; the flute sits on top, not over everything
+group("drums").fx("Auto Filter", {filterTypeIndex: "Low-pass", frequency: 9500}).send("room", -16)
+track("kick").group("drums").fx("Auto Filter", {filterTypeIndex: "High-pass", frequency: 40}).mix({vol: -4})
+track("snare").group("drums").mix({vol: -1.5, pan: -0.12})
+track("hats").group("drums").mix({vol: 0, pan: 0.4})
+track("bass").inst("Multi-Engine Synth:Duo SUB BASS", {atk: 6, dec: 70, sus: 80, rel: 40, rev: 5, e0: 2, e4: 48, e5: 5, e6: 10, e7: 64, voice: 1})
+  .fx("Saturator:Warm Tape").mix({vol: -12})
+track("keys").inst("Multi-Engine Synth:FM6 TINE EP", {level: 106, chor: 50, dly: 0, rev: 22})
+  .fx("Auto Filter", {filterTypeIndex: "Low-pass", frequency: env("0:1100 3:2000 4:18000 35:18000 38:1400", 38)})
+  .fx("Chorus:Wide Classic", {dryWetBalance: 0.45})
+  .fx("Compressor", {threshold: -32, ratio: 3, attack: 5, release: 180, sidechain: "kick", sidechainFilter: "150Hz"})
+  .mix({vol: 0, pan: -0.3})
+track("lead").inst("Multi-Engine Synth:Sample FLUTE", {level: 100, chor: 0, dly: 25, rev: 18, voice: 1}).mix({vol: -4.5, pan: 0.05})
+track("sine").inst("Multi-Engine Synth:Duo SINE KEY", {level: 100, rel: 30, chor: 0, dly: 10, rev: 35, voice: 1}).mix({vol: 0, pan: 0.45})
+track("pad").inst("Multi-Engine Synth:Grain CLOUD PAD", {level: 92, chor: 60, dly: 0, rev: 70}).fx("Chorus:Ensemble").mix({vol: -10})
+track("vinyl").fx("Vinyl Wear", {tracingOn: false, pinchOn: false, globalDrive: 0, crackleDensity: 0.4, crackleVolume: 0.75})
+  .fx("Limiter", {gainDb: 12, ceiling: -22}).mix({vol: 0})   // clicks capped so the bed can be heard without driving the master limiter
+const vinyl = g => s("crackle").gain(g)
+
+// ---- drum vocab (16 steps per bar) ----
+const KV = "[0.8 0.6 0.6 0.6 0.6 0.6 0.66 0.5 0.6 0.6 0.7 0.6 0.6 0.5 0.6 0.6]"
+const SV = "[0.3 0.3 0.26 0.3 0.76 0.3 0.3 0.3 0.62 0.3 0.26 0.3 0.74 0.3 0.4 0.3]"   // backbeat 2&4, ghosts < 0.4
+const kVerseA = "[bd ~ ~ ~ ~ ~ ~ ~ ~ ~ bd ~ ~ ~ ~ ~]"
+const kVerseB = "[bd ~ ~ ~ ~ ~ ~ bd ~ ~ bd ~ ~ ~ ~ ~]"
+const kChorus = "[bd ~ ~ ~ ~ ~ bd ~ ~ ~ bd ~ ~ bd ~ ~]"
+const rimV    = "[~ ~ ~ ~ rim ~ ~ ~ ~ ~ ~ ~ rim ~ ~ ~]"
+const snC     = "[~ ~ sd ~ sd ~ ~ ~ ~ ~ sd ~ sd ~ ~ sd]"
+const hat8    = "[hh ~ hh ~ hh ~ hh ~ hh ~ hh ~ hh ~ hh ~]"
+const hat16   = "hh*16"
+const hat16o  = "[hh hh hh hh hh hh hh hh hh hh hh hh hh hh oh ~]"
+const HV8  = "[0.52 0.3 0.34 0.3 0.5 0.3 0.34 0.3 0.52 0.3 0.34 0.3 0.5 0.3 0.34 0.3]"
+const HV16 = "[0.46 0.22 0.32 0.22]*4"
+
+// ---- harmony: rootless Rhodes voicings (spec form[].harmony_letters) ----
+// chorus set re-voiced so the top voice moves by half-steps (review note 1, mc-style-jazz §4.1): D C C C D | D C B C Db C
+const V = {
+  Dm9: "[f3,a3,c4,e4]", G13: "[f3,a3,b3,e4]", Bbmaj9: "[f3,a3,c4,d4]", Bb69: "[f3,g3,c4,d4]",
+  Bbm6: "[f3,g3,bb3,db4]", Am9: "[e3,g3,b3,c4]", Am11: "[e3,g3,c4,d4]", Gm9: "[f3,a3,bb3,d4]",
+  Gm11: "[f3,bb3,c4,d4]", C9sus4: "[f3,g3,bb3,d4]", C9: "[e3,g3,bb3,d4]", D7b9: "[f#3,a3,c4,eb4]",
+  Abdim7: "[f3,ab3,b3,d4]", C7b9: "[e3,g3,bb3,db4]", Fmaj9: "[e3,g3,a3,c4]", Dbmaj9: "[f3,ab3,c4,eb4]",
+  Cm9: "[eb3,g3,bb3,d4]", F13: "[eb3,g3,a3,d4]", Gb7s11: "[e3,ab3,bb3,c4]", DbEnd: "[db2,f3,ab3,c4,eb4]",
+  Am7c: "[e3,g3,a3,c4]", D7b9c: "[eb3,f#3,a3,c4]", Gm11c: "[d3,f3,bb3,c4]", Abdim7c: "[d3,f3,ab3,b3]",
+}
+const held  = (a, b) => b ? `[${V[a]}@4 ${V[b]}@4]` : `${V[a]}`
+const compV = (a, b) => b ? `[${V[a]}@3 ~ ${V[b]}@3 ~]` : `[${V[a]}@5 ~ ${V[a]}@2]`
+const compC = (a, b) => b ? `[${V[a]}@3 ~ ${V[b]}@3 ${V[b]}]` : `[${V[a]}@3 ${V[a]}@3 ~ ${V[a]}]`
+const bars  = list => `<${list.join(" ")}>`
+const keys  = (list, vel) => keysT(note(bars(list)).velocity(vel))
+
+// ---- melody C (fixed after review-melody.md) and the stage-E hook fix (review-song issue 1) ----
+// the answer is now ONE cell: "~@2 A5 x@2 land@3" - head A5 every time, only the landing follows the chord
+const callA1 = [
+  "[~ d5 e5 f5 a5@4]", "[~@4 d5 b4@2 ~]", "[~ d5 e5 f5 a5@2 g5@2]", "[~@4 f5 e5@2 ~]",
+  "[~ c5 d5 e5@2 a5@3]", "[~@4 f5 db5@3]", "[~ c5 d5 e5 g5@4]", "[~@4 bb4 c5@2 ~]"]
+const hookC1 = [
+  "[~ bb4 c5 d5 f5@4]", "[~@2 a5 f#5@2 d5@3]",      // Am7 | D7b9: 13 -> 3 -> root
+  "[~ bb4 c5 d5 a5@4]", "[~@2 a5 g5@2 e5@3]",       // C13: 13, 5, 3
+  "[~ bb4 c5 d5 f5@4]", "[~@2 a5 b5@2 ab5@3]",      // Am7 | Abdim7
+  "[~ d5 c5 bb4@2 ~ db5 c5]", "[~@2 a5 g5@2 f5@3]"] // Fmaj9: lands on the tonic
+const hookC2 = [                                    // calls a 3rd higher, the same answer cell from C6
+  "[~ d5 e5 f5 a5@4]", "[~@2 c6 a5@2 f#5@3]",
+  "[~ d5 e5 f5 bb5@4]", "[~@2 c6 bb5@2 a5@3]",
+  "[~ d5 e5 f5 a5@4]", "[~@2 c6 b5@2 ab5@3]",
+  "[~ f5 e5 d5 ~ ~ db5 c5]", "[~@2 c6 a5@2 f5@3]"]
+// the bell doubles every chorus answer an octave below: the non-lead layer that carries the hook
+const bellC1 = ["~", "[~@2 a4 f#4@2 d4@3]", "~", "[~@2 a4 g4@2 e4@3]", "~", "[~@2 a4 b4@2 ab4@3]", "~", "[~@2 a4 g4@2 f4@3]"]
+const lead = (list, vel) => leadT(note(bars(list)).velocity(vel))
+
+// ================================ SECTIONS ================================
+section("I", 4, {
+  // the chorus call + THE answer in the first 5 s; a soft beat from bar 3 (0:05); bar 4 = the 'stop' pickup
+  keys:  keys([held("Bb69"), held("Am11", "D7b9"), `[${V.Gm11}@5 ~ ${V.Gm11}@2]`, `[${V.C9sus4}@5 ~ ${V.C9sus4}@2]`], 0.6),
+  lead:  lead([hookC1[0], hookC1[1], hookC1[2], "~"], "<0.66 0.64 0.66 0>"),
+  sine:  keysT(note("<~ [~@2 a4 f#4@2 d4@3] ~ [~@12 g4 bb4 d5 f5]>").velocity("<0 0.6 0 0.66>")),
+  kick:  kickT(s("<~ ~ [bd ~ ~ ~ ~ ~ ~ ~ ~ ~ bd ~ ~ ~ ~ ~] [bd ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~]>").velocity(0.5)),
+  snare: snareT(s("<~ ~ [~ ~ ~ ~ rim ~ ~ ~ ~ ~ ~ ~ rim ~ ~ ~] [~ ~ ~ ~ rim ~ ~ ~ ~ ~ ~ ~ ~ ~ sd sd]>").velocity(SV)),
+  vinyl: vinyl(1),
+})
+
+section("A1", 8, {
+  kick:  kickT(s(bars([kVerseA, kVerseB, kVerseA, kVerseB, kVerseA, kVerseB, kVerseA,
+                       "[bd ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~]"])).velocity(KV).gain(0.85)),   // verse kick softer: room for the chorus lift
+  snare: snareT(s(bars([rimV, rimV, rimV, rimV, rimV, rimV, rimV,
+                        "[~ ~ ~ ~ rim ~ ~ ~ sd ~ ~ ~ ~ ~ sd sd]"])).velocity(SV)),
+  hats:  hatT(s(bars(["~", "~", "~", "~", hat8, hat8, hat8,                    // hats enter halfway (bar 9)
+                      "[hh ~ hh ~ hh ~ hh ~ hh ~ hh ~ ~ ~ ~ ~]"])).velocity(HV8)),
+  bass:  bassT(note(bars([
+    "[d2@3 ~@2 a1 c2 e2]", "[g1@3 ~@2 d2 f2 e2]", "[d2@3 ~@2 a1 c2 d2]", "[g1@3 ~@2 b1 d2 f2]",
+    "[bb1@3 ~@2 d2 f2 a1]", "[bb1@3 ~@2 f1 g1 ab1]", "[a1@3 ~@2 e2 c2 a1]", "[g1@2 d2 ~ c2@2 g1 a1]"]))
+    .velocity("[0.72 0.56 0.56 0.6 0.58 0.6 0.56 0.58]")),
+  keys:  keys([compV("Dm9"), compV("G13"), compV("Dm9"), compV("G13"),
+               compV("Bbmaj9"), compV("Bbm6"), compV("Am9"), compV("Gm9", "C9sus4")], "[0.42 0.32]"),
+  lead:  lead(callA1, "<0.72 0.6 0.7 0.63 0.74 0.62 0.69 0.64>"),
+  vinyl: vinyl(0.7),
+})
+
+section("C1", 8, {
+  kick:  kickT(s(bars([kChorus, kChorus, kChorus, kChorus, kChorus, kChorus, kChorus,
+                       "[bd ~ ~ ~ ~ ~ bd ~ ~ ~ ~ ~ ~ ~ ~ ~]"])).velocity(KV)),
+  snare: snareT(s(bars([snC, snC, snC, snC, snC, snC, snC,
+                        "[~ ~ ~ ~ sd ~ ~ ~ ~ ~ ~ ~ sd ~ sd sd]"])).velocity(SV)),
+  hats:  hatT(s(bars([hat16, hat16, hat16, hat16o, hat16, hat16, hat16,
+                      "[hh hh hh hh hh hh hh hh hh hh hh hh oh ~ ~ ~]"])).velocity(HV16)),
+  bass:  bassT(note(bars([
+    "[bb1@3 bb1 ~ f2 ~ c2]", "[a1@2 e2 ~ d2@2 a1 f#1]", "[g1@3 g1 ~ d2 bb1 b1]", "[c2@3 c2 ~ e2 d2 c2]",
+    "[bb1@3 bb1 ~ f2 ~ c2]", "[a1@2 e2 ~ ab1@2 d2 ab1]", "[g1@2 d2 ~ c2@2 g1 e1]", "[f1@3 ~@2 c2 e2 eb2]"]))
+    .velocity("[0.8 0.6 0.6 0.7 0.6 0.66 0.6 0.62]")),
+  keys:  keys([compC("Bb69"), compC("Am7c", "D7b9c"), compC("Gm11c"), compC("C9"),
+               compC("Bb69"), compC("Am7c", "Abdim7c"), compC("Gm11c", "C7b9"), compC("Fmaj9")], "[0.6 0.48 0.52 0.48]"),
+  lead:  lead(hookC1, "<0.74 0.72 0.75 0.74 0.73 0.72 0.72 0.68>"),
+  sine:  keysT(note(bars(bellC1)).velocity(0.7)),                          // NEW layer at C1: the bell doubles the answers
+  vinyl: vinyl(0.6),
+})
+
+section("D", 6, {
+  // drums out (subtraction), bass in held notes, pad in, motif head augmented and low
+  bass:  bassT(note(bars(["[db2@6 ~@2]", "[c2@3 ~ f1@3 ~]", "[bb1@6 ~@2]", "[bb1@3 ~ db2@3 ~]", "[a1@3 ~ ab1@3 ~]", "~"])).velocity(0.48)),
+  keys:  keys([`[${V.Dbmaj9}@6 ~@2]`, `[${V.Cm9}@3 ~ ${V.F13}@3 ~]`, `[${V.Bbmaj9}@6 ~@2]`,
+               `[${V.Bbm6}@6 ~@2]`, `[${V.Am11}@3 ~ ${V.Abdim7}@3 ~]`, `[${V.Gm9}@3 ~ ${V.C7b9}@2 ~@2]`], 0.42),
+  pad:   note(bars(["[ab5,c6]", "[g5,d6]", "[a5,d6]", "[g5,db6]", "[[g5,c6] [f5,b5]]", "[[f5,a5] ~]"])).velocity(0.5),
+  lead:  lead(["[~@2 f4@2 g4@2 ab4@2]", "[c5@4 ~@2 d5 a4]", "[~@2 d4@2 e4@2 f4@2]",
+               "[g4@4 ~@2 f4 db4]", "[~ c5 d5 e5 ~ d5 b4@2]", "[~ bb4 c5 d5 ~@4]"],
+              "<0.66 0.64 0.64 0.66 0.68 0.66>"),
+  vinyl: vinyl(1),
+})
+
+section("C2", 8, {
+  kick:  kickT(s(bars([kChorus, kChorus, kChorus, "[bd ~ ~ ~ ~ ~ bd ~ ~ ~ bd ~ ~ ~ ~ ~]",
+                       kChorus, kChorus, kChorus, "[bd ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~]"])).velocity(KV)),
+  snare: snareT(s(bars([snC, snC, snC, "[~ ~ sd ~ sd ~ ~ ~ ~ ~ sd ~ sd sd sd sd]",
+                        snC, snC, snC, "[~ ~ ~ ~ sd ~ ~ ~ ~ ~ ~ ~ sd ~ ~ ~]"]))
+    .velocity("<[0.3 0.3 0.28 0.3 0.78 0.3 0.3 0.3 0.3 0.3 0.28 0.3 0.76 0.3 0.3 0.3]!3 [0.3 0.3 0.28 0.3 0.78 0.3 0.3 0.3 0.3 0.3 0.28 0.3 0.7 0.3 0.4 0.5] [0.3 0.3 0.28 0.3 0.78 0.3 0.3 0.3 0.3 0.3 0.28 0.3 0.76 0.3 0.3 0.3]!4>")),
+  hats:  hatT(s(bars([hat16, hat16o, hat16, hat16, hat16, hat16o, hat16,
+                      "[hh hh hh hh hh hh hh hh hh hh hh hh ~ ~ ~ ~]"])).velocity("[0.54 0.26 0.38 0.26]*4")),
+  bass:  bassT(note(bars([
+    "[bb1@3 bb1 ~ f2 ~ c2]", "[a1@2 e2 ~ d2@2 a1 f#1]", "[g1@3 g1 ~ d2 bb1 b1]", "[c2@3 c2 ~ e2 d2 c2]",
+    "[bb1@3 bb1 ~ f2 ~ c2]", "[a1@2 e2 ~ ab1@2 d2 ab1]", "[g1@2 d2 ~ gb1@2 db2 gb1]", "[f1@3 ~@2 a1 c2 a1]"]))
+    .velocity("[0.82 0.6 0.6 0.72 0.6 0.68 0.6 0.62]")),
+  keys:  keys([compC("Bbmaj9"), compC("Am7c", "D7b9c"), compC("Gm11c"), compC("C9"),
+               compC("Bbmaj9"), compC("Am7c", "Abdim7c"), compC("Gm11c", "Gb7s11"), compC("Fmaj9")], "[0.68 0.56 0.6 0.56]"),
+  lead:  lead(hookC2, "<0.8 0.8 0.84 0.84 0.8 0.78 0.78 0.74>"),
+  // bell: counter-line in the call bars (enters on beat 3 under the flute's long note, C5-F5),
+  //       the answer cell an octave below in the answer bars (same doubling as C1, now from C5)
+  sine:  keysT(note(bars(["[~@4 d5@4]", "[~@2 c5 a4@2 f#4@3]", "[~@4 f5@4]", "[~@2 c5 bb4@2 a4@3]",
+                          "[~@4 c5@4]", "[~@2 c5 b4@2 ab4@3]", "[~@4 bb4@4]", "[~@2 c5 a4@2 f4@3]"]))
+    .velocity("<0.7 0.8 0.7 0.8 0.7 0.8 0.7 0.8>")),
+  // the bridge's pad stays under C2, low (texture lift)
+  pad:   note(bars(["[a5,d6]", "[[g5,c6] [f#5,c6]]", "[f5,bb5]", "[e5,bb5]",
+                    "[a5,d6]", "[[g5,c6] [f5,b5]]", "[[f5,bb5] [e5,bb5]]", "[e5,a5]"])).velocity(0.55),
+  vinyl: vinyl(0.6),
+})
+
+section("O", 4, {
+  // loop-and-subtract: one layer leaves at each barline; head augmented, no answer; Dbmaj9
+  bass:  bassT(note(bars(["bb1", "[a1 d2]", "[g1@4 ~@4]", "~"])).velocity("<0.58 0.48 0.42 0>")),
+  keys:  keys([held("Bbmaj9"), held("Am11", "D7b9"), held("Gm9", "C9sus4"), `${V.DbEnd}`], "<0.44 0.38 0.33 0.3>"),
+  lead:  lead(["[~@2 d5@2 e5@2 f5@2]", "[a5@4 ~@4]", "~", "~"], "<0.6 0.45 0 0>"),
+  sine:  note("<~ ~ ~ [~@4 f4 ab4 c5 eb5]>").velocity(0.62),           // the bell ripple, last time, over Dbmaj9
+  vinyl: vinyl(1),
+})
+
+form("I A1 C1 D C2 O")
+
+master.fx("Utility", {stereoWidth: env("0:0.7 _4:1 _12:1.3 _20:0.75 _26:1.35 _34:0.7", 38)})
+  .fx("Auto Filter", {filterTypeIndex: "Low-pass", frequency: 14000})
+  .fx("Bus Compressor", {threshold: -14, ratioIndex: "2 : 1", attackIndex: "30 ms", autoRelease: true})
+  .fx("Limiter", {ceiling: -1})

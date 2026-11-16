@@ -25,7 +25,7 @@ The normative grammar with its lexical rules (tokens, strings and escapes, comme
    @example lang: note(`c4 e4`).every(4, x => x.rev())
    @example lang: note('c4').off(1/8, () => note("g4"))
    @example lang: setDefaultVoicings('ireal'); chord("C").anchor("D5").mode("below").offset(1).voicing().arp("0 1 2")
-   @example lang: bass: note("c2").inst("Ember:Deep Bass", {cutoff: 600}).fx("Reverb", {decayTime: "4s", "dryWetBalance": 0.3,})
+   @example lang: bass: note("c2").inst("Subtractive Synth:Deep Bass", {cutoff: 600}).fx("Reverb", {decayTime: "4s", "dryWetBalance": 0.3,})
    @example lang: bus("verb").fx("Reverb"); master.fx("Limiter").mix({vol: -1}); keys: note("c3 e3").send("verb", -12).mix({pan: -0.3})
    @example lang: bus("verb"); group("drums").fx("Drum Shaper").mix({vol: -3}).send("verb", -12); kick: s("bd*4").group("drums")
 *)
@@ -362,16 +362,16 @@ Every instrument, MIDI effect and audio effect for .inst/.midifx/.fx (the core n
 
 ```text
 voice.inst(name, params?) chooses the voice's instrument (one per voice); .midifx(name, params?) adds MIDI effects before it and .fx(name, params?) audio effects after it, in call order. TuttiDAW extensions: a program using them does not play on strudel.cc.
-name: a constant string "Device" or "Device:Preset" (factory presets only), e.g. "Reverb:Large Hall", "Ember:Deep Bass", "Drum Grid:808 Core Kit". Unique bare preset names work; case/punctuation ignored.
+name: a constant string "Device" or "Device:Preset" (factory presets only), e.g. "Reverb:Large Hall", "Subtractive Synth:Deep Bass", "Drum Grid:808 Core Kit". Unique bare preset names work; case/punctuation ignored.
 params: an object {key: value}. Write the device's param keys (dryWetBalance, not the label "Dry/Wet"). Numbers are in the param's own unit (Hz, ms, dB, st...); unit strings convert: "250ms" "2s" "-6dB" "1.2kHz" "30%". Enums take their label ("UpDown", "1/16", "Dorian") or a 0-based index; on/off params take true/false. Out-of-range values are clamped with a warning. Reserved keys: on (device switch), id (a stable name for a repeated device: letters, digits, _ or -, not "instrument").
 Params may be patterns or env/ramp (automation; "<1/16 1/8>" are labels), on buses/groups/master too.
 Strudel controls keep their meaning: lpf/room/delay/... still add their devices; room/delay fold into an explicit Reverb/Delay of the voice. .inst beats s() for the instrument; s() still picks drum pads.
 Devices apply where the code owns tracks: group programs and /code.
 Mixing: bus(name).fx(...) is a return; voice.send(bus,-18..-10 dB) feeds it; .mix({vol,pan}) is the fader; master.fx(...) ends songs (Glue Compressor, Limiter). Voices sharing a reverb/delay: one wet bus (dryWetBalance:1) + sends, no copy per voice.
-Ensemble parts: .inst("Ensemble:<Engine> <SOUND>", {...}) e.g. "Ensemble:Sample FLUTE"; part keys level atk dec sus rel pan chor dly rev (0..127, pan -64..63), engine controls by its labels (Physical: strc brit damp pos acc bow exc); their Sets: ensembleSet({reverb:{revSize:100}}).
-Main keys: Ember: cutoff Hz, attack ms, release ms; Weave: cutoff Hz, attack ms, release ms; Patina: f1Freq Hz, a1Attack ms; Carrier: aAttack ms, bLevel %; Reverb: decayTime ms, dryWetBalance; Delay: timeL ms, feedback %; Auto Filter: frequency Hz, Q; Compressor: threshold dB, ratio; Saturator: drive dB.
-Instruments (.inst): Carrier, Drum Grid, Ember, Ensemble, Mini Sampler, Patina, Sampler, Weave; also Chimera Voice, Clang Synth, Clap Synth, Cymbal Synth, Drum Synth, Filament, FM Drum, Hat Synth, Kick Synth, Kit Sampler, Mallet, SixOp, Snare Synth, Synth, Tine, Tom Synth, Twine.
-MIDI effects (.midifx): Arpeggiator, Chord, Note Length, Scale; also FM Arp, Note Echo, Pitch, Random, Velocity.
-Audio effects (.fx): Auto Filter, Auto Pan-Tremolo, Bitcrusher, Bus Compressor, Chorus, Compressor, Delay, Echo, Parametric EQ, Reverb, Saturator, Utility; also 3-Band EQ, Amp, Auto Pitch, Cabinet, Channel EQ, Clipper, Convolution Reverb, Denoise, Drum Shaper, Filter Delay, Gate, Granular Delay, Grit, Limiter, Micro Looper, Multiband Dynamics, Overdrive, Partials, Pedal, Phaser-Flanger, Pitch Shifter, Resonant Body, Resonator, Scorch, Spectral Delay, Stutter, Time Align, Transient Shaper, Tube Drive, Vinyl Wear, Vocoder, Voice Leveler.
+Ensemble parts: .inst("Multi-Engine Synth:<Engine> <SOUND>", {...}) e.g. "Multi-Engine Synth:Sample FLUTE"; part keys level atk dec sus rel pan chor dly rev (0..127, pan -64..63), engine controls by its labels (Physical: strc brit damp pos acc bow exc); their Sets: ensembleSet({reverb:{revSize:100}}).
+Main keys: Subtractive Synth: cutoff Hz, attack ms, release ms; Wavetable: cutoff Hz, attack ms, release ms; Virtual Analog: f1Freq Hz, a1Attack ms; FM Synth: aAttack ms, bLevel %; Reverb: decayTime ms, dryWetBalance; Delay: timeL ms, feedback %; Auto Filter: frequency Hz, Q; Compressor: threshold dB, ratio; Saturator: drive dB.
+Instruments (.inst): Drum Grid, FM Synth, Mini Sampler, Multi-Engine Synth, Sampler, Subtractive Synth, Virtual Analog, Wavetable; also 6-Operator FM, Basic Synth, Clang Synth, Clap Synth, Cymbal Synth, Drum Synth, Electric Piano, FM Drum, Hat Synth, Kick Synth, Kit Sampler, Layer Synth, Mallet Synth, Snare Synth, String Model, Tom Synth, Vocal Synth.
+MIDI effects (.midifx): Arpeggiator, Chord, Note Length, Scale; also Extended Arpeggiator, Note Echo, Pitch, Random, Velocity.
+Audio effects (.fx): Auto Filter, Auto Pan-Tremolo, Bitcrusher, Bus Compressor, Chorus, Compressor, Delay, Echo, Parametric EQ, Reverb, Saturator, Utility; also 3-Band EQ, Amp, Auto Pitch, Cabinet, Channel EQ, Clipper, Convolution Reverb, Denoise, Drum Shaper, Filter Delay, Gate, Granular Delay, Limiter, Micro Looper, Multi Distortion, Multiband Dynamics, Noise Distortion, Overdrive, Pedal, Phaser-Flanger, Pitch Shifter, Resonant Body, Resonator, Spectral Delay, Spectral Resonator, Stutter, Time Align, Transient Shaper, Tube Drive, Vinyl Wear, Vocoder, Voice Leveler.
 Any other device (LFO, Looper, Tuner, racks, plug-ins...) is not available in code.
 ```

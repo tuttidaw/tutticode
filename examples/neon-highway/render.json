@@ -1,0 +1,7 @@
+[
+  {
+    "program": "song.tc",
+    "title": "Neon Highway",
+    "args": ["--lufs", "-14", "--limit", "--tail", "3"]
+  }
+]

@@ -13,7 +13,7 @@ This repository is published from TuttiDAW's main repository, where the CLI, the
 
 Pull requests are welcome all the same: we carry the change into the main repository, credit you, and the next publish brings it back here.
 
-Examples (`examples/`) are kept as the models made them; we do not edit their code.
+Examples (`examples/`) are kept as the agent made them; the only edits are the ones listed in [`examples/README.md`](examples/README.md) (device renames, and sound fixes made after listening).
 
 ## Checking your change
 

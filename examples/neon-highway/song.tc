@@ -1,0 +1,221 @@
+// NEON HIGHWAY - synthwave night drive, E minor -> F# minor, 100 BPM, 52 bars (~2:05)
+// Compiled from spec.yaml (ARR-SPEC). Palette from REFERENCE/lessons (sounds/levels only):
+// lead Trio SYNC LEAD (outrun/darksynth), pad Duo STRINGS (main/sunset), bass Duo SQR BASS (all),
+// arp Duo PLUCK (main), counter-line Duo BRASS (outrun), bell FM6 BELL (dreamwave), drums 808 kit +
+// "cr" gated-snare layer on 2&4 (every lesson), ensembleSet buses as in the lessons.
+// Stage E: revised after review-song.md (see NOTES.md "Revisions").
+setcpm(25)
+ensembleSet({
+  chorus: {choRate: 30, choDepth: 75},
+  delay: {dlyTime: "1/8D", dlyFdbk: 50, dlyColor: 75},
+  reverb: {revSize: 100, revDamp: 50},
+  master: {master: 104},
+})
+
+// ---------- push / pull (spec groove.push_pull), in cycles: 1 bar = 2400 ms ----------
+const MS = 1 / 2400
+const LEAD_LATE = 10 * MS     // lead lays back 10 ms (sung feel)
+const BRASS_LATE = 18 * MS    // counter-line swells in late
+const BASS_EARLY = 6 * MS     // bass leans 6 ms ahead of the grid kick
+const up = p => p.add(note(2)) // C3 / O: key change +2 (E minor -> F# minor)
+
+// ---------- shared buses ----------
+// gated reverb on the snare return: reverb into a gate keyed by the snare (style card)
+bus("gverb").fx("Reverb", {dryWetBalance: 1, decayTime: "2.4s", preDelay: 4})
+  .fx("Gate", {threshold: -30, attack: 0.5, hold: 170, release: 45, sidechain: "snare"})
+  .mix({vol: -3})
+
+// ---------- tracks: sound, mix, automation (written once) ----------
+// kick and clap 2 dB lower than render-2: they were the limiter's peak sources (ai-tell #7); the gated
+// return carries the snare body instead
+track("kick").mix({vol: -7})
+track("snare").send("gverb", 0).mix({vol: -6})
+track("gsnare").fx("Gate", {threshold: -32, hold: 140, release: 40}).mix({vol: -6})
+track("hats").mix({vol: -9, pan: 0.3})
+track("toms").mix({vol: -9, pan: -0.2})
+track("crash").mix({vol: -10, pan: -0.15})
+// riser: noise through a low-pass that sweeps open over the breakdown's last 2 bars (song bars 37-38)
+track("riser").fx("Auto Filter", {filterTypeIndex: "Low-pass", frequency: env("0:300 36:300 38:12000 _38:300", 52)})
+  .mix({vol: -3})
+
+track("bass").inst("Multi-Engine Synth:Duo SQR BASS", {
+    sus: 45, rel: 15, dist: 0, dly: 0, rev: 0, e0: 0, e4: 48, e5: 40, e6: 30, voice: 1
+  })
+  .fx("Compressor", {threshold: -26, ratio: 3, attack: 2, release: 160, sidechain: "kick", sidechainFilter: "150Hz"})
+  .mix({vol: -9})
+
+track("pad").inst("Multi-Engine Synth:Duo STRINGS", {
+    level: 112, atk: 30, lrate: 40, ldFlt: 6, dly: 10, rev: 75, e1: 14, e2: 48, e4: 64, lwave: 1,
+    chor: env("0:70 _4:25 _12:70 _32:90 _38:80 _48:50", 52)   // width_map: narrow verse, wide chorus/break
+  })
+  .fx("Compressor", {threshold: -28, ratio: 3, attack: 2, release: 160, sidechain: "kick", sidechainFilter: "150Hz"})
+  .mix({vol: -10})
+
+track("arp").inst("Multi-Engine Synth:Duo PLUCK", {
+    level: 112, dec: 70, rel: 40, edFlt: 50, dly: 55, rev: 35, e1: 6, e2: 40, e4: 34,
+    chor: env("0:30 _12:40 _20:0 _24:70 _32:40 _38:60 _48:30", 52)   // C2 wide without the pad
+  })
+  // filter: open early in the intro (hook audible by 0:05), dark when it joins the verse at bar 9,
+  // dark again in the A2 tunnel, widest in C3, closing in the outro
+  .fx("Auto Filter", {filterTypeIndex: "Low-pass",
+    frequency: env("0:1800 4:6000 _8:2200 _12:9000 _20:2200 _24:9000 _38:14000 _48:6000 52:700", 52)})
+  .mix({vol: -9})
+
+track("lead").inst("Multi-Engine Synth:Trio SYNC LEAD", {
+    level: 94, rev: 30, dly: 30, voice: "MONO",
+    glide: env("0:12 _4:8 _12:18 _20:8 _24:18 _38:18 _48:12", 52),  // 11-16 by ear: slides short (was up to 55)
+    ldPit: 1, lrate: 90, lfade: 40   // 11-16 by ear: ~30 cents at 6 Hz (ldPit 4 at lrate 45 wandered 142 cents at <1 Hz)
+  })
+  .fx("Auto Filter", {filterTypeIndex: "Low-pass", frequency: env("0:2500 2:9000 _4:18000 _48:2600", 52)})
+  .mix({vol: 0})
+
+track("brass").inst("Multi-Engine Synth:Duo BRASS", {level: 92, atk: 6, rel: 30, chor: 30, dly: 15})
+  .mix({vol: -4, pan: -0.4})
+
+track("bell").inst("Multi-Engine Synth:FM6 BELL", {level: 120, dly: 35})
+  .mix({vol: -6, pan: 0.4})
+
+master.fx("Limiter", {ceiling: -1})
+
+// ---------- the melody (candidate C, fixed: candidates/C.md), weights in eighths ----------
+const VERSE12 = `~@2 f#4 f#4 a4 b4@3  a4@2 g4@2 e4@4`
+const VERSE36 = `~@2 e4 e4 g4 a4@3  b4@2 a4@2 g4@4  ~ g4 g4 b4 c5@4  b4@2 a4@2 e4@4`
+const VERSE78 = `~@2 a4 a4 c5 e5@2 f#5  e5@4 d#5@2 b4@2`
+const CALL = `~ d5 e5 g5@5`
+const CH14 = `${CALL}  f#5@2 e5@2 d5@2 a4@2  ${CALL}  ~@2 f#5 e5 d5 b4@3`
+const CH58 = `~ d5 e5 g5 a5@6 f#5@2 e5@2 d5@2  ~ d5 e5 g5 f#5@3 d#5  e5@6 ~@2`
+const TAG = `~ d5 e5 g5 a5 b5@3  g5@2 f#5 d#5 e5@4`   // C3 tag: the call extends G-A-B once: the lead's highest note
+const HEAD_I = `~@16  ${CALL}  f#5@2 e5@2 d5@2 a4@2` // intro: the full call + answer by 0:05
+const HEAD_O = `~@16  ${CALL}  ~@8`                     // outro: the head alone, filter closing (mirror)
+// per-eighth velocity shapes: the held hook note (2&) and the downbeat of 3 strongest
+const V_VERSE = "[0.7 0.66 0.66 0.7 0.74 0.8 0.7 0.64]"
+const V_CHORUS = "[0.8 0.8 0.84 0.94 0.9 0.82 0.8 0.76]"
+const V_FINAL = "[0.84 0.84 0.88 0.98 0.94 0.86 0.84 0.8]"
+const lead = (s, bars, vel) => note(s).slow(bars).velocity(vel).late(LEAD_LATE)
+
+// ---------- harmony: pad voicings (common tones held, steps only) ----------
+// intro and choruses: pad kept at or below D4 so the arp (E4-C5) sits above it
+const PAD_I = `<[g3,b3,d4]!2 [e3,g3,c4] [f#3,a3,d4]>`
+const PAD_A1 = `<[g3,b3,d4,e4]!2 [g3,b3,c4,e4]!2 [g3,a3,c4,e4]!2 [f#3,a3,c4,e4] [[f#3,a3,b3,e4] [f#3,a3,b3,d#4]]>`
+const PAD_C8 = `[e3,g3,c4] [f#3,a3,d4] [g3,b3,d4]!2 [e3,g3,c4] [f#3,a3,d4] [[g3,a3,c4] [f#3,a3,b3]]`
+const PAD_D = `<[g3,b3,c4,e4] [a3,c#4,e4] [a3,c#4,d4,f#4] [a3,b3,d4,f#4] [g#3,b3,c#4,f#4] [[g#3,b3,c#4,f4]@7 ~]>`
+
+// ---------- arp (the arrangement hook) ----------
+// chorus/intro/outro register E4-C5 (above the pad, below the lead's D5 pickups), with gaps so each
+// accented note's dotted-eighth echo sounds in a hole: l m h ~ | m t h ~ | l m h a | ~ t h ~
+// (Em's colour slot is the 7th D4, not F#4: F#4 sat a minor 9th under the held G5 hook note;
+//  C has no B: chorus bVI is C6, so the raised brass in C3 and the pad never rub a maj7 semitone)
+const CHC = {Em: [64, 71, 67, 62, 69], C: [64, 72, 67, 69, 64], D: [62, 69, 66, 64, 71],
+  Am: [64, 72, 69, 67, 71], B7: [66, 71, 69, 63, 64], Bs: [66, 71, 69, 64, 64]}
+const g1 = c => { const [l, m, h, t] = CHC[c]; return `${l} ${m} ${h} ~ ${m} ${t} ${h} ~` }
+const g2 = c => { const [l, m, h, t] = CHC[c]; return `${l} ${m} ${h} ${t} ~ ${m} ${h} ~` }
+// "C^62": override the accented slot (step 12, velocity 0.74) so the arp quotes the hook D-E-G
+const gfull = x => { const [c, ov] = x.split("^"); const [l, m, h, t, a0] = CHC[c]; const a = ov || a0
+  return `[${l} ${m} ${h} ~ ${m} ${t} ${h} ~ ${l} ${m} ${h} ${a} ~ ${t} ${h} ~]` }
+const arp = list => note(`<${list.map(x => Array.isArray(x) ? `[${g1(x[0])} ${g2(x[1])}]` : gfull(x)).join(" ")}>`)
+  .velocity("[0.82 0.5 0.62 0 0.5 0.7 0.62 0 0.82 0.5 0.62 0.74 0 0.7 0.62 0]")
+// verse register (A1 second half, A2): the old low gapless cells, dark and quiet, under the verse lead
+const CHL = {Em: [52, 59, 64, 66, 67], C: [48, 55, 60, 62, 64], Am: [57, 64, 69, 67, 72],
+  B7: [59, 66, 71, 69, 63], Bs: [59, 66, 71, 69, 64], Fh: [54, 60, 66, 69, 64]}
+const lfull = c => { const [l, m, h, t, a] = CHL[c]; return `[${l} ${m} ${h} ${m} ${t} ${m} ${h} ${m} ${l} ${m} ${h} ${m} ${a} ${t} ${h} ${m}]` }
+const lhalf = c => { const [l, m, h, t] = CHL[c]; return `[${l} ${m} ${h} ${m} ${t} ${m} ${h} ${m}]` }
+const arpLow = (list, vel) => note(`<${list.map(x => Array.isArray(x) ? `[${lhalf(x[0])} ${lhalf(x[1])}]` : lfull(x)).join(" ")}>`)
+  .velocity(vel)
+// chorus: the accented slot spells D4-E4-G4-E4 | D4-E4-(half bars)-G4: the hook head inside the engine
+const ARP_C8 = ["C^62", "D^64", "Em^67", "Em^64", "C^62", "D^64", ["Am", "B7"]]
+
+// ---------- bass: pulse (8ths) in intro/verses, 16th octave sequence in choruses ----------
+const cell = r => `[${r} ${r} ${r + 12} ${r}]`
+const seqBar = x => Array.isArray(x) ? `[${cell(x[0])}*2 ${cell(x[1])}*2]` : `${cell(x)}*4`
+const pulseBar = r => `[${r} ${r} ${r + 12} ${r} ${r} ${r} ${r + 12} ${r}]`
+const bass = (f, list, v) => note(`<${list.map(f).join(" ")}>`).velocity(v).early(BASS_EARLY)
+const BASS_C8 = [36, 38, 40, 38, 36, 38, [33, 35]]
+
+// ---------- counter-line (mc-counterpoint: slow, chorale-like, peaks where the lead rests) ----------
+const COUNTER8 = `g3 a3 [b3 d4] e4 c4 a3 [c4 b3] b3`
+// C2: the brass also takes the ANSWERS (bars 2 and 4): call and response between two instruments
+const COUNTER_C2 = `g3 [f#5@2 e5@2 d5@2 a4@2] [b3 d4] [~@2 f#5 e5 d5 b4@3] c4 a3 [c4 b3] b3`
+const brass = s => note(`<${s}>`).velocity("<0.56 0.7>").late(BRASS_LATE)   // swell across each 2-bar phrase
+// C2: the answers (bars 2, 4) at the lead's weight, the counter-line notes as before
+const brassC2 = note(`<${COUNTER_C2}>`).velocity("<0.56 0.92 0.6 0.92 0.56 0.7 0.56 0.7>").late(BRASS_LATE)
+
+// ---------- drums ----------
+const GS = s("~ cr ~ cr").velocity(0.94)
+const SN = s("~ cp ~ cp").velocity(0.68)
+const HATS_V = s("[~ hh]*4").velocity(0.45)
+const HATS_C = s("[~ hh hh hh]*4").velocity("[0 0.31 0.65 0.31]*4")
+const HATS_BIG = s("[hh hh oh hh]*4").velocity("[0.36 0.28 0.55 0.28]*4")
+const FILL = "[~!3 [ht mt lt lt]]"
+
+// ---------- sections ----------
+section("I", 4, {
+  pad: note(PAD_I).velocity(0.62),
+  arp: arp(["Em", "Em", "C", "D"]),
+  bass: bass(pulseBar, [40, 40, 36, 38], 0.62).mask("<0 0 1 1>"),   // the pulse arrives with the hook
+  lead: lead(HEAD_I, 4, V_CHORUS),
+})
+section("A1", 8, {
+  kick: s("bd ~ bd ~").velocity(0.86),
+  snare: SN, gsnare: GS, hats: HATS_V,
+  toms: s(`<~!7 ${FILL}>`).velocity(0.8),
+  bass: bass(pulseBar, [40, 38, 36, 36, 33, 31, 30, 35], 0.74),
+  pad: note(PAD_A1).velocity(0.56),
+  arp: arpLow(["Em", "Em", "C", "C", "Am", "Am", "Fh", ["Bs", "B7"]], "[0.62 0.44 0.52 0.44]*4").mask("<0!4 1!4>"),
+  lead: lead(`${VERSE12} ${VERSE36} ${VERSE78}`, 8, V_VERSE),
+})
+section("C1", 8, {
+  kick: s("bd*4").velocity(0.88),
+  snare: SN, gsnare: GS, hats: HATS_C,
+  crash: s("<cr ~!7>").velocity(0.8),
+  bass: bass(seqBar, [...BASS_C8, 40], "[0.8 0.6]*8"),
+  arp: arp([...ARP_C8, "Em"]),
+  pad: note(`<${PAD_C8} [e3,g3,b3]>`).velocity(0.62),
+  lead: lead(`${CH14} ${CH58}`, 8, V_CHORUS),
+})
+section("A2", 4, {
+  kick: s("bd ~ [~ bd] ~").velocity(0.84),
+  snare: SN, gsnare: GS, hats: HATS_V,
+  toms: s(`<~!3 ${FILL}>`).velocity(0.8),
+  bass: bass(r => `${r}*8`, [40, 38, 30, 35], 0.7),
+  arp: arpLow(["Em", "Em", "Fh", ["Bs", "B7"]], "[0.62 0.45 0.52 0.45]*4"),
+  lead: lead(`${VERSE12} ${VERSE78}`, 4, V_VERSE),
+})
+section("C2", 8, {
+  kick: s("bd*4").velocity(0.9),
+  snare: SN, gsnare: GS, hats: HATS_BIG,
+  crash: s("<cr ~!7>").velocity(0.85),
+  // last bar on D (bVII) instead of resolving: B7 -> D is the seam into the breakdown's Cmaj7
+  bass: bass(seqBar, [...BASS_C8, 38], "[0.82 0.6]*8"),
+  arp: arp([...ARP_C8, "D"]),
+  brass: brassC2,
+  lead: lead(`${CALL} ~@8 ${CALL} ~@8 ${CH58}`, 8, V_CHORUS),   // the lead keeps the calls, the brass answers
+})
+section("D", 6, {
+  pad: note(PAD_D).velocity(0.72),
+  bell: note("<[d5 e5 g5@2] e5 [e5 f#5 a5@2] f#5 ~ ~>").velocity(0.7),
+  // build: a gated clap roll over the last 2 bars, the last eighth still silent
+  snare: s("<~!4 [~ cp ~ cp]*2 [cp*8 [cp!12 ~!4]]>").velocity("<0!4 0.42 [0.58 0.8]>"),
+  riser: s("<~!4 white [white@7 ~]>").gain(1),
+})
+section("C3", 10, {
+  kick: s("bd*4").velocity(0.92),
+  snare: SN, gsnare: GS, hats: HATS_BIG,
+  crash: s("<cr ~!7 cr ~>").velocity(0.88),
+  toms: s(`<~!7 ${FILL} ~ ~>`).velocity(0.85),
+  bass: up(bass(seqBar, [...BASS_C8, 40, [36, 35], 40], "[0.84 0.62]*8")),
+  arp: up(arp([...ARP_C8, "Em", ["C", "Bs"], "Em"])),
+  // the pad waits until C3 bar 5: a second-half lift inside the final chorus
+  pad: up(note(`<${PAD_C8} [e3,g3,b3] [[e3,g3,c4] [f#3,a3,b3]] [e3,g3,b3]>`).velocity(0.6)).mask("<0!4 1!6>"),
+  // counter-line an octave up: it fills the band between the arp's top and the lead
+  brass: up(brass(`${COUNTER8} [c4 a3] g3`)).add(note(12)),
+  // the breakdown's bell returns ON TOP in the second half: the high counterline (style card)
+  bell: up(note("<~!4 [d6 e6 g6@2] e6 [e6 f#6 a6@2] f#6 ~ ~>")).velocity(0.32),   // background, not a second lead
+  lead: up(lead(`${CH14} ${CH58} ${TAG}`, 10, V_FINAL)),
+})
+section("O", 4, {
+  crash: s("<cr ~!3>").velocity(0.7),
+  pad: up(note("<[g3,b3,d4]!2 [e3,g3,c4] ~>").velocity(0.6)),
+  arp: up(arp(["Em", "Em", "C", "C"])),
+  lead: up(lead(HEAD_O, 4, V_VERSE)),
+})
+form("I A1 C1 A2 C2 D C3 O")

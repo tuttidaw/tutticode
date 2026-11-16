@@ -1,12 +1,12 @@
-# FM Arp
+# Extended Arpeggiator
 
 A MIDI effect (`.midifx`), available.
 
 ```js
-note("c3 e3 g3 b3").midifx("FM Arp:Ratchet Chance 32nd")
+note("c3 e3 g3 b3").midifx("Extended Arpeggiator:Ratchet Chance 32nd")
 ```
 
-Accepted names: `fmarp`, `midifmarp`.
+Accepted names: `extendedarpeggiator`.
 
 ## Parameters
 

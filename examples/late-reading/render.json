@@ -1,0 +1,7 @@
+[
+  {
+    "program": "song.tc",
+    "title": "Late Reading",
+    "args": ["--lufs", "-14", "--limit", "--tail", "4"]
+  }
+]

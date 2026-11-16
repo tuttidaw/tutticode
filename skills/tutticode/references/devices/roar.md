@@ -1,12 +1,12 @@
-# Scorch
+# Multi Distortion
 
 An audio effect (`.fx`), available.
 
 ```js
-note("c3 e3 g3 b3").fx("Scorch:Feedback Growl")
+note("c3 e3 g3 b3").fx("Multi Distortion:Feedback Growl")
 ```
 
-Accepted names: `scorch`.
+Accepted names: `multidistortion`.
 
 ## Parameters
 

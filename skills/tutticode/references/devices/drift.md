@@ -1,12 +1,12 @@
-# Ember
+# Subtractive Synth
 
 An instrument (`.inst`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").inst("Ember:80s Tape")
+note("c3 e3 g3 b3").inst("Subtractive Synth:80s Tape")
 ```
 
-Accepted names: `ember`.
+Accepted names: `subtractivesynth`.
 
 ## Parameters
 

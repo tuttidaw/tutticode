@@ -1,12 +1,12 @@
-# Twine
+# Layer Synth
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("Twine:Acid Kick")
+note("c3 e3 g3 b3").inst("Layer Synth:Acid Kick")
 ```
 
-Accepted names: `twine`.
+Accepted names: `layersynth`.
 
 ## Parameters
 

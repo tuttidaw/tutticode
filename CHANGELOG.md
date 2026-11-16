@@ -2,6 +2,11 @@
 
 Versions of the [`tutticode`](https://www.npmjs.com/package/tutticode) npm package, which this plugin pins in [`.mcp.json`](.mcp.json). The skills in `skills/` are the ones shipped with that version.
 
+## 0.3.4 (2026-11-16)
+
+- Devices: plain generic device names (Basic Synth, Multi-Engine Synth, Electric Piano, Subtractive Synth, Mallet Synth...). Programs with the earlier names keep working; `tutticode check` warns (`device/legacy-name`) and names the new one.
+- Skills and code_check match the TuttiCode that tuttidaw.com runs today.
+
 ## 0.3.1 (2026-11-13)
 
 - Skills: a "Visual feedback" reference and the performance function names.

@@ -1,12 +1,12 @@
-# Chimera Voice
+# Vocal Synth
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("Chimera Voice")
+note("c3 e3 g3 b3").inst("Vocal Synth")
 ```
 
-Accepted names: `chimeravoice`, `chimera`.
+Accepted names: `vocalsynth`.
 
 ## Parameters
 

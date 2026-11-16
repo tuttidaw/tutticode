@@ -1,0 +1,205 @@
+// After Hours - deep house, F minor, 123 BPM, 64 bars (2:05). Compiled from spec.yaml (stage E revision).
+// Form: I 8 | V1 8 | C1 8 | BD 10 | BU 6 | D 16 | O 8
+// Palette from REFERENCE/lessons/house (sounds, presets and levels only, never notes):
+//   stab = Wheel JAZZ PERC (main, deep-shuffle), lead = Voice VOX LEAD (lady, starlight; glide from main),
+//   sparkle = Duo PLUCK (lady), pad = Duo STRINGS (acid), bass = Duo SUB BASS (deep-keys), counter = Sample FLUTE (deep-keys),
+//   drums = the lessons' default kit names (bd cp rim hh oh sh cr). Ensemble internal rev/dly = 0: shared buses instead.
+setcpm(30.75)
+ensembleSet({chorus: {choDepth: 50}, master: {master: 112}})
+
+// ---------- helpers: [note, sixteenths, velocity?] lists -> patterns ----------
+const S = (xs) => xs.map(([n, d]) => d === 1 ? `${n}` : `${n}@${d}`).join(" ")
+// k scales every velocity of a part (the drop plays harder: dynamic recap)
+const VV = (xs, dv, k) => xs.map(([n, d, v]) => { const x = n === "~" ? "~" : Math.min(1, +((v === undefined ? dv : v) * k).toFixed(3)); return d === 1 ? `${x}` : `${x}@${d}` }).join(" ")
+const P = (xs, bars, dv, k) => note(`[${S(xs)}]`).velocity(`[${VV(xs, dv === undefined ? 0.8 : dv, k === undefined ? 1 : k)}]`).slow(bars)
+const cat2 = (...ls) => [].concat(...ls)
+const rest = (n) => [["~", n]]
+const topOf = (xs) => xs.map(([n, d, v]) => n === "~" ? [n, d] : [n.slice(1, -1).split(",").pop(), d, v])   // the riff's top line
+
+// ---------- stab voicings: drop-2 (open, so the 300-500 Hz box thins out); top voice <= Ab4 ----------
+const FmA = "[eb3,ab3,c4,g4]", FmB = "[f3,c4,eb4,ab4]", FmL = "[eb3,ab3,c4,f4]"
+const BbA = "[d3,ab3,c4,f4]", BbB = "[f3,ab3,d4,g4]"
+const C7s = "[c3,g3,bb3,f4]", C7 = "[e3,bb3,c4,g4]"
+const DbA = "[db3,ab3,c4,f4]", DbB = "[f3,c4,db4,ab4]"
+const Eb7s = "[eb3,bb3,db4,ab4]", Eb7 = "[eb3,bb3,db4,g4]"
+const CmA = "[c3,g3,bb3,eb4]", CmB = "[eb3,bb3,c4,f4]"
+const Gb = "[db3,gb3,bb3,f4]", GbB = "[f3,bb3,db4,ab4]"
+
+// THE HOOK: one bar, stabs on sixteenths 4, 7 and 11 (1-based), beat 4 empty; top voice same-same-up a step.
+// Four velocity shapes rotate bar by bar, so the riff is played, not stamped.
+const VS = [[0.8, 0.68, 0.76], [0.76, 0.7, 0.8], [0.82, 0.64, 0.74], [0.78, 0.71, 0.72]]
+const sb = (a, b, c, v) => [["~",3],[a,2,v[0]],["~",1],[b,2,v[1]],["~",2],[c,3,v[2]],["~",3]]
+const riff = (bars) => cat2(...bars.map(([a, b, c], i) => sb(a, b, c, VS[i % 4])))
+const verseBars = [[FmA,FmA,FmB],[FmB,FmA,FmL],[BbA,BbA,BbB],[BbB,BbA,BbA],[FmA,FmA,FmB],[FmB,FmA,FmL],[BbA,BbA,BbB],[C7s,C7s,C7]]
+const chorusBars = [[DbA,DbA,DbB],[Eb7s,Eb7s,Eb7],[CmA,CmA,CmB],[FmA,FmA,FmB],[DbA,DbA,DbB],[Eb7s,Eb7s,Eb7],[Gb,Gb,C7],[FmB,FmA,FmL]]
+const introBars = cat2(verseBars.slice(0, 4), verseBars.slice(0, 4))
+// Breakdown: the riff alone at half harmonic speed (augment), Db Db Eb7sus Eb7 Cm Cm Gb Gb C7sus C7
+const bdBars = [[DbA,DbA,DbB],[DbB,DbA,DbA],[Eb7s,Eb7s,Eb7s],[Eb7,Eb7,Eb7s],[CmA,CmA,CmB],[CmB,CmA,CmA],[Gb,Gb,GbB],[GbB,Gb,Gb],[C7s,C7s,C7s],[C7,C7,C7]]
+const stabVerse = riff(verseBars), stabChorus = riff(chorusBars)
+// Build: fragment + diminution - two stabs, offbeat 8ths, 16ths, then silence on beat 4 (kept below the drop)
+const two = [["~",3],[BbA,2,0.6],["~",1],[BbA,2,0.6],["~",8]]
+const off8 = (v, vel) => cat2(...Array(4).fill([["~",2],[v,2,vel]]))
+const s16 = (v, n, vel) => Array(n).fill([v,1,vel])
+const stabBU = cat2(two, two, off8(BbA, 0.62), off8(BbA, 0.64), s16(C7s, 16, 0.6), s16(C7, 12, 0.64), rest(4))
+// Outro: contract - one short stab per bar, then gone
+const one = (v) => [["~",3],[v,3,0.66],["~",10]]
+const stabO = cat2(one(FmA), one(FmB), one(BbA), one(BbA), rest(64))
+
+// ---------- breakdown strings: low shells under the stab from bar 29 (they bind it; they do not replace it) ----------
+const padBD = cat2(rest(64), [["[c2,g2,eb3]",32],["[gb2,db3,bb3]",32],["[c2,g2,f3]",16],["[c2,g2,e3]",16]])
+// counter-line (breakdown, bars 29-34): the call Bb4-Eb5-F5 augmented to whole notes, then F5-Eb5-C5, then E5
+// leading into the drop's first note (F5): a hand-off to the lead.
+const counterBD = cat2(rest(64), [["bb4",16],["eb5",16],["f5",24],["eb5",8],["c5",16],["e5",16]])
+
+// ---------- bass: roots (MIDI) per chord span ----------
+const verseH = [[29,32],[34,32],[29,32],[34,16],[36,16]]
+const chorusH = [[37,16],[39,16],[36,16],[29,16],[37,16],[39,16],[30,8],[36,8],[29,16]]
+// offbeat 8ths (card 'offbeat'): bass answers the kick (互答式)
+const offbeat = (H, vel) => cat2(...H.map(([r, d]) => cat2(...Array(d / 4).fill([["~",2],[r,2,vel]]))))
+// rolling: root, octave, fifth between the kicks. C1 rolls lightly (rollA only), the drop fully.
+const rollA = (r) => [["~",2],[r,1,0.86],[r + 12,1,0.7],["~",2],[r,1,0.8],["~",1]]
+const rollB = (r) => [["~",2],[r,1,0.86],[r + 12,1,0.7],["~",1],[r + 7,1,0.66],[r,1,0.8],["~",1]]
+const rolling = (H) => cat2(...H.map(([r, d]) => cat2(...Array(d / 8).fill(0).map((_, k) => k % 2 === 0 ? rollA(r) : rollB(r)))))
+const rollingLight = (H) => cat2(...H.map(([r, d]) => cat2(...Array(d / 8).fill(0).map(() => rollA(r)))))
+
+// ---------- the melody (stage E): calls in beats 1-3 under the riff's held stabs, answers in the riff's empty beat 4,
+// landing on the next downbeat; the lead never goes below Bb4 (stab top <= Ab4). Velocities shaped per phrase.
+const leadV = [
+  ["~",2],["bb4",2,0.74],["eb5",1,0.8],["f5",3,0.88],["~",4],["f5",2,0.78],["eb5",2,0.72],   // 9  Fm9   call z, answer z' as a pickup
+  ["c5",6,0.66],["~",10],                                                                  // 10 Fm9   lands on 1; the riff answers alone
+  ["~",2],["c5",2,0.74],["f5",1,0.8],["g5",3,0.88],["~",4],["g5",2,0.78],["f5",2,0.72],    // 11 Bb9   call a step up
+  ["d5",6,0.66],["~",10],                                                                  // 12 Bb9   lands on the dorian D
+  ["~",2],["bb4",2,0.76],["eb5",1,0.82],["f5",3,0.9],["~",4],["f5",2,0.76],["eb5",2,0.7],  // 13 Fm9   = call 1
+  ["c5",4,0.68],["eb5",8,0.76],["~",4],                                                    // 14 Fm9   the answer turns up and holds: a question
+  ["~",2],["c5",2,0.74],["f5",1,0.82],["g5",3,0.92],["~",8],                               // 15 Bb9   call with no answer
+  ["~",12],["bb4",2,0.7],["c5",2,0.78],                                                    // 16 C7sus4 C7  the missing answer, then run-up
+]
+const leadC = [
+  ["f5",2,0.9],["eb5",2,0.82],["c5",4,0.74],["~",4],["bb4",2,0.66],["c5",2,0.74],          // 17 Dbmaj7  call falls from the downbeat; answer rises in beat 4
+  ["eb5",6,0.8],["~",8],["g5",2,0.84],                                                     // 18 Eb7sus4 Eb7  lands; next call anticipated
+  ["g5",2,0.9],["f5",2,0.82],["eb5",4,0.74],["~",4],["bb4",2,0.72],["eb5",1,0.8],["f5",7,0.88], // 19 Cm7  answer = the verse's call, tied
+  ["~",10],                                                                                // 20 Fm9   (F5 held to beat 2)
+  ["f5",2,0.9],["eb5",2,0.82],["c5",4,0.74],["~",4],["eb5",2,0.84],["ab5",10,0.96],        // 21 Dbmaj7  wind-up C5, run-up Eb5, Ab5 anticipated
+  ["g5",4,0.86],["~",4],                                                                   // 22 Eb7sus4 Eb7  (Ab5 to beat 3) G5 with Eb7
+  ["f5",4,0.84],["db5",2,0.76],["~",2],["c5",3,0.72],["bb4",1,0.68],["c5",2,0.74],["e5",2,0.82], // 23 Gbmaj7 C7  the long answer rises
+  ["f5",8,0.86],["~",8],                                                                   // 24 Fm9   home on F5 through the leading tone
+]
+// second voice, a third below, only for the drop's last four bars (the climax and cadence of its second pass)
+const lead2D = cat2(rest(192), [["db5",2,0.66],["c5",2,0.62],["ab4",4,0.58],["~",4],["c5",2,0.64],["f5",10,0.72],
+  ["eb5",4,0.66],["~",4], ["db5",4,0.64],["bb4",2,0.6],["~",10], ["c5",8,0.66],["~",8]])
+// intro tease: the call once, quietly, in bar 6 (an Fm bar; in bar 7 its Eb5 clashed with Bb9's D - code_check)
+const teaseI = cat2(rest(80), [["~",2],["bb4",2,0.56],["eb5",1,0.6],["f5",3,0.66],["~",8]], rest(32))
+
+// ---------- buses ----------
+bus("room").fx("Reverb:Dark Medium Room", {dryWetBalance: 1})
+bus("hall").fx("Reverb:Large Hall", {dryWetBalance: 1, preDelay: 30})
+bus("echo").fx("Delay", {timeL: 366, timeR: 366, feedback: 0.35, pingPong: true, filterOn: true, filterFreq: 2400, dryWetBalance: 1}).mix({vol: -4})
+
+// ---------- tracks ----------
+// levels revised after render-2 + the AI-tell audit (NOTES.md): kick clip harder, breakdown strings -10 dB, drop harder
+track("kick").fx("Saturator", {drive: 7, postClipMode: "Soft Clip"}).mix({vol: -3})   // soft-clip the peaks here, not at the master
+track("clap").send("room", -12).mix({vol: -8})
+track("hats").mix({vol: -9, pan: 0.5})
+track("shaker").mix({vol: -14, pan: -0.55})
+track("perc").send("room", -14).mix({vol: -12, pan: 0.55})
+track("crash").send("hall", -14).mix({vol: -15})
+track("riser").fx("Auto Filter", {filterTypeIndex: "Low-pass", frequency: env("0:300 6:9000~-.3")})
+  .send("hall", -8).mix({vol: -15})
+track("bass").inst("Multi-Engine Synth:Duo SUB BASS", {level: 98, dec: 70, sus: 90, rel: 30, dly: 0, rev: 0, e4: 45, e6: 25, voice: 1})
+  .fx("Saturator", {drive: 10, dryWetBalance: 0.6})                                   // harmonics so it reads on small speakers
+  .fx("Compressor", {threshold: -24, ratio: 3, attack: 1, release: 80, sidechain: "kick", sidechainFilter: "150Hz"})
+  .fx("Utility", {bassMono: true}).mix({vol: -5})
+track("stab").inst("Multi-Engine Synth:Wheel JAZZ PERC", {chor: 40, dly: 0, rev: 0})
+  .fx("Auto Filter", {filterTypeIndex: "High-pass", frequency: 120})
+  .fx("Compressor", {threshold: -26, ratio: 3, attack: 1, release: 180, sidechain: "kick", sidechainFilter: "150Hz"})
+  .send("room", -10).send("echo", -18).mix({vol: -6})
+track("stab_intro").inst("Multi-Engine Synth:Wheel JAZZ PERC", {chor: 40, dly: 0, rev: 0})
+  .fx("Auto Filter", {filterTypeIndex: "Low-pass", slope24: true, frequency: env("0:700 8:9000~-.4")})
+  .send("room", -10).mix({vol: -4})
+track("stab_bd").inst("Multi-Engine Synth:Wheel JAZZ PERC", {chor: 40, dly: 0, rev: 0})
+  .fx("Auto Filter", {filterTypeIndex: "High-pass", frequency: 120})
+  .send("hall", -6).mix({vol: -6})                                                     // the breakdown's riff, no sidechain, long hall
+track("sparkle").inst("Multi-Engine Synth:Duo PLUCK", {dec: 45, sus: 30, rel: 20, edFlt: 25, chor: 30, dly: 0, rev: 0, e1: 6, e2: 40, e4: 72, e5: 25})
+  .fx("Auto Filter", {filterTypeIndex: "High-pass", frequency: 400})
+  .send("echo", -10).mix({vol: -12, pan: 0.35})                                       // drop only: the riff's top line two octaves up
+track("pad").inst("Multi-Engine Synth:Duo STRINGS", {level: 96, atk: 60, rel: 80, chor: 50, dly: 0, rev: 0, e4: 55})
+  .send("hall", -8).mix({vol: -19})
+track("lead").inst("Multi-Engine Synth:Voice VOX LEAD", {level: 102, rel: 50, chor: 15, dly: 0, rev: 0, glide: 6, e0: 45, e3: 0, e4: 80, e6: 65})
+  .send("room", -12).send("echo", -15).mix({vol: -2})
+track("lead2").inst("Multi-Engine Synth:Voice VOX LEAD", {level: 102, rel: 50, chor: 15, dly: 0, rev: 0, glide: 6, e0: 45, e3: 0, e4: 80, e6: 65})
+  .send("room", -10).send("echo", -15).mix({vol: -9, pan: 0.3})
+track("lead_tease").inst("Multi-Engine Synth:Voice VOX LEAD", {level: 102, rel: 50, chor: 15, dly: 0, rev: 0, glide: 6, e0: 45, e3: 0, e4: 80, e6: 65})
+  .send("room", -10).send("echo", -6).mix({vol: -6})
+track("counter").inst("Multi-Engine Synth:Sample FLUTE", {level: 108, atk: 47, rel: 76, chor: 0, dly: 0, rev: 0, e4: 100, voice: 1})
+  .send("hall", -8).mix({vol: -13, pan: -0.2})
+
+// ---------- drum parts ----------
+const KICK = s("bd*4").velocity(0.94)                                          // kick: on the grid, the reference
+const CLAP = s("~ cp ~ cp").velocity(0.82).late(0.003)                         // clap +6 ms: heavier backbeat
+const HATS_CL = s("[~ hh ~ hh]*4").velocity("[~ 0.4 ~ 0.5]*4").swingBy(0.1, 8) // verse: closed hats only
+const HATS = s("[hh ~ oh hh]*4").velocity("[0.42 ~ 0.66 0.3]*4").swingBy(0.1, 8)
+const HATS_D = s("[hh ~ oh hh]*4").velocity("[0.48 ~ 0.76 0.36]*4").swingBy(0.1, 8)   // drop: hats harder
+const SHAKER = s("sh*16").velocity("[0.3 0.46]*8").swingBy(0.1, 8)
+const RIM = s("[~ ~ ~ ~] [~ ~ rim ~] [~ ~ ~ ~] [~ ~ rim ~]").velocity(0.42).swingBy(0.1, 8)
+const RIM2 = s("[~ ~ rim ~] [~ ~ ~ rim] [~ ~ rim ~] [~ rim ~ ~]").velocity("0.44 0.38 0.44 0.5").swingBy(0.1, 8)
+const LEAD = (xs, bars, k) => P(xs, bars, 0.8, k).legato(1.05).early(0.003)   // slightly overlapping notes + glide = slurred like a voice
+
+// ---------- sections ----------
+section("I", 8, {
+  kick: KICK,
+  hats: s("<[~ ~ hh ~]*4 [~ ~ hh ~]*4 [~ ~ hh ~]*4 [~ ~ hh ~]*4 [hh ~ oh ~]*4 [hh ~ oh ~]*4 [hh ~ oh ~]*4 [hh ~ oh ~]*4>")
+    .velocity("<0.45 0.45 0.45 0.45 [0.4 ~ 0.6 ~]*4 [0.4 ~ 0.6 ~]*4 [0.4 ~ 0.6 ~]*4 [0.4 ~ 0.6 ~]*4>").swingBy(0.1, 8),
+  clap: s("<~ ~ ~ ~ ~ ~ ~ [~ ~ ~ [cp cp cp cp]]>").velocity("<0 0 0 0 0 0 0 [0 0 0 [0.4 0.5 0.6 0.75]]>"), // fill bar 8
+  stab_intro: P(riff(introBars), 8).swingBy(0.1, 8),                         // the full riff from bar 1, filter opening from 700 Hz
+  lead_tease: LEAD(teaseI, 8),
+})
+section("V1", 8, {
+  kick: KICK, clap: CLAP, hats: HATS_CL,
+  perc: s("<~ ~ ~ ~ ~ ~ ~ [~ ~ ~ [rim rim rim rim]]>").velocity(0.4),      // fill bar 16: a quiet rim roll, the lead's silence stays
+  bass: P(offbeat(verseH, 0.8), 8).late(0.004),
+  stab: P(stabVerse, 8, 0.8, 0.8).swingBy(0.1, 8),                         // verse plays the riff softer: the chorus can step up
+  lead: LEAD(leadV, 8),
+})
+section("C1", 8, {
+  kick: KICK, clap: CLAP, hats: HATS, perc: RIM,
+  shaker: s("sh*16").velocity("[0.22 0.34]*8").swingBy(0.1, 8),           // lighter than in the drop
+  crash: s("<cr ~ ~ ~ ~ ~ ~ ~>").velocity(0.6),
+  bass: P(rollingLight(chorusH), 8).late(0.004).swingBy(0.1, 8),
+  stab: P(stabChorus, 8, 0.8, 0.95).swingBy(0.1, 8),
+  lead: LEAD(leadC, 8),
+})
+section("BD", 10, {
+  stab_bd: P(riff(bdBars), 10, 0.8, 0.8).swingBy(0.1, 8),                   // the hook alone, then strings and the counter-line under/over it
+  pad: P(padBD, 10, 0.7),
+  counter: P(counterBD, 10, 0.72),
+})
+section("BU", 6, {
+  kick: s("<bd*4 bd*4 bd*4 bd*4 ~ ~>").velocity(0.8),
+  hats: s("<hh*16 hh*16 hh*16 hh*16 hh*16 [hh!12 ~!4]>").velocity(saw.range(0.25, 0.6).slow(6)),
+  clap: s("<[~ sd ~ sd] [~ sd ~ sd] sd*8 sd*8 sd*16 [sd!12 ~!4]>").velocity(saw.range(0.3, 0.7).slow(6)),
+  riser: s("<white*16 white*16 white*16 white*16 white*16 [white!12 ~!4]>").gain(saw.range(0.1, 0.4).slow(6)),
+  stab: P(stabBU, 6),
+})
+section("D", 16, {
+  kick: s("<bd*4!15 ~>").velocity(0.94),                                     // bar 56: kick-out into the outro
+  clap: s("<[~ cp ~ cp]!7 [~ cp ~ [cp cp cp cp]] [~ cp ~ cp]!8>").velocity(0.82).late(0.003), // fill bar 48
+  hats: HATS_D, shaker: SHAKER, perc: RIM2,
+  crash: s("<cr ~ ~ ~ ~ ~ ~ ~ cr ~ ~ ~ ~ ~ ~ ~>").velocity(0.85),
+  bass: P(rolling(cat2(chorusH, chorusH)), 16).late(0.004).swingBy(0.1, 8),
+  stab: P(cat2(stabChorus, stabChorus), 16, 0.8, 1.15).swingBy(0.1, 8),      // the drop opens with the chorus (C7 -> Dbmaj7)
+  sparkle: P(topOf(cat2(stabChorus, stabChorus)), 16, 0.8, 0.9).add(note(24)).swingBy(0.1, 8),
+  lead: LEAD(cat2(leadC, leadC), 16, 1.1),
+  lead2: LEAD(lead2D, 16),
+})
+section("O", 8, {
+  kick: KICK, hats: HATS,
+  clap: s("<[~ cp ~ cp]!4 ~!4>").velocity(0.78).late(0.003),
+  bass: P(cat2(offbeat([[29,32],[34,32]], 0.76), rest(64)), 8).late(0.004),
+  stab: P(stabO, 8).swingBy(0.1, 8),
+})
+form("I V1 C1 BD BU D O")
+
+// ---------- master: narrower intro/outro, light glue, then the limiter ----------
+master.fx("Utility", {stereoWidth: env("0:0.8 _8:1.25 _56:0.8 64:0.8")})   // widens the side signal the pans/chorus create
+  .fx("Bus Compressor", {threshold: -8, ratioIndex: "2 : 1", attackIndex: "10 ms", autoRelease: true})
+  .fx("Limiter", {ceiling: -1})

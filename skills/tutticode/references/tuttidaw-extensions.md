@@ -29,8 +29,8 @@ colon. Case and punctuation do not matter.
 
 ```js
 setcpm(30)
-bass: note("c2 [~ c2] eb2 [~ g1]").inst("Ember:Deep Bass")
-keys: chord("<Cm7 Ab^7 Fm7 G7>").voicing().inst("Tine")
+bass: note("c2 [~ c2] eb2 [~ g1]").inst("Subtractive Synth:Deep Bass")
+keys: chord("<Cm7 Ab^7 Fm7 G7>").voicing().inst("Electric Piano")
 ```
 
 `.inst` decides the instrument, even when the voice also has an `s(...)`.
@@ -48,7 +48,7 @@ several `.fx` calls to build a chain.
 
 ```js
 note("<[c3,eb3,g3] [bb2,d3,f3]>")
-  .inst("Weave")
+  .inst("Wavetable")
   .fx("Chorus:Wide Classic")
   .fx("Reverb:Large Hall", { decayTime: "4s", dryWetBalance: 0.35 })
 ```
@@ -62,11 +62,11 @@ wrote; the effect plays them live, as in the studio.
 ```js
 note("<[c3,eb3,g3] [ab2,c3,eb3]>")
   .midifx("Arpeggiator", { style: "UpDown", rate: "1/16" })
-  .inst("Carrier")
+  .inst("FM Synth")
 ```
 
 ```js
-note("c3 ~ f3 ~").midifx("Chord:Minor 7 Chord").inst("Tine")
+note("c3 ~ f3 ~").midifx("Chord:Minor 7 Chord").inst("Electric Piano")
 ```
 
 ## Parameters

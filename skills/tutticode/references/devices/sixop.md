@@ -1,12 +1,12 @@
-# SixOp
+# 6-Operator FM
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("SixOp")
+note("c3 e3 g3 b3").inst("6-Operator FM")
 ```
 
-Accepted names: `sixop`.
+Accepted names: `6operatorfm`.
 
 ## Parameters
 

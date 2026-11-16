@@ -39,9 +39,15 @@ Without sign-in a render is at most 60 s and one over 30 s carries a spoken tag:
 ## 들어 보기
 
 <!-- examples:start -->
-여섯 곡을 각각 다른 모델이 [같은 시작 프롬프트](examples/prompt.md)와 한두 문장짜리 짧은 요청만으로 한 번에 만들었습니다. 제목과 사운드는 에이전트가 골랐고, 코드는 모두 에이전트가 작성했으며, 렌더링하고 수치를 읽고 수정했습니다. 작업하는 동안 아무도 답하지 않았고 아무도 코드를 고치지 않았습니다. 각 페이지에는 프로그램, 에이전트의 메모, TuttiDAW에서 여는 링크가 있습니다.
+에이전트(Claude Code + Claude Opus 5.5)가 곡마다 한 문단짜리 요청을 받아 TuttiCode로 쓴 다섯 곡입니다. 곡을 계획하고 멜로디 세 가지를 쓴 뒤 독립된 리뷰어가 하나를 고르고, 섹션 구성으로 곡 전체를 만들고, 두 번째 리뷰어의 의견을 받아 고쳤습니다. 모든 영상은 TuttiDAW가 그 프로그램을 실제로 재생하는 화면입니다. [만든 과정](examples/README.md).
 
-_첫 릴리스와 함께 공개됩니다._
+| | |
+|---|---|
+| [![Late Reading](docs/images/showcase/late-reading.jpg)](https://assets.tuttidaw.com/showcase/late-reading/late-reading-hq.mp4) | **Late Reading**<br>로파이 힙합 · 88 BPM · 1:44<br>[영상](https://assets.tuttidaw.com/showcase/late-reading/late-reading-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/late-reading/late-reading.mp3) · [코드와 메모](examples/late-reading) |
+| [![江月 Moon over the River](docs/images/showcase/moon-over-the-river.jpg)](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river-hq.mp4) | **江月 Moon over the River**<br>궈펑(중국풍) 발라드 · 72 BPM · 1:57<br>[영상](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river.mp3) · [코드와 메모](examples/moon-over-the-river) |
+| [![Sunday Strut](docs/images/showcase/sunday-strut.jpg)](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut-hq.mp4) | **Sunday Strut**<br>펑크 / 디스코 · 112 BPM · 2:00<br>[영상](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut.mp3) · [코드와 메모](examples/sunday-strut) |
+| [![Neon Highway](docs/images/showcase/neon-highway.jpg)](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway-hq.mp4) | **Neon Highway**<br>신스웨이브 · 100 BPM · 2:05<br>[영상](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway.mp3) · [코드와 메모](examples/neon-highway) |
+| [![After Hours](docs/images/showcase/after-hours.jpg)](https://assets.tuttidaw.com/showcase/after-hours/after-hours-hq.mp4) | **After Hours**<br>딥 하우스 · 123 BPM · 2:05<br>[영상](https://assets.tuttidaw.com/showcase/after-hours/after-hours-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/after-hours/after-hours.mp3) · [코드와 메모](examples/after-hours) |
 <!-- examples:end -->
 
 ## 빠른 시작

@@ -1,0 +1,7 @@
+[
+  {
+    "program": "song.tc",
+    "title": "Sunday Strut",
+    "args": ["--lufs", "-14", "--limit", "--tail", "3"]
+  }
+]

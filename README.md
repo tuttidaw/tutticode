@@ -39,9 +39,15 @@ Without sign-in a render is at most 60 s and one over 30 s carries a spoken tag:
 ## Listen
 
 <!-- examples:start -->
-Six pieces, each by a different model, made in one take from [the same opening](examples/prompt.md) and a brief of one or two sentences. The agent chose the title and the sounds, wrote every line of code, rendered, read the numbers and revised. Nobody replied to it while it worked and nobody edited its code. Each page has the program, the agent's notes and a link that opens it in TuttiDAW.
+Five pieces written by an agent (Claude Code with Claude Opus 5.5) in TuttiCode, from a one-paragraph brief each. It planned the song, wrote three melodies, an independent reviewer picked one, it built the whole song with sections, a second reviewer critiqued it, and it revised. Each video is TuttiDAW playing the program. [How they were made](examples/README.md).
 
-_Coming with the first release._
+| | |
+|---|---|
+| [![Late Reading](docs/images/showcase/late-reading.jpg)](https://assets.tuttidaw.com/showcase/late-reading/late-reading-hq.mp4) | **Late Reading**<br>Lo-fi hip-hop · 88 BPM · 1:44<br>[Watch](https://assets.tuttidaw.com/showcase/late-reading/late-reading-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/late-reading/late-reading.mp3) · [Code & notes](examples/late-reading) |
+| [![江月 Moon over the River](docs/images/showcase/moon-over-the-river.jpg)](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river-hq.mp4) | **江月 Moon over the River**<br>Guofeng (Chinese-style) ballad · 72 BPM · 1:57<br>[Watch](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river.mp3) · [Code & notes](examples/moon-over-the-river) |
+| [![Sunday Strut](docs/images/showcase/sunday-strut.jpg)](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut-hq.mp4) | **Sunday Strut**<br>Funk / disco · 112 BPM · 2:00<br>[Watch](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut.mp3) · [Code & notes](examples/sunday-strut) |
+| [![Neon Highway](docs/images/showcase/neon-highway.jpg)](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway-hq.mp4) | **Neon Highway**<br>Synthwave · 100 BPM · 2:05<br>[Watch](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway.mp3) · [Code & notes](examples/neon-highway) |
+| [![After Hours](docs/images/showcase/after-hours.jpg)](https://assets.tuttidaw.com/showcase/after-hours/after-hours-hq.mp4) | **After Hours**<br>Deep house · 123 BPM · 2:05<br>[Watch](https://assets.tuttidaw.com/showcase/after-hours/after-hours-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/after-hours/after-hours.mp3) · [Code & notes](examples/after-hours) |
 <!-- examples:end -->
 
 ## Quick start

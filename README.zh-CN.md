@@ -39,9 +39,15 @@ Without sign-in a render is at most 60 s and one over 30 s carries a spoken tag:
 ## 试听
 
 <!-- examples:start -->
-六首作品，各由一个不同的模型完成，都基于 [同一段开场提示](examples/prompt.md) 加上一两句简要说明，一次做完。标题和音色由 Agent 自己选，每一行代码都由它编写；它渲染、读数值、再修改。过程中没有人回复它，也没有人改动它的代码。每个页面都有程序、Agent 的笔记，以及在 TuttiDAW 中打开它的链接。
+五首作品，由 Agent（Claude Code + Claude Opus 5.5）根据每首一段话的需求，用 TuttiCode 写成：先做规划、写三段旋律，由一个独立的评审 Agent 挑出一段，再用段落结构写完整首，第二位评审给出意见后修改。每段视频都是 TuttiDAW 在实际播放这段程序。[制作过程](examples/README.md)。
 
-_随首个版本发布。_
+| | |
+|---|---|
+| [![Late Reading](docs/images/showcase/late-reading.jpg)](https://assets.tuttidaw.com/showcase/late-reading/late-reading-hq.mp4) | **Late Reading**<br>Lo-fi 嘻哈 · 88 BPM · 1:44<br>[视频](https://assets.tuttidaw.com/showcase/late-reading/late-reading-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/late-reading/late-reading.mp3) · [代码和笔记](examples/late-reading) |
+| [![江月 Moon over the River](docs/images/showcase/moon-over-the-river.jpg)](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river-hq.mp4) | **江月 Moon over the River**<br>国风抒情 · 72 BPM · 1:57<br>[视频](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/moon-over-the-river/moon-over-the-river.mp3) · [代码和笔记](examples/moon-over-the-river) |
+| [![Sunday Strut](docs/images/showcase/sunday-strut.jpg)](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut-hq.mp4) | **Sunday Strut**<br>放克 / 迪斯科 · 112 BPM · 2:00<br>[视频](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/sunday-strut/sunday-strut.mp3) · [代码和笔记](examples/sunday-strut) |
+| [![Neon Highway](docs/images/showcase/neon-highway.jpg)](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway-hq.mp4) | **Neon Highway**<br>合成器浪潮 · 100 BPM · 2:05<br>[视频](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/neon-highway/neon-highway.mp3) · [代码和笔记](examples/neon-highway) |
+| [![After Hours](docs/images/showcase/after-hours.jpg)](https://assets.tuttidaw.com/showcase/after-hours/after-hours-hq.mp4) | **After Hours**<br>深浩室 · 123 BPM · 2:05<br>[视频](https://assets.tuttidaw.com/showcase/after-hours/after-hours-hq.mp4) · [MP3](https://assets.tuttidaw.com/showcase/after-hours/after-hours.mp3) · [代码和笔记](examples/after-hours) |
 <!-- examples:end -->
 
 ## 快速开始

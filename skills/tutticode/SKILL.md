@@ -16,7 +16,7 @@ mini-notation. It loops: one cycle = one bar.
 setcpm(30)                                   // cycles (bars) per minute: 30 = 120 BPM in 4/4
 drums: s("bd [~ bd] sd ~, hh*8").bank("tr909") // a labelled voice = one track
 bass: note("c2 [~ c2] eb2 g1").s("sawtooth").lpf(800)
-chords: chord("<Cm7 Ab^7 Fm7 G7>").voicing().inst("Tine").fx("Reverb:Large Hall")
+chords: chord("<Cm7 Ab^7 Fm7 G7>").voicing().inst("Electric Piano").fx("Reverb:Large Hall")
 _lead: n("0 2 4 7").scale("C:minor")         // a leading _ mutes a voice
 ```
 
@@ -131,7 +131,7 @@ Read only what the task needs:
 - `references/songs-and-sections.md`: Songs and sections. Write a whole song as sections - intro, verse, chorus - played in a form, with each track's sound written once.
 - `references/harmony-and-scales.md`: Harmony and scales. Note names and octaves, scale degrees, transposition, chord symbols, voicings and arpeggios.
 - `references/melodies-with-do-re-mi.md`: Melodies with do re mi. Write notes in solfège (do re mi fa sol la si) wherever a note name goes; Export to Strudel gives letters.
-- `references/sounds.md`: Sounds. Drum kits and banks, synth waveforms, General MIDI instrument names, Ensemble sounds and your own samples.
+- `references/sounds.md`: Sounds. Drum kits and banks, synth waveforms, General MIDI instrument names, Multi-Engine Synth sounds and your own samples.
 - `references/effect-controls.md`: Effect controls. Filters, reverb, delay, distortion, panning, envelopes and synth controls - and moving them with signals.
 - `references/visual-feedback.md`: Visual feedback. Piano rolls, punchcards, oscilloscopes and spectrums drawn in the editor while the program plays - see what a voice plays and how it sounds.
 - `references/sample-operations.md`: Sample operations. Play part of a sample, change its speed, cut it into slices, fit it to the tempo and choke it.

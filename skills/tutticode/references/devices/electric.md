@@ -1,12 +1,12 @@
-# Tine
+# Electric Piano
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("Tine:E-Piano MKI Dirty")
+note("c3 e3 g3 b3").inst("Electric Piano:E-Piano MKI Dirty")
 ```
 
-Accepted names: `tine`.
+Accepted names: `electricpiano`.
 
 ## Parameters
 

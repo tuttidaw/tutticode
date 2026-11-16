@@ -1,12 +1,12 @@
-# Filament
+# String Model
 
 An instrument (`.inst`), available.
 
 ```js
-note("c3 e3 g3 b3").inst("Filament:12 String Chorus Guitar")
+note("c3 e3 g3 b3").inst("String Model:12 String Chorus Guitar")
 ```
 
-Accepted names: `filament`.
+Accepted names: `stringmodel`.
 
 ## Parameters
 

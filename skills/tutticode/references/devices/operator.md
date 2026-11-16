@@ -1,12 +1,12 @@
-# Carrier
+# FM Synth
 
 An instrument (`.inst`), tested end to end.
 
 ```js
-note("c3 e3 g3 b3").inst("Carrier:12 String Guitar")
+note("c3 e3 g3 b3").inst("FM Synth:12 String Guitar")
 ```
 
-Accepted names: `carrier`.
+Accepted names: `fmsynth`.
 
 ## Parameters
 

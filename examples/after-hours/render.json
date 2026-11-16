@@ -1,0 +1,7 @@
+[
+  {
+    "program": "song.tc",
+    "title": "After Hours",
+    "args": ["--lufs", "-14", "--limit", "--tail", "3"]
+  }
+]
